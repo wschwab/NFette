@@ -14,7 +14,7 @@ import styles from "./finalStyles";
                 <div className={classes.innerBox}>
                     <p className={classes.address}>0xC54070dA79E7E3e2c95D3a91fe98A42000e65a48</p>
                     <div className={classes.divider}></div>
-                    <p className={classes.description}>See moreinfo here about how to use your contract</p>
+                    <p className={classes.description}>See more here about how to use your contract</p>
                 </div>
             </div>
             <div className={classes.btnBar}>
