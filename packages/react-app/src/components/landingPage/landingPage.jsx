@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./landingPageStyles";
+import styles from "./landingPage";
 import {withStyles} from "@material-ui/core/styles";
 
 function LandingPage(props) {
@@ -9,6 +9,8 @@ function LandingPage(props) {
         <div className={classes.root}>
             <div className={classes.heading}>Turn your NFT into an interest earning asset.</div>
             <p className={classes.subHeading}>Turn your collection into an Automatic Market Maker one piece at a time and gain funding upfront for your next idea BEFORE you make it!</p>
+            <div className={classes.cardWrapper}>
+            </div> 
             <div className={classes.stepsContainer}>
                 <div className={classes.stepBox}>
                     <span className={classes.text}>1.</span>
@@ -30,7 +32,6 @@ function LandingPage(props) {
                     <p className={classes.text}>{"Sell $SHAREs to your shareholders"}</p>
                     <span className="gradientBorder"></span>
                 </div>
-                
             </div>
             <div className={classes.btnBar}>
                 <button onClick={()=>go("createNFT")} className={classes.btnRight}>Don't have an NFT?</button>

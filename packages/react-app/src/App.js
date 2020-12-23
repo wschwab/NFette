@@ -5,6 +5,7 @@ import {StoreProvider} from "./store/store";
 import './App.css';
 import Web3Modal from "web3modal";
 import Portis from "@portis/web3";
+import AvailableMarkets from './BuyFlow/availableMarkets';
 
 // must register dapp to get portis ID
 
@@ -29,6 +30,8 @@ function App() {
         <div className="App">
           <Navbar web3modal={web3Modal} />
           <MultiStepSellFlow />
+          {/* Uncomment this to see buy page
+          <AvailableMarkets /> */}
         </div>
     </StoreProvider>
     
