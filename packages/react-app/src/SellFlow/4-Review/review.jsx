@@ -1,11 +1,12 @@
-import React, {useContext} from 'react';
+import React, { useContext, useState } from 'react';
 import {withStyles} from "@material-ui/core/styles";
-import {Store} from "../../store/store";
+// import {Store} from "../../store/store";
 import styles from "./reviewStyles";
 
  function Review(props) {
      const {classes, navigation} = props;
-     const {state, actions} = useContext(Store);
+    //  const {state, actions} = useContext(Store);
+    const [ state, setState ] = useState({});
      const { nftDetails, shareDetails, curveShape, riskProfile} = state;
      const {previous, next} = navigation;
      const handleNext = ()=> {

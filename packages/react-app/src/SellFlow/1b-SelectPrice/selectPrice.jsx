@@ -1,13 +1,22 @@
-import React, {useContext} from 'react';
-import {Store} from "../../store/store";
+import React, { useContext, useState } from 'react';
+// import {Store} from "../../store/store";
 import styles from "./selectPriceStyles";
 import {withStyles} from "@material-ui/core/styles";
 
 
 function SelectPrice(props) {
-    const {state, actions} = useContext(Store);
+    // const {state, actions} = useContext(Store);
+    const [state, setState] = useState({});
     const {classes, navigation} = props;
     const {next, previous} = navigation;
+
+    const setCollateralType = async e => {
+
+    }
+
+    const setInitialPrice = async e => {
+        
+    }
     
     const {nftDetails} = state;
     return (
@@ -25,14 +34,14 @@ function SelectPrice(props) {
                 </div>
                 <div className={classes.inputContainer}>
                     <label className={classes.label}>Collateral Type accepted</label>
-                    <select className={classes.select} name="collateral type" value={state.collateralType} onChange={(e)=> actions.setCollateralType(e.target.value)}>
+                    <select className={classes.select} name="collateral type" value={state.collateralType} onChange={(e)=> setCollateralType(e.target.value)}>
                     <option value="" selected></option>
                         <option value="DAI" >DAI</option>
                          <option value="USDC" >USDC</option>
                         <option value="ETH">ETH</option>
                     </select>
                     <label className={classes.label}>Initial Price for ERC20 Token on Market</label>
-                    <input className={classes.input} onChange={(e)=> actions.setInitialPrice(e.target.value)} value={state.initialPrice} name="initialPrice" type="text" />
+                    <input className={classes.input} onChange={(e)=> setInitialPrice(e.target.value)} value={state.initialPrice} name="initialPrice" type="text" />
                 </div>
                 
 

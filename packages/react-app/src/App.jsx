@@ -6,6 +6,7 @@ import "./App.css";
 import { Row, Col, Button, Menu } from "antd";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import Portis from "@portis/web3";
 import { useUserAddress } from "eth-hooks";
 import { useExchangePrice, useGasPrice, useUserProvider, useContractLoader, useContractReader, useEventListener, useBalance, useExternalContractLoader } from "./hooks";
 import { Header, Account, Faucet, Ramp, Contract, GasGauge } from "./components";
@@ -13,6 +14,13 @@ import { Transactor } from "./helpers";
 import { formatEther } from "@ethersproject/units";
 //import Hints from "./Hints";
 import { Hints, ExampleUI, Subgraph } from "./views"
+
+import MultiStepSellFlow from './SellFlow/MultiStepSellFlow';
+// import {StoreProvider} from "./store/store";
+import Navbar from "./components/navbar/navbar";
+
+
+
 /*
     Welcome to 🏗 scaffold-eth !
 
@@ -53,7 +61,21 @@ const localProviderUrlFromEnv = process.env.REACT_APP_PROVIDER ? process.env.REA
 if(DEBUG) console.log("🏠 Connecting to provider:", localProviderUrlFromEnv);
 const localProvider = new JsonRpcProvider(localProviderUrlFromEnv);
 
+const providerOptions = {
+  portis: {
+    package: Portis,
+    options: {
+      id: 'f5c8dbd5-f553-4641-943e-9223c9e65a0a', 
+    },
+  },
+};
 
+// Not sure this is needed, coped from old repo
+// const web3Modal = new Web3Modal({
+//   network: "mainnet",
+//   cacheProvider: true,
+//   providerOptions,
+// });
 
 function App(props) {
   const [injectedProvider, setInjectedProvider] = useState();
@@ -123,7 +145,11 @@ function App(props) {
   }, [setRoute]);
 
   return (
+    // <StoreProvider>
     <div className="App">
+      {/* From old repo, uncomment when ready
+      <Navbar web3modal={web3Modal} />
+      <MultiStepSellFlow /> */}
 
       {/* ✏️ Edit the header and change the title to your project name */}
       <Header />
@@ -271,6 +297,7 @@ function App(props) {
        </div>
 
     </div>
+    // </StoreProvider>
   );
 }
 

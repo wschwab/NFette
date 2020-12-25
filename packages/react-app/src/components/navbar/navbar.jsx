@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {Store} from "../../store/store";
+// import {Store} from "../../store/store";
 import {ReactComponent as Logo} from "../../Media/logo.svg";
 import { ethers } from 'ethers';
 import styles from "./navbarStyles";
@@ -7,8 +7,13 @@ import {withStyles} from "@material-ui/core/styles";
 
 function Navbar(props) {
     const [loggedIn, setLoggedIn] = useState(false);
-    const {state, actions} = useContext(Store);
+    // const {state, actions} = useContext(Store);
+    const [ state, setState ] = ({});
     const {classes} = props;
+
+    const setProvider = async e => {
+        
+    }
 
     const logout = async () => {
         await props.web3modal.clearCachedProvider();
@@ -21,7 +26,7 @@ function Navbar(props) {
         // for only Portis:
         const w3mProvider = await props.web3modal.connectTo("portis");
         const provider = new ethers.providers.Web3Provider(w3mProvider);
-        actions.setProvider(provider);
+        setProvider(provider);
         setLoggedIn(true);
     }
 
