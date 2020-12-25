@@ -11,6 +11,12 @@ const main = async () => {
 
   const yourContract = await deploy("YourContract") // <-- add in constructor args like line 16 vvvv
   const factory = await deploy("NFTMarketFactory",["0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"]);
+  const curve = await deploy("Curve");
+
+  // the following are a mock ERC20 and mock ERC721 for testing purposes, 
+  // and should not be deployed in a mainnet deployment
+  const mockERC20  = await deploy("ERC20Mock", ["Stake token", "STAKE"]);
+  const mockERC721 = await deploy("MyNFT", ["MyNFette", "NFETTE", "nfette.io"]);
 
   // const exampleToken = await deploy("ExampleToken")
   // const examplePriceOracle = await deploy("ExamplePriceOracle")
