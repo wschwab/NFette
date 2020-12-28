@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./landingPage";
+import styles from "./landingPageStyles";
 import {withStyles} from "@material-ui/core/styles";
 
 function LandingPage(props) {
