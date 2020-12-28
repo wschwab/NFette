@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-// import {Store} from "../../store/store";
+import {Store} from "../../store/store";
 import {withStyles} from "@material-ui/core/styles";
 import {ReactComponent as Concave} from "../../Media/Concave_Graph.svg";
 import {ReactComponent as Convex} from "../../Media/Convex_Graph.svg";
@@ -9,12 +9,12 @@ import styles from "./chooseCurveStyles";
  function ChooseCurve(props) {
      const {classes, navigation} = props;
      const {previous, next} = navigation;
-    //  const {state, actions} = useContext(Store);
-    const [state, setState] = useState({});
+     const {state, actions} = useContext(Store);
+    // const [state, setState] = useState({});
      const {nftDetails} = state;
 
      const handleOptionChange = (e)=> {
-        // actions.setCurve(e.target.value);
+        actions.setCurve(e.target.value);
      }
      const handlePrevious = (e)=> {
          e.preventDefault();
