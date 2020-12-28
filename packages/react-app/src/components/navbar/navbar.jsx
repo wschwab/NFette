@@ -8,7 +8,7 @@ import {withStyles} from "@material-ui/core/styles";
 function Navbar(props) {
     const [loggedIn, setLoggedIn] = useState(false);
     // const {state, actions} = useContext(Store);
-    const [ state, setState ] = ({});
+    // const [ state, setState ] = ({});
     const {classes} = props;
 
     const setProvider = async e => {
