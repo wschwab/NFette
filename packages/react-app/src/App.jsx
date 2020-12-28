@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import {  JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 import "./App.css";
-import { Row, Col, Button, Menu } from "antd";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
@@ -12,8 +11,9 @@ import { useExchangePrice, useGasPrice, useUserProvider, useContractLoader, useC
 import { Header, Account, Faucet, Ramp, Contract, GasGauge } from "./components";
 import { Transactor } from "./helpers";
 import { formatEther } from "@ethersproject/units";
-//import Hints from "./Hints";
-import { Hints, ExampleUI, Subgraph } from "./views"
+import { StoreProvider } from './store/store';
+// import Hints from "./Hints";
+// import { Hints, ExampleUI, Subgraph } from "./views"
 
 import MultiStepSellFlow from './SellFlow/MultiStepSellFlow';
 import Navbar from "./components/navbar/navbar";
@@ -144,13 +144,13 @@ function App(props) {
   }, [setRoute]);
 
   return (
-    // <StoreProvider>
+    <StoreProvider>
     <div className="App">
       From old repo, uncomment when ready
       <Navbar web3modal={web3Modal} />
       <MultiStepSellFlow />
     </div>
-    // </StoreProvider>
+    </StoreProvider>
   );
 }
 
