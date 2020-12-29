@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-// import {Store} from "../../store/store";
+import {Store} from "../../store/store";
 import styles from "./createNFTStyles";
 import {withStyles} from "@material-ui/core/styles";
 
 
 function CreateNFT(props) {
-    // const {state, actions} = useContext(Store);
-    const [ state, setState ] = useState({});
+    const {state, actions} = useContext(Store);
+    // const [ state, setState ] = useState({});
     const {classes, navigation} = props;
     const {next, go} = navigation;
 

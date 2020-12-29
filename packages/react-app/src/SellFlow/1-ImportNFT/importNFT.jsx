@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-// import {Store} from "../../store/store";
+import {Store} from "../../store/store";
 import styles from "./importNFTStyles";
 import {withStyles} from "@material-ui/core/styles";
 
@@ -12,7 +12,7 @@ const initialState = {
 
 
 function ImportNFT(props) {
-    // const {state, actions} = useContext(Store);
+    const {state, actions} = useContext(Store);
     const [input, setInput] = useState(initialState);
     const {classes, navigation} = props;
     const {next, go} = navigation;
@@ -23,13 +23,13 @@ function ImportNFT(props) {
 
     const handlePrevious= (e)=> {
         e.preventDefault();
-        // actions.clearImportedNFTDetails();
+        actions.clearImportedNFTDetails();
         setInput(initialState);
         go("landingPage");
     }
     const handleNext = (e) => {
         e.preventDefault();
-        // actions.setImportedNFTDetails(input);
+        actions.setImportedNFTDetails(input);
         setInput(initialState);
         next();
     }

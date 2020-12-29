@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-// import {Store} from "../../store/store";
+import {Store} from "../../store/store";
 import {withStyles} from "@material-ui/core/styles";
 import {ReactComponent as AaveText} from "../../Media/aave1.svg";
 import {ReactComponent as AaveGhost} from "../../Media/aave2.svg";
@@ -8,8 +8,8 @@ import styles from "./setupLPStyles";
  function SetupLP(props) {
      const {classes, navigation} = props;
      const {previous, next} = navigation;
-    //  const {state, actions} = useContext(Store);
-    const [ state, setState ] = useState({});
+     const {state, actions} = useContext(Store);
+    // const [ state, setState ] = useState({});
      const {nftDetails, curveShape, collateralType, shareDetails} = state;
 
     const setRiskProfile = async e => {
