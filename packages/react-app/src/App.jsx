@@ -1,24 +1,33 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "antd/dist/antd.css";
-import {  JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
+import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 import "./App.css";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
 import { useUserAddress } from "eth-hooks";
-import { useExchangePrice, useGasPrice, useUserProvider, useContractLoader, useContractReader, useEventListener, useBalance, useExternalContractLoader } from "./hooks";
+import {
+  useExchangePrice,
+  useGasPrice,
+  useUserProvider,
+  useContractLoader,
+  useContractReader,
+  useEventListener,
+  useBalance,
+  useExternalContractLoader,
+} from "./hooks";
 import { Header, Account, Faucet, Ramp, Contract, GasGauge } from "./components";
 import { Transactor } from "./helpers";
 import { formatEther } from "@ethersproject/units";
-import { StoreProvider } from './store/store';
+import { StoreProvider } from "./store/store";
 // import Hints from "./Hints";
 // import { Hints, ExampleUI, Subgraph } from "./views"
 
-import MultiStepSellFlow from './SellFlow/MultiStepSellFlow';
+import MultiStepSellFlow from "./SellFlow/MultiStepSellFlow";
+import AvailableMarkets from "./BuyFlow/availableMarkets";
 import Navbar from "./components/navbar/navbar";
-
-
+import RootLanding from "./components/rootLanding/rootLanding";
 
 /*
     Welcome to 🏗 scaffold-eth !
@@ -39,32 +48,34 @@ import Navbar from "./components/navbar/navbar";
     (and then use the `useExternalContractLoader()` hook!)
 */
 import { INFURA_ID, DAI_ADDRESS, DAI_ABI } from "./constants";
+import rootLanding from "./components/rootLanding/rootLanding";
+import availableMarkets from "./BuyFlow/availableMarkets";
 
 // 😬 Sorry for all the console logging 🤡
-const DEBUG = true
+const DEBUG = true;
 
 // 🔭 block explorer URL
-const blockExplorer = "https://etherscan.io/" // for xdai: "https://blockscout.com/poa/xdai/"
+const blockExplorer = "https://etherscan.io/"; // for xdai: "https://blockscout.com/poa/xdai/"
 
 // 🛰 providers
-if(DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
+if (DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
 //const mainnetProvider = getDefaultProvider("mainnet", { infura: INFURA_ID, etherscan: ETHERSCAN_KEY, quorum: 1 });
 // const mainnetProvider = new InfuraProvider("mainnet",INFURA_ID);
-const mainnetProvider = new JsonRpcProvider("https://mainnet.infura.io/v3/"+INFURA_ID)
+const mainnetProvider = new JsonRpcProvider("https://mainnet.infura.io/v3/" + INFURA_ID);
 // ( ⚠️ Getting "failed to meet quorum" errors? Check your INFURA_ID)
 
 // 🏠 Your local provider is usually pointed at your local blockchain
 const localProviderUrl = "http://localhost:8545"; // for xdai: https://dai.poa.network
 // as you deploy to other networks you can set REACT_APP_PROVIDER=https://dai.poa.network in packages/react-app/.env
 const localProviderUrlFromEnv = process.env.REACT_APP_PROVIDER ? process.env.REACT_APP_PROVIDER : localProviderUrl;
-if(DEBUG) console.log("🏠 Connecting to provider:", localProviderUrlFromEnv);
+if (DEBUG) console.log("🏠 Connecting to provider:", localProviderUrlFromEnv);
 const localProvider = new JsonRpcProvider(localProviderUrlFromEnv);
 
 const providerOptions = {
   portis: {
     package: Portis,
     options: {
-      id: 'f5c8dbd5-f553-4641-943e-9223c9e65a0a', 
+      id: "f5c8dbd5-f553-4641-943e-9223c9e65a0a",
     },
   },
 };
@@ -91,36 +102,35 @@ function App(props) {
   const address = useUserAddress(userProvider);
 
   // The transactor wraps transactions and provides notificiations
-  const tx = Transactor(userProvider, gasPrice)
+  const tx = Transactor(userProvider, gasPrice);
 
   // 🏗 scaffold-eth is full of handy hooks like this one to get your balance:
   const yourLocalBalance = useBalance(localProvider, address);
-  if(DEBUG) console.log("💵 yourLocalBalance",yourLocalBalance?formatEther(yourLocalBalance):"...")
+  if (DEBUG) console.log("💵 yourLocalBalance", yourLocalBalance ? formatEther(yourLocalBalance) : "...");
 
   // just plug in different 🛰 providers to get your balance on different chains:
   const yourMainnetBalance = useBalance(mainnetProvider, address);
-  if(DEBUG) console.log("💵 yourMainnetBalance",yourMainnetBalance?formatEther(yourMainnetBalance):"...")
+  if (DEBUG) console.log("💵 yourMainnetBalance", yourMainnetBalance ? formatEther(yourMainnetBalance) : "...");
 
   // Load in your local 📝 contract and read a value from it:
-  const readContracts = useContractLoader(localProvider)
-  if(DEBUG) console.log("📝 readContracts",readContracts)
+  const readContracts = useContractLoader(localProvider);
+  if (DEBUG) console.log("📝 readContracts", readContracts);
 
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
-  const writeContracts = useContractLoader(userProvider)
-  if(DEBUG) console.log("🔐 writeContracts",writeContracts)
+  const writeContracts = useContractLoader(userProvider);
+  if (DEBUG) console.log("🔐 writeContracts", writeContracts);
 
   // If you want to bring in the mainnet DAI contract it would look like:
   //const mainnetDAIContract = useExternalContractLoader(mainnetProvider, DAI_ADDRESS, DAI_ABI)
   //console.log("🥇DAI contract on mainnet:",mainnetDAIContract)
 
-
   // keep track of a variable from the contract in the local React state:
-  const purpose = useContractReader(readContracts,"YourContract", "purpose")
-  console.log("🤗 purpose:",purpose)
+  const purpose = useContractReader(readContracts, "YourContract", "purpose");
+  console.log("🤗 purpose:", purpose);
 
   //📟 Listen for broadcast events
   const setPurposeEvents = useEventListener(readContracts, "YourContract", "SetPurpose", localProvider, 1);
-  console.log("📟 SetPurpose events:",setPurposeEvents)
+  console.log("📟 SetPurpose events:", setPurposeEvents);
 
   /*
   const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
@@ -140,20 +150,25 @@ function App(props) {
 
   const [route, setRoute] = useState();
   useEffect(() => {
-    setRoute(window.location.pathname)
+    setRoute(window.location.pathname);
   }, [setRoute]);
 
   return (
     <StoreProvider>
-    <div className="App">
-      From old repo, uncomment when ready
-      <Navbar web3modal={web3Modal} />
-      <MultiStepSellFlow />
-    </div>
+      <div className="App">
+        From old repo, uncomment when ready
+        <BrowserRouter>
+        <Navbar web3modal={web3Modal} />
+          <Switch>
+            <Route path="/" exact component={RootLanding} />
+            <Route path="/sell" component={MultiStepSellFlow} />
+            <Route path="/buy" component={AvailableMarkets} />
+          </Switch>
+        </BrowserRouter>
+      </div>
     </StoreProvider>
   );
 }
-
 
 /*
   Web3 modal helps us "connect" external wallets:

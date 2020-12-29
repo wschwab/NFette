@@ -12,7 +12,6 @@ const styles = createStyles({
         backgroundColor: "var(--main-white)",
         position: "absolute",
         top: "70px",
-        overflow: 'scroll'
     },
     heading: {
         fontFamily: "var(--fancy-font)",
@@ -26,7 +25,10 @@ const styles = createStyles({
         flexDirection: "row",
         justifyContent: "center",
         flexWrap: 'wrap',
-        width: "70%",
+        width: "80%",
+        height: '70%',
+        overflowY: 'scroll',
+        marginTop: '5rem',
     },
 })
 

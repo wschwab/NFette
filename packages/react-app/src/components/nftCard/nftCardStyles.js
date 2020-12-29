@@ -9,7 +9,6 @@ const styles = createStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: 'center'
-   
   },
   titleWrapper: {
     width: "17rem",

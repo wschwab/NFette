@@ -34,9 +34,8 @@ function LandingPage(props) {
                 </div>
             </div>
             <div className={classes.btnBar}>
-                <button onClick={()=>go("createNFT")} className={classes.btnRight}>Don't have an NFT?</button>
+                <button onClick={()=>go("createNFT")} className={classes.btnRight}>Start creating an NFT</button>
             </div>
-            
         </div>
     )
 }
