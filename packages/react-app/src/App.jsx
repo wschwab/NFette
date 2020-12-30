@@ -3,9 +3,6 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 import "./App.css";
-import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import Portis from "@portis/web3";
 import { useUserAddress } from "eth-hooks";
 import {
   useExchangePrice,
@@ -21,8 +18,6 @@ import { Header, Account, Faucet, Ramp, Contract, GasGauge } from "./components"
 import { Transactor } from "./helpers";
 import { formatEther } from "@ethersproject/units";
 import { StoreProvider } from "./store/store";
-// import Hints from "./Hints";
-// import { Hints, ExampleUI, Subgraph } from "./views"
 
 import MultiStepSellFlow from "./SellFlow/MultiStepSellFlow";
 import AvailableMarkets from "./BuyFlow/availableMarkets";
@@ -71,27 +66,8 @@ const localProviderUrlFromEnv = process.env.REACT_APP_PROVIDER ? process.env.REA
 if (DEBUG) console.log("🏠 Connecting to provider:", localProviderUrlFromEnv);
 const localProvider = new JsonRpcProvider(localProviderUrlFromEnv);
 
-const providerOptions = {
-  portis: {
-    package: Portis,
-    options: {
-      id: "f5c8dbd5-f553-4641-943e-9223c9e65a0a",
-    },
-  },
-};
-
-// Not sure this is needed, coped from old repo
-// const web3Modal = new Web3Modal({
-//   network: "mainnet",
-//   cacheProvider: true,
-//   providerOptions,
-// });
 
 function App(props) {
-  const [injectedProvider, setInjectedProvider] = useState();
-  /* 💵 this hook will get the price of ETH from 🦄 Uniswap: */
-  const price = useExchangePrice(mainnetProvider); //1 for xdai
-
   /* 🔥 this hook will get the price of Gas from ⛽️ EtherGasStation */
   const gasPrice = useGasPrice("fast"); //1000000000 for xdai
 
@@ -137,28 +113,12 @@ function App(props) {
   console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
   */
 
-  const loadWeb3Modal = useCallback(async () => {
-    const provider = await web3Modal.connect();
-    setInjectedProvider(new Web3Provider(provider));
-  }, [setInjectedProvider]);
-
-  useEffect(() => {
-    if (web3Modal.cachedProvider) {
-      loadWeb3Modal();
-    }
-  }, [loadWeb3Modal]);
-
-  const [route, setRoute] = useState();
-  useEffect(() => {
-    setRoute(window.location.pathname);
-  }, [setRoute]);
-
   return (
     <StoreProvider>
       <div className="App">
         From old repo, uncomment when ready
         <BrowserRouter>
-        <Navbar web3modal={web3Modal} />
+        <Navbar />
           <Switch>
             <Route path="/" exact component={RootLanding} />
             <Route path="/sell" component={MultiStepSellFlow} />
@@ -170,27 +130,5 @@ function App(props) {
   );
 }
 
-/*
-  Web3 modal helps us "connect" external wallets:
-*/
-const web3Modal = new Web3Modal({
-  // network: "mainnet", // optional
-  cacheProvider: true, // optional
-  providerOptions: {
-    walletconnect: {
-      package: WalletConnectProvider, // required
-      options: {
-        infuraId: INFURA_ID,
-      },
-    },
-  },
-});
-
-const logoutOfWeb3Modal = async () => {
-  await web3Modal.clearCachedProvider();
-  setTimeout(() => {
-    window.location.reload();
-  }, 1);
-};
 
 export default App;
