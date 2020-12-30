@@ -45,7 +45,7 @@ const styles = createStyles({
         alignItems: "start",
         justifyContent: "flex-start",
         fontFamily: "var(--plain-font)",
-        fontSize: "2rem",
+        fontSize: "1.8rem",
         textAlign: "left",
         fontWeight: 500,
         margin: "auto"
