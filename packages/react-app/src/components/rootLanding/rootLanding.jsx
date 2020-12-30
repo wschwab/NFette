@@ -25,7 +25,7 @@ function RootLanding(props) {
           <span className="gradientBorder"></span>
         </div>
         <div className={classes.stepBox}> 
-          <p className={classes.text}>{"Easily create your own NFT by following our simple steps"}</p>
+          <p className={classes.text}>{"Easily create your own NFT by following our steps"}</p>
           <button onClick={() => {
               history.push("/sell")
           }} className={classes.btnRight}>
