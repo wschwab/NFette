@@ -33,7 +33,9 @@ code {
   --fancy-font: Abril Fatface, cursive;
   --button-font: IBM Plex Mono, monospace;
 }
-
+.App {
+  text-align: center;
+}
 * {
   margin: 0;
   padding: 0;

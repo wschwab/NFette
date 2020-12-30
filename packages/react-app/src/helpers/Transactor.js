@@ -4,9 +4,16 @@ import { notification } from "antd";
 
 import Notify from "bnc-notify";
 
+// import { useUserProvider, useUserAddress } from "../hooks/";
+
 // this should probably just be renamed to "notifier"
 // it is basically just a wrapper around BlockNative's wonderful Notify.js
 // https://docs.blocknative.com/notify
+
+// usage:
+// const userProvider = useUserProvider(injectedProvider, localProvider);
+// const address = useUserAddress(userProvider);
+// const tx = Transactor(userProvider, gasPrice);
 
 export default function Transactor(provider, gasPrice, etherscan) {
   if (typeof provider !== "undefined") {
@@ -16,7 +23,7 @@ export default function Transactor(provider, gasPrice, etherscan) {
       const network = await provider.getNetwork();
       console.log("network", network);
       const options = {
-        dappId: "0b58206a-f3c0-4701-a62f-73c7243e8c77", // GET YOUR OWN KEY AT https://account.blocknative.com
+        dappId: "7aa157b8-78df-4d86-87e1-c7258bf1f14c", // GET YOUR OWN KEY AT https://account.blocknative.com
         system: "ethereum",
         networkId: network.chainId,
         // darkMode: Boolean, // (default: false)
