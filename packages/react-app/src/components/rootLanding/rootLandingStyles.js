@@ -15,7 +15,7 @@ const styles = createStyles({
     },
     heading: {
         fontFamily: "var(--fancy-font)",
-        fontSize: "10rem",
+        fontSize: "8rem",
         color: "inherit",
         width: "70%",
         minWidth: "750px"
