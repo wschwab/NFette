@@ -2,9 +2,9 @@ pragma solidity >=0.6.0 <0.7.0;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
-import "./Deployer.sol";
-import "../bc/Curve.sol";
-import "../interfaces/INFTMarket.sol";
+import "./interfaces/Deployer.sol";
+import "./Curve.sol";
+import "./interfaces/INFTMarket.sol";
 
 // import "@nomiclabs/hardhat/console.sol";
 

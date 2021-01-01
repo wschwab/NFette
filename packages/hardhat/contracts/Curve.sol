@@ -1,7 +1,7 @@
 pragma solidity >=0.6.0 <0.7.0;
 
-import "../interfaces/ICurve.sol";
-import "../interfaces/INFTMarket.sol";
+import "./interfaces/ICurve.sol";
+import "./interfaces/INFTMarket.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 // import "@nomiclabs/hardhat/console.sol";
