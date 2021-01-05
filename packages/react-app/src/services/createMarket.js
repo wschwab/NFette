@@ -8,11 +8,11 @@ const createMarket = async (state)=> {
     const result = await contract.createMarket(
         state.nftDetails.name,
         state.nftDetails.address,
-        100,
-        "USDC",
-        state.curveShape,
-        state.shareDetails.name,
-        state.shareDetails.symbol,
+        state.tokenDetails.maxSupply,
+        state.tokenDetials.collateralType,
+        state.tokenDetails.curveShape,
+        state.tokenDetails.name,
+        state.tokenDetails.symbol,
         "" // this is how we pass in the liquidity pool, prolly an address
     )
     return result;

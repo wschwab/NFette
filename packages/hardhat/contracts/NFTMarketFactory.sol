@@ -36,8 +36,8 @@ contract NFTMarketFactory is Deployer {
         string symbol,
         address indexed registeredBy,
         uint256 cap,
-        address bondingCurveAddr,
-        address stakeTokenAddress
+        address bondingCurveAddr
+        // address stakeTokenAddress
     );
 
     constructor(address template) public {
@@ -54,8 +54,9 @@ contract NFTMarketFactory is Deployer {
         uint256 cap,
         uint256 initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory _curveParameters,
-        address stakeTokenAddress) public returns (address market) {
+        uint256[3] memory _curveParameters
+        // address stakeTokenAddress
+        ) public returns (address market) {
 
             address owner = msg.sender; // TODO: update to use Meta-Tx
             // console.log("NEW Market owner", owner);
@@ -75,8 +76,9 @@ contract NFTMarketFactory is Deployer {
                     initialBidPrice,
                     bondingCurveAddr,
                     // _activeCurve,
-                    _curveParameters,
-                    stakeTokenAddress), 'NFTMarketFactory: Unable to initialize market');
+                    _curveParameters
+                    // stakeTokenAddress
+                ), 'NFTMarketFactory: Unable to initialize market');
             emit NFTMarketCreated(address(_template), market, owner);
             emit NFTMarketRegistered(
                 market,
@@ -86,8 +88,9 @@ contract NFTMarketFactory is Deployer {
                 symbol,
                 owner,
                 cap,
-                bondingCurveAddr,
-                stakeTokenAddress);
+                bondingCurveAddr
+                // stakeTokenAddress
+            );
             nftMarketCounter.add(1);
     }
 

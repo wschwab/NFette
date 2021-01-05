@@ -98,12 +98,6 @@
         "internalType": "address",
         "name": "bondingCurveAddr",
         "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "stakeTokenAddress",
-        "type": "address"
       }
     ],
     "name": "NFTMarketRegistered",
@@ -150,11 +144,6 @@
         "internalType": "uint256[3]",
         "name": "_curveParameters",
         "type": "uint256[3]"
-      },
-      {
-        "internalType": "address",
-        "name": "stakeTokenAddress",
-        "type": "address"
       }
     ],
     "name": "createMarket",
