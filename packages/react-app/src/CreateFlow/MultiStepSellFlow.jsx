@@ -5,8 +5,7 @@ import Overview from "./0-Overview/Overview";
 import CreateNFT from "./1-CreateNFT/createNFT";
 import ChooseCurve from "./2-ChooseCurve/chooseCurve";
 import ImportNFT from "./1-ImportNFT/importNFT";
-import SelectPrice from "./2-SelectPrice/selectPrice";
-import SetupLP from "./3-SetupLP/setupLP";
+import SelectPrice from "./3-SelectPrice/selectPrice";
 import Review from "./4-Review/review";
 import Final from "./5-Final/final";
 
@@ -27,7 +26,6 @@ const steps = [
   { id: "createNFT"},
   { id: "selectPrice" },
   { id: "chooseCurve" },
-  { id: "setupLP" },
   { id: "review" },
   { id: "final" },
 ];
@@ -101,22 +99,6 @@ const MultiStepSellFlow = () => {
             }}
           >
             <ChooseCurve navigation={navigation} />
-          </div>
-        )}
-      </Transition>
-      <Transition
-        in={id === "setupLP"}
-        timeout={duration}
-        unmountOnExit
-      >
-        {(state) => (
-          <div
-            style={{
-              ...defaultStyle,
-              ...transitionStyles[state],
-            }}
-          >
-            <SetupLP navigation={navigation} />
           </div>
         )}
       </Transition>
