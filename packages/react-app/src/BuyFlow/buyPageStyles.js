@@ -20,16 +20,6 @@ const styles = createStyles({
         width: "70%",
         minWidth: "750px",
     },
-    cardWrapper: {
-        display: 'flex',
-        flexDirection: "row",
-        justifyContent: "center",
-        flexWrap: 'wrap',
-        width: "80%",
-        height: '70%',
-        overflowY: 'scroll',
-        marginTop: '5rem',
-    },
 })
 
 export default styles;
