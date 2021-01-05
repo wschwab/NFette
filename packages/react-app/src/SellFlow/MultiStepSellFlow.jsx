@@ -27,7 +27,7 @@ const steps = [
   { id: "createNFT"},
   { id: "selectPrice" },
   { id: "chooseCurve" },
-  { id: "setupLP" },
+  // { id: "setupLP" },
   { id: "review" },
   { id: "final" },
 ];
@@ -104,7 +104,7 @@ const MultiStepSellFlow = () => {
           </div>
         )}
       </Transition>
-      <Transition
+      {/* <Transition
         in={id === "setupLP"}
         timeout={duration}
         unmountOnExit
@@ -119,7 +119,7 @@ const MultiStepSellFlow = () => {
             <SetupLP navigation={navigation} />
           </div>
         )}
-      </Transition>
+      </Transition> */}
       <Transition
         in={id === "review"}
         timeout={duration}

@@ -1,10 +1,7 @@
 import React from "react";
 import styles from "./rootLandingStyles";
 import { withStyles } from "@material-ui/core/styles";
-import MultiStepSellFlow from "../../SellFlow/MultiStepSellFlow";
-import AvailableMarkets from "../../BuyFlow/availableMarkets";
 import { useHistory } from "react-router-dom";
-import NftCard from "../nftCard/nftCard";
 
 function RootLanding(props) {
   const { classes, navigation } = props;
@@ -12,24 +9,24 @@ function RootLanding(props) {
 
   return (
     <div className={classes.root}>
-      <div className={classes.heading}>Virtually define the value of what is yours. Create & collect NFTs with NFette.</div>
+      <div className={classes.heading}>Virtually define the value of what is yours. NFette sells, thank us later</div>
       <p className={classes.subHeading}></p>
-      <div className={classes.stepsContainer}>
+      <div className={classes.container}>
         <div className={classes.stepBox}>
-          <p className={classes.text}>{"View & purchase available NFTs by various artists."}</p>
+          <p className={classes.text}>{"Buy and sell available tokens from your favourite artists"}</p>
           <button onClick={() => {
               history.push("/buy")
           }} className={classes.btnRight}>
-            Buy NFT
+            Buy
           </button>
           <span className="gradientBorder"></span>
         </div>
         <div className={classes.stepBox}> 
-          <p className={classes.text}>{"Easily create your own NFT by following our steps"}</p>
+          <p className={classes.text}>{"Create your own NFT here with our easy step-by-step form"}</p>
           <button onClick={() => {
-              history.push("/sell")
+              history.push("/create")
           }} className={classes.btnRight}>
-            Create NFT
+            Create
           </button>
           <span className="gradientBorder"></span>
         </div>

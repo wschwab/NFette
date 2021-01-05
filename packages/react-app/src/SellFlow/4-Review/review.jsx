@@ -16,7 +16,7 @@ import styles from "./reviewStyles";
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
-                <h2 className={classes.subheading}>4. Review and Create your market</h2>
+                <h2 className={classes.subheading}>3. Review and Create your market</h2>
                 <div className="gradientBorder"></div>
             </div>
             <div className={classes.mainContainer}>
@@ -32,15 +32,15 @@ import styles from "./reviewStyles";
                     <div className={classes.leftItem}>Liquidity Pools: </div>
                 </div>
                 <div className={classes.rightBox}>
-                    <div className={classes.rightItem}> {nftDetails.name} </div>
-                    <div className={classes.rightItem}> {nftDetails.url} </div>
+                    <div className={classes.rightItem}>Name {nftDetails.name} </div>
+                    <div className={classes.rightItem}>URL {nftDetails.url} </div>
                     <div className={classes.rightItem}>100</div>
                     <div className={classes.rightItem}>USDC</div>
-                    <div className={classes.rightItem}>{curveShape}</div>
-                    <div className={classes.rightItem}>{shareDetails.name}</div>
-                    <div className={classes.rightItem}>{shareDetails.symbol}</div>
-                    <div className={classes.rightItem}>⎕ ⎕ ⎕ ⎕ </div>
-                    <div className={classes.rightItem}>{riskProfile}</div>
+                    <div className={classes.rightItem}>SHAPE{curveShape}</div>
+                    <div className={classes.rightItem}>MYNFETTESHARE-01{shareDetails.name}</div>
+                    <div className={classes.rightItem}>MYNF{shareDetails.symbol}</div>
+                    <div className={classes.rightItem}>7.22%</div>
+                    <div className={classes.rightItem}>RiskProfile{riskProfile}</div>
                 </div>
             </div>
             <div className={classes.btnBar}>
