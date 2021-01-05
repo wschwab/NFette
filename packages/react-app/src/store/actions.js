@@ -7,8 +7,8 @@ export const useActions = (state, dispatch) => ({
   setNFTSymbol: data => {
     dispatch({ type: types.createNFT.SET_SYMBOL, payload: data });
   },
-  setNFTUrl: data => {
-    dispatch({ type: types.createNFT.SET_URL, payload: data });
+  setNFTUri: data => {
+    dispatch({ type: types.createNFT.SET_URI, payload: data });
   },
   setTokenName: data => {
     dispatch({ type: types.token.SET_NAME, payload: data });

@@ -6,7 +6,7 @@ import {withStyles} from "@material-ui/core/styles";
 
 function CreateNFT(props) {
     const {state, actions} = useContext(Store);
-    // const [ state, setState ] = useState({});
+
     const {classes, navigation} = props;
     const {next, go} = navigation;
 
@@ -17,40 +17,28 @@ function CreateNFT(props) {
 
     const handleNext = (e) => {
         e.preventDefault();
+        formatTokenDetails();
         next();
     }
-    // const formatTokenDetails = (nftName)=> {
-    //     const tokenName = `${nftName.toUpperCase()}SHARE-01`;
-    //     const tokenSymbol = tokenName.slice(0, 4);
-    // }
 
-    const setNFTName = async e => {
-
+    const formatTokenDetails = () => {
+        actions.setTokenName(`${state.nftDetails.name}-SHARES`);
+        actions.setTokenSymbol(`${state.nftDetails.symbol}-SHARES`);
     }
 
-    const setTokenName = async e => {
-
+    const handleNameChange = async e => {
+        actions.setNFTName(e.target.value);
     }
 
-    const setTokenSymbol = async e => {
-
+    const handleSymbolChange = async e => {
+        actions.setNFTSymbol(e.target.value);
     }
 
-    const setNFTSymbol = async e => {
-
+    const handleUriChange = async e => {
+        actions.setNFTUri(e.target.value);
     }
 
-    const setNFTUrl = async e => {
-        
-    }
-
-    const handleNameChange =(e)=> {
-        setNFTName(e.target.value)
-        setTokenName(e.target.value)
-        setTokenSymbol(e.target.value)
-    }
-    const {name, symbol, url} = state.nftDetails;
-
+    
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
@@ -61,17 +49,17 @@ function CreateNFT(props) {
             <form className={classes.form}>
 
                 <label className={classes.label}  for="name">Name for NFT</label>
-                <input onChange={handleNameChange} value={name} className={classes.input} type="text" name="name" placeholder="example: MyCoolNFT"/>
+                <input onChange={handleNameChange} value={state.nftDetails.name} className={classes.input} type="text" name="name" placeholder="example: MyCoolNFT"/>
 
                 <label className={classes.label} for="symbol">Symbol for NFT</label>
-                <input onChange={(e)=> setNFTSymbol(e.target.value)} value={symbol} className={classes.input} type="text" name="symbol" placeholder="MYCT"/>
+                <input onChange={handleSymbolChange} value={state.nftDetails.symbol} className={classes.input} type="text" name="symbol" placeholder="MYCT"/>
 
-                <label  className={classes.label}  for="url">URL</label>
-                <input onChange={(e)=> setNFTUrl(e.target.value)} value={url} className={classes.input} type="text" name="url" placeholder="URL"/>
+                <label  className={classes.label}  for="uri">URI</label>
+                <input onChange={handleUriChange} value={state.nftDetails.uri} className={classes.input} type="text" name="url" placeholder="URL"/>
 
                 <div className={classes.btnBar}>
                     <button onClick={handlePrevious} className={classes.btnLeft}  >Back</button>
-                    <button onClick={handleNext} className={classes.btnRight}  >Mint</button>
+                    <button onClick={handleNext} className={classes.btnRight}  >Next</button>
                 </div>
                 
             </form>

@@ -2,7 +2,7 @@ const types = {
   createNFT: {
     SET_NAME: "CREATE_NFT_SET_NAME",
     SET_SYMBOL: "CREATE_NFT_SET_SYMBOL",
-    SET_URL: "CREATE_NFT_SET_URL",
+    SET_URI: "CREATE_NFT_SET_URI",
   },
   token: {
     SET_NAME: "TOKEN_SET_NAME",

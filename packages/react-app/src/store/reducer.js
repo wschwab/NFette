@@ -6,8 +6,8 @@ const reducer = (state, action) => {
       return { ...state, nftDetails: { ...state.nftDetails, name: action.payload } };
     case types.createNFT.SET_SYMBOL:
       return { ...state, nftDetails: { ...state.nftDetails, symbol: action.payload } };
-    case types.createNFT.SET_URL:
-      return { ...state, nftDetails: { ...state.nftDetails, url: action.payload } };
+    case types.createNFT.SET_URI:
+      return { ...state, nftDetails: { ...state.nftDetails, uri: action.payload } };
     case types.token.SET_NAME:
       return { ...state, shareDetails: { ...state.shareDetails, name: action.payload.toUpperCase() + "SHARE-00" } };
     case types.token.SET_SYMBOL:

@@ -9,7 +9,7 @@ const initialState = {
   nftDetails: {
     name: "",
     symbol: "",
-    url: "",
+    uri: "",
   },
   shareDetails: {
     name: "",
