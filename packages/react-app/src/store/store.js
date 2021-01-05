@@ -9,7 +9,8 @@ const initialState = {
   nftDetails: {
     name: "",
     symbol: "",
-    uri: ""
+    uri: "",
+    contractAddress: ""
   },
   tokenDetails: {
     name: "",

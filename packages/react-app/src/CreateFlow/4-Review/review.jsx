@@ -6,12 +6,11 @@ import styles from "./reviewStyles";
  function Review(props) {
      const {classes, navigation} = props;
      const {state, actions} = useContext(Store);
-    // const [ state, setState ] = useState({});
-     const { nftDetails, shareDetails, curveShape, riskProfile} = state;
+
      const {previous, next} = navigation;
      const handleNext = ()=> {
         actions.createMarket(state);
-        next()
+        next();
      }
     return (
         <div className={classes.root}>
@@ -22,25 +21,21 @@ import styles from "./reviewStyles";
             <div className={classes.mainContainer}>
                 <div className={classes.leftBox}>
                     <div className={classes.leftItem}>Name:</div>
-                    <div className={classes.leftItem}>NFt URL: </div>
+                    <div className={classes.leftItem}>NFT URI: </div>
                     <div className={classes.leftItem}>Max Supply: </div>
                     <div className={classes.leftItem}>Collateral Type: </div>
                     <div className={classes.leftItem}>Curve Type: </div>
                     <div className={classes.leftItem}>ERC20 Name: </div>
                     <div className={classes.leftItem}>ERC20 Symbol: </div>
-                    <div className={classes.leftItem}>Interest: </div>
-                    <div className={classes.leftItem}>Liquidity Pools: </div>
                 </div>
                 <div className={classes.rightBox}>
-                    <div className={classes.rightItem}> {nftDetails.name} </div>
-                    <div className={classes.rightItem}> {nftDetails.url} </div>
-                    <div className={classes.rightItem}>100</div>
-                    <div className={classes.rightItem}>USDC</div>
-                    <div className={classes.rightItem}>{curveShape}</div>
-                    <div className={classes.rightItem}>{shareDetails.name}</div>
-                    <div className={classes.rightItem}>{shareDetails.symbol}</div>
-                    <div className={classes.rightItem}>⎕ ⎕ ⎕ ⎕ </div>
-                    <div className={classes.rightItem}>{riskProfile}</div>
+                    <div className={classes.rightItem}> {state.nftDetails.name} </div>
+                    <div className={classes.rightItem}> {state.nftDetails.uri} </div>
+                    <div className={classes.rightItem}> {state.tokenDetails.maxSupply} </div>
+                    <div className={classes.rightItem}> {state.tokenDetails.collateralType} </div>
+                    <div className={classes.rightItem}>{state.tokenDetails.curveShape}</div>
+                    <div className={classes.rightItem}>{state.tokenDetails.name}</div>
+                    <div className={classes.rightItem}>{state.tokenDetails.symbol}</div>
                 </div>
             </div>
             <div className={classes.btnBar}>

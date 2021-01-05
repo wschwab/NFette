@@ -16,6 +16,8 @@ const reducer = (state, action) => {
       return { ...state, tokenDetails: { ...state.tokenDetails, collateralType: action.payload } };
     case types.collateralAndPrice.SET_PRICE:
       return { ...state, tokenDetails: { ...state.tokenDetails, initialPrice: action.payload } };
+    case types.collateralAndPrice.SET_MAX_SUPPLY:
+      return { ...state, tokenDetails: { ...state.tokenDetails, maxSupply: action.payload } };
     case types.curve.SET_CURVE:
       return { ...state, tokenDetails: { ...state.tokenDetails, curveShape: action.payload } };
     case types.provider.SET_PROVIDER:

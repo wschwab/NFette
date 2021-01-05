@@ -10,35 +10,34 @@ import styles from "./chooseCurveStyles";
      const {classes, navigation} = props;
      const {previous, next} = navigation;
      const {state, actions} = useContext(Store);
-    // const [state, setState] = useState({});
-     const {nftDetails} = state;
 
-     const handleOptionChange = (e)=> {
-        actions.setCurve(e.target.value);
-     }
+    const handleOptionChange = (e)=> {
+       actions.setCurve(e.target.value);
+    }
      const handlePrevious = (e)=> {
-         e.preventDefault();
+        e.preventDefault();
         previous();
     }
      const handleNext = (e)=> {
         e.preventDefault();
-         next();
-     }
+        next();
+    }
+
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
-                <h2 className={classes.subheading}>2. Choose your curve (Pricing Structure)</h2>
+                <h2 className={classes.subheading}>3. Select a Bonding Curve (Pricing Structure)</h2>
                 <div className="gradientBorder"></div>
             </div>
             <div className={classes.mainContainer}>
                 <div className={classes.infoBox}>
                     <div className={classes.smallBox}>
-                        <div>Name: {nftDetails.name}</div>
-                        <div>Contract Address: {nftDetails.address}</div>
+                        <div>Name: {state.nftDetails.name}</div>
+                        <div>Contract Address: {state.nftDetails.contractAddress}</div>
                     </div>
                     <div className={classes.smallBox}>
-                        <div>MaxSupply: 100</div>
-                        <div>Collateral Type: USDC</div>
+                        <div>MaxSupply: {state.tokenDetails.maxSupply}</div>
+                        <div>Collateral Type: {state.tokenDetails.collateralType}</div>
                     </div>
                 </div>
                 <div className={classes.graphBoxContainer}>
