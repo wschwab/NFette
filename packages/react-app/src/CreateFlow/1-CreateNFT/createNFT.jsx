@@ -42,7 +42,7 @@ function CreateNFT(props) {
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
-            <h2 className={classes.subheading}>0. Create Your new NFT</h2>
+            <h2 className={classes.subheading}>1. Name Your New NFT</h2>
                 <div className="gradientBorder"></div>
             </div>
             

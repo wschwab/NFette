@@ -24,11 +24,6 @@ function Overview(props) {
                 </div>
                 <div className={classes.stepBox}>
                     <span className={classes.text}>3.</span>
-                    <p className={classes.text}>{"Setup LPs to earn interest from"}</p>
-                    <span className="gradientBorder"></span>
-                </div>
-                <div className={classes.stepBox}>
-                    <span className={classes.text}>4.</span>
                     <p className={classes.text}>{"Sell $SHAREs to your shareholders"}</p>
                     <span className="gradientBorder"></span>
                 </div>

@@ -16,6 +16,9 @@ export const useActions = (state, dispatch) => ({
   setTokenSymbol: data => {
     dispatch({ type: types.token.SET_SYMBOL, payload: data });
   },
+  setMaxSupply: data => {
+    dispatch({ type: types.collateralAndPrice.SET_MAX_SUPPLY, payload: data });
+  },
   setCollateralType: data => {
     dispatch({ type: types.collateralAndPrice.SET_COLLATERAL, payload: data });
   },
@@ -24,9 +27,6 @@ export const useActions = (state, dispatch) => ({
   },
   setCurve: data => {
     dispatch({ type: types.curve.SET_CURVE, payload: data });
-  },
-  setRiskProfile: data => {
-    dispatch({ type: types.riskProfile.SET_RISK, payload: data });
   },
   setProvider: data => {
     dispatch({ type: types.provider.SET_PROVIDER, payload: data });

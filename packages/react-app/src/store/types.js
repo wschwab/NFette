@@ -11,12 +11,10 @@ const types = {
   collateralAndPrice: {
     SET_COLLATERAL: "COLLATERAL_AND_PRICE_SET_COLLATERAL",
     SET_PRICE: "COLLATERAL_AND_PRICE_SET_PRICE",
+    SET_MAX_SUPPLY: "COLLATERAL_AND_PRICE_SET_SUPPLY"
   },
   curve: {
     SET_CURVE: "CURVE_SET_CURVE",
-  },
-  riskProfile: {
-    SET_RISK: "RISK_PROFILE_SET_RISK",
   },
   provider: {
     SET_PROVIDER: "SET_PROVIDER",
