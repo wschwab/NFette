@@ -7,7 +7,7 @@ import { StoreProvider } from "./store/store";
 import { INFURA_ID } from "./constants";
 
 import MultiStepSellFlow from "./SellFlow/MultiStepSellFlow";
-import AvailableMarkets from "./BuyFlow/availableMarkets";
+import BuyPage from "./BuyFlow/buyPage";
 import Navbar from "./components/navbar/navbar";
 import RootLanding from "./components/rootLanding/rootLanding";
 
@@ -34,8 +34,8 @@ function App(props) {
           <Navbar />
           <Switch>
             <Route path="/" exact component={RootLanding} />
-            <Route path="/sell" component={MultiStepSellFlow} />
-            <Route path="/buy" component={AvailableMarkets} />
+            <Route path="/create" component={MultiStepSellFlow} />
+            <Route path="/buy" component={BuyPage} />
           </Switch>
         </BrowserRouter>
       </div>
