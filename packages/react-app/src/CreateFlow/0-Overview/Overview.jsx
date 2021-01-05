@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from "./landingPageStyles";
+import styles from "./Overview";
 import {withStyles} from "@material-ui/core/styles";
 
-function LandingPage(props) {
+function Overview(props) {
     const {classes, navigation} = props;
     const {go} = navigation;
     return (
@@ -40,4 +40,4 @@ function LandingPage(props) {
     )
 }
 
-export default withStyles(styles)(LandingPage);
+export default withStyles(styles)(Overview);

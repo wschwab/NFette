@@ -6,7 +6,7 @@ import { JsonRpcProvider } from "@ethersproject/providers";
 import { StoreProvider } from "./store/store";
 import { INFURA_ID } from "./constants";
 
-import MultiStepSellFlow from "./SellFlow/MultiStepSellFlow";
+import MultiStepSellFlow from "./CreateFlow/MultiStepSellFlow";
 import AvailableMarkets from "./BuyFlow/availableMarkets";
 import Navbar from "./components/navbar/navbar";
 import RootLanding from "./components/rootLanding/rootLanding";

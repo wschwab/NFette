@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./rootLandingStyles";
 import { withStyles } from "@material-ui/core/styles";
-import MultiStepSellFlow from "../../SellFlow/MultiStepSellFlow";
+import MultiStepSellFlow from "../../CreateFlow/MultiStepSellFlow";
 import AvailableMarkets from "../../BuyFlow/availableMarkets";
 import { useHistory } from "react-router-dom";
 import NftCard from "../nftCard/nftCard";

@@ -12,7 +12,7 @@ function CreateNFT(props) {
 
     const handlePrevious = (e)=> {
         e.preventDefault();
-        go("landingPage");
+        go("overview");
     }
 
     const handleNext = (e) => {
