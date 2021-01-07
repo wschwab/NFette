@@ -20,11 +20,7 @@ const styles = createStyles({
     width: "70%",
     minWidth: "750px",
   },
-  subHeading: {
-    width: "70%",
-    fontSize: "1.7rem",
-    fontFamily: "var(--plain-font)",
-  },
+  
   container: {
     marginTop: "50px",
     marginBottom: "50px",
@@ -45,6 +41,16 @@ const styles = createStyles({
     textAlign: "left",
     fontWeight: 500,
     margin: "auto",
+  },
+  description: {
+    margin: '5rem 0rem'
+  },
+  textfirst: {
+    fontSize: "1.5rem",
+  },
+  textsecond: {
+    fontSize: "1.5rem",
+    fontWeight: '700'
   },
   text: {
       margin: '2em 0em',

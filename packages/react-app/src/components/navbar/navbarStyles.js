@@ -26,7 +26,8 @@ const styles = createStyles({
     },
     nfetteLogo: {
         width: "100%",
-        margin: "auto"
+        margin: "auto",
+        alignSelf: 'left'
     },
     heading: {
         color: "var(--main-white)",
@@ -43,17 +44,33 @@ const styles = createStyles({
         margin: "auto auto auto 1px"
     },
     button: {
+        fontSize: "1.5rem",
         margin: "auto 10px auto auto",
-        height: "25px",
-        width: "75px",
+        padding: '10px',
+        height: "5rem",
+        width: "auto",
         fontFamily: "var(--plain-font)",
         position: "absolute",
-        top: "calc(50% - 12.5px)",
         right: "25px",
         borderRadius: "5px",
-        backgroundColor: "var(--main-grey)",
+        backgroundColor: "var(--main-white)",
         fontFamily: "var(--button-font)"
     },
+    addressDisplay: {
+        fontSize: "1.5rem",
+        padding: '10px',
+        height: "5rem",
+        width: "20rem",
+        fontFamily: "var(--plain-font)",
+        position: "absolute",
+        right: "25px",
+        borderRadius: "5px",
+        backgroundColor: "var(--main-white)",
+        fontFamily: "var(--button-font)",
+        display: "flex",
+        justifyContent: "space-evenly",
+        alignItems: "center"
+    }
 })
 
 export default styles;
