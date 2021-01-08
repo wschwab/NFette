@@ -11,6 +11,10 @@ import BuyPage from "./BuyFlow/buyPage";
 import Navbar from "./components/navbar/navbar";
 import RootLanding from "./components/rootLanding/rootLanding";
 
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Portis from "@portis/web3";
+
 // 🔭 block explorer URL
 const blockExplorer = "https://etherscan.io/"; // for xdai: "https://blockscout.com/poa/xdai/"
 
@@ -23,19 +27,38 @@ const localProviderUrl = "http://localhost:8545"; // for xdai: https://dai.poa.n
 const localProviderUrlFromEnv = process.env.REACT_APP_PROVIDER ? process.env.REACT_APP_PROVIDER : localProviderUrl;
 const localProvider = new JsonRpcProvider(localProviderUrlFromEnv);
 
+const providerOptions = {
+  portis: {
+    package: Portis,
+    options: {
+      id: "f5c8dbd5-f553-4641-943e-9223c9e65a0a",
+    },
+  }
+};
+
+const w3m = new Web3Modal({
+  // network: "mainnet",
+  cacheProvider: true,
+  providerOptions
+});
 
 function App(props) {
-
   return (
     <StoreProvider>
       <div className="App">
         From old repo, uncomment when ready
         <BrowserRouter>
-          <Navbar />
+          <Navbar web3Modal={w3m} />
           <Switch>
-            <Route path="/" exact component={RootLanding} />
-            <Route path="/create" component={MultiStepSellFlow} />
-            <Route path="/buy" component={BuyPage} />
+            <Route path="/" exact >
+                <RootLanding />
+            </Route>
+            <Route path="/create" exact >
+                <MultiStepSellFlow />
+            </Route>
+            <Route path="/buy" exact >
+                <BuyPage/>
+            </Route>
           </Switch>
         </BrowserRouter>
       </div>
