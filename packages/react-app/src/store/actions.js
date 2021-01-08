@@ -32,7 +32,6 @@ export const useActions = (state, dispatch) => ({
     dispatch({ type: types.provider.SET_PROVIDER, payload: data });
   },
   createMarket: data => {
-    dispatch({ type: types.createMarket.CREATE_MARKET_PENDING });
     dispatch({ type: types.createMarket.CREATE_MARKET_REQUEST, payload: data });
   },
 });

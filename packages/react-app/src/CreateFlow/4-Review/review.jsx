@@ -8,8 +8,10 @@ import styles from "./reviewStyles";
      const {state, actions} = useContext(Store);
 
      const {previous, next} = navigation;
-     const handleNext = ()=> {
-        actions.createMarket(state);
+     
+     const handleNext = async () => {
+        const result = await actions.createMarket(state);
+        console.log(result);
         next();
      }
     return (
