@@ -7,12 +7,6 @@ import styles from "./navbarStyles";
 import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
-import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import Portis from "@portis/web3";
-import Web3 from 'web3';
-
-import { INFURA_ID } from "../../constants";
 
 function Navbar(props) {
   const [walletConnected, setWalletConnected] = useState(false);
