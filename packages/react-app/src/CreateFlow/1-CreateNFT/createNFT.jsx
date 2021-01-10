@@ -38,6 +38,10 @@ function CreateNFT(props) {
         actions.setNFTUri(e.target.value);
     }
 
+    // const handleContractAddrChange = async e => {
+    //     actions.setNFTContract(e.target.value);
+    // }
+
     
     return (
         <div className={classes.root}>
@@ -56,6 +60,9 @@ function CreateNFT(props) {
 
                 <label  className={classes.label}  for="uri">URI</label>
                 <input onChange={handleUriChange} value={state.nftDetails.uri} className={classes.input} type="text" name="url" placeholder="URL"/>
+
+                {/* <label  className={classes.label}  for="contractAddress">OR enter a contract address of a pre-existing NFT contract</label>
+                <input onChange={handleContractAddrChange} value={state.nftDetails.address} className={classes.input} type="text" name="address" placeholder="0x..."/> */}
 
                 <div className={classes.btnBar}>
                     <button onClick={handlePrevious} className={classes.btnLeft}  >Back</button>
