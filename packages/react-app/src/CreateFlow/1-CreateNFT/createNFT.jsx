@@ -61,7 +61,7 @@ function CreateNFT(props) {
                     <button onClick={handlePrevious} className={classes.btnLeft}  >Back</button>
                     <button onClick={handleNext} className={classes.btnRight}  >Next</button>
                 </div>
-                
+
             </form>
         </div>
     )

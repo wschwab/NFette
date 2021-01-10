@@ -1,88 +1,55 @@
 import React, { useState, useContext, useCallback, useEffect } from "react";
 import {Store} from "../../store/store";
 import { ReactComponent as Logo } from "../../Media/logo.svg";
+import { ReactComponent as WalletIcon } from "../../Media/Wallet_Icon.svg";
 import { ethers } from "ethers";
 import styles from "./navbarStyles";
 import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
-import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import Portis from "@portis/web3";
-
-import { INFURA_ID } from "../../constants";
 
 function Navbar(props) {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [injectedProvider, setInjectedProvider] = useState(undefined);
-  const [web3modal, setWeb3Modal] = useState({ cachedProvider: false });
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [walletAddress, setWalletAddress] = useState('');
+  const [blockChainContext, setBlockChainContext] = useState(false);
+  const [injectedProvider, setInjectedProvider] = useState({});
+
+  const shortAddress = `${walletAddress.slice(0, 2)}...${walletAddress.slice(
+    walletAddress.length - 4
+  )}`;
+
+  const { web3Modal } = props
 
   const {state, actions} = useContext(Store);
   const { classes } = props;
 
-  // const loadWeb3Modal = useCallback(async () => {
-  //   const provider = await web3Modal.connect();
-  //   setInjectedProvider(new Web3Provider(provider));
-  // }, [setInjectedProvider]);
+  const logoutOfWeb3Modal = async () => {
+    setInjectedProvider({});
+    setWalletConnected(false);
+    await web3Modal.clearCachedProvider();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1);
+  };
 
-  // const logoutOfWeb3Modal = async () => {
-  //   await web3Modal.clearCachedProvider();
-  //   setTimeout(() => {
-  //     window.location.reload();
-  //   }, 1);
-  // };
-
-  useEffect(() => {
-    const w3m = new Web3Modal({
-      // network: "mainnet", // optional
-      cacheProvider: true, // optional
-      providerOptions: {
-        // walletconnect: {
-        //   package: WalletConnectProvider, // required
-        //   options: {
-        //     infuraId: INFURA_ID,
-        //   },
-        // },
-        portis: {
-          package: Portis,
-          options: {
-            id: "f5c8dbd5-f553-4641-943e-9223c9e65a0a",
-          },
-        }
-      },
+  const connectToWallet = async () => {
+    props.web3Modal.connect().then((w3mProvider) => {
+      setInjectedProvider(w3mProvider);
+      setWalletAddress(
+        w3mProvider.isPortis
+          ? w3mProvider._portis._selectedAddress
+          : w3mProvider.selectedAddress
+      );
+      setBlockChainContext(w3mProvider);
+      setWalletConnected(true);
     });
-    setWeb3Modal(w3m);
-    // if (web3Modal.cachedProvider) {
-    //   loadWeb3Modal();
-    // }
-  }, []);
+  };
 
   const history = useHistory();
+
   const clickToHome = () => {
     history.push("/")
   } 
-
-  const logout = async () => {
-    await web3modal.clearCachedProvider();
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-  };
-  const connect = async () => {
-    const w3mProvider = await web3modal.connect();
-    // for only Portis:
-    // const w3mProvider = await web3modal.connectTo("portis");
-    const provider = new ethers.providers.Web3Provider(w3mProvider);
-    
-    // this may be a really bad idea - I'm updating cachedProvider manually
-    setWeb3Modal({
-      ...web3modal,
-      cachedProvider: true
-    })
-    setLoggedIn(true);
-  };
-
-  // console.log("YO IT'S THE CACHED PROVIDER ", props.web3modal.cachedProvider);
 
   return (
     <nav className={classes.root}>
@@ -91,12 +58,13 @@ function Navbar(props) {
           className={classes.nfetteLogo}
         />
       </div>
-      {web3modal.cachedProvider || (loggedIn === true) != "" ? (
-        <button className={classes.button} onClick={logout}>
-          Logout
+      {walletConnected ? (
+        <button className={classes.addressDisplay} onClick={logoutOfWeb3Modal}>
+          <WalletIcon />
+          {shortAddress}
         </button>
       ) : (
-        <button className={classes.button} onClick={connect}>
+        <button className={classes.button} onClick={connectToWallet}>
           Connect
         </button>
       )}
