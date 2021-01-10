@@ -9,7 +9,6 @@ const main = async () => {
 
   console.log("\n\n 📡 Deploying...\n");
 
-  const yourContract = await deploy("YourContract") // <-- add in constructor args like line 16 vvvv
   const factory = await deploy("NFTMarketFactory",["0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"]);
   const curve = await deploy("Curve");
 

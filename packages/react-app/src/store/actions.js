@@ -18,14 +18,17 @@ export const useActions = (state, dispatch) => ({
   setNFTSymbol: data => {
     dispatch({ type: types.createNFT.SET_SYMBOL, payload: data });
   },
-  setNFTUrl: data => {
-    dispatch({ type: types.createNFT.SET_URL, payload: data });
+  setNFTUri: data => {
+    dispatch({ type: types.createNFT.SET_URI, payload: data });
   },
   setTokenName: data => {
     dispatch({ type: types.token.SET_NAME, payload: data });
   },
   setTokenSymbol: data => {
     dispatch({ type: types.token.SET_SYMBOL, payload: data });
+  },
+  setMaxSupply: data => {
+    dispatch({ type: types.collateralAndPrice.SET_MAX_SUPPLY, payload: data });
   },
   setCollateralType: data => {
     dispatch({ type: types.collateralAndPrice.SET_COLLATERAL, payload: data });
@@ -36,14 +39,10 @@ export const useActions = (state, dispatch) => ({
   setCurve: data => {
     dispatch({ type: types.curve.SET_CURVE, payload: data });
   },
-  setRiskProfile: data => {
-    dispatch({ type: types.riskProfile.SET_RISK, payload: data });
-  },
   setProvider: data => {
     dispatch({ type: types.provider.SET_PROVIDER, payload: data });
   },
   createMarket: data => {
-    dispatch({ type: types.createMarket.CREATE_MARKET_PENDING });
     dispatch({ type: types.createMarket.CREATE_MARKET_REQUEST, payload: data });
   },
 });

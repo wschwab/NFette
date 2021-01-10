@@ -9,16 +9,17 @@ const initialState = {
   nftDetails: {
     name: "",
     symbol: "",
-    url: "",
+    uri: "",
+    contractAddress: ""
   },
-  shareDetails: {
+  tokenDetails: {
     name: "",
     symbol: "",
+    maxSupply: "",
+    collateralType: "",
+    initialPrice: "",
+    curveShape: ""
   },
-  collateralType: "",
-  initialPrice: "",
-  curveShape: "",
-  riskProfile: "",
   provider: {},
   createMarketPending: false,
   createMarketSuccess: false,

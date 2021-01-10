@@ -1,12 +1,11 @@
 import React from "react";
 import { useStep } from "react-hooks-helper";
 import { Transition } from "react-transition-group";
-import LandingPage from "../components/landingPage/landingPage";
-import CreateNFT from "./0-CreateNFT/createNFT";
-import ChooseCurve from "./2-ChooseCurve/chooseCurve";
-import ImportNFT from "./1-ImportNFT/importNFT";
-import SelectPrice from "./1b-SelectPrice/selectPrice";
-import SetupLP from "./3-SetupLP/setupLP";
+// import LandingPage from "../components/landingPage/landingPage";
+import Overview from "./0-Overview/Overview";
+import CreateNFT from "./1-CreateNFT/createNFT";
+import ChooseCurve from "./3-ChooseCurve/chooseCurve";
+import SelectPrice from "./2-SelectPrice/selectPrice";
 import Review from "./4-Review/review";
 import Final from "./5-Final/final";
 
@@ -23,16 +22,15 @@ const transitionStyles = {
 };
 
 const steps = [
-  { id: "landingPage"},
+  { id: "overview"},
   { id: "createNFT"},
   { id: "selectPrice" },
   { id: "chooseCurve" },
-  // { id: "setupLP" },
   { id: "review" },
   { id: "final" },
 ];
 
-const MultiStepSellFlow = () => {
+const MultiStepCreateFlow = () => {
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
 
@@ -40,7 +38,7 @@ const MultiStepSellFlow = () => {
   return (
     <>
       <Transition
-        in={id === "landingPage"}
+        in={id === "overview"}
         timeout={duration}
         unmountOnExit
       >
@@ -51,7 +49,7 @@ const MultiStepSellFlow = () => {
               ...transitionStyles[state],
             }}
           >
-            <LandingPage navigation={navigation} />
+            <Overview navigation={navigation} />
           </div>
         )}
       </Transition>
@@ -104,22 +102,6 @@ const MultiStepSellFlow = () => {
           </div>
         )}
       </Transition>
-      {/* <Transition
-        in={id === "setupLP"}
-        timeout={duration}
-        unmountOnExit
-      >
-        {(state) => (
-          <div
-            style={{
-              ...defaultStyle,
-              ...transitionStyles[state],
-            }}
-          >
-            <SetupLP navigation={navigation} />
-          </div>
-        )}
-      </Transition> */}
       <Transition
         in={id === "review"}
         timeout={duration}
@@ -157,4 +139,4 @@ const MultiStepSellFlow = () => {
 
 };
 
-export default MultiStepSellFlow;
+export default MultiStepCreateFlow;

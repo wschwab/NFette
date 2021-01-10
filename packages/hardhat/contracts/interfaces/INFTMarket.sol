@@ -14,8 +14,8 @@ interface INFTMarket is IRFT/*, IERC721Receiver*/ {
         uint256 _cap,
         uint256 initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] calldata curveParameters,
-        address _stakeTokenAddress
+        uint256[3] calldata curveParameters
+        // address _stakeTokenAddress
     ) external returns (bool);
 
     // function mint(
@@ -46,7 +46,7 @@ interface INFTMarket is IRFT/*, IERC721Receiver*/ {
         uint256,
         uint256
     );
-    function getStakeToken() external view returns(address);
+    // function getStakeToken() external view returns(address);
     function getMarketStatus() external view returns(uint256, bool);
     function closeMarket() external returns (bool);
 

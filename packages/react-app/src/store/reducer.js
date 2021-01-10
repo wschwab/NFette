@@ -6,20 +6,20 @@ const reducer = (state, action) => {
       return { ...state, nftDetails: { ...state.nftDetails, name: action.payload } };
     case types.createNFT.SET_SYMBOL:
       return { ...state, nftDetails: { ...state.nftDetails, symbol: action.payload } };
-    case types.createNFT.SET_URL:
-      return { ...state, nftDetails: { ...state.nftDetails, url: action.payload } };
+    case types.createNFT.SET_URI:
+      return { ...state, nftDetails: { ...state.nftDetails, uri: action.payload } };
     case types.token.SET_NAME:
-      return { ...state, shareDetails: { ...state.shareDetails, name: action.payload.toUpperCase() + "SHARE-00" } };
+      return { ...state, tokenDetails: { ...state.tokenDetails, name: action.payload } };
     case types.token.SET_SYMBOL:
-      return { ...state, shareDetails: { ...state.shareDetails, symbol: state.shareDetails.name.slice(0, 4) } };
+      return { ...state, tokenDetails: { ...state.tokenDetails, symbol: action.payload } };
     case types.collateralAndPrice.SET_COLLATERAL:
-      return { ...state, collateralType: action.payload };
+      return { ...state, tokenDetails: { ...state.tokenDetails, collateralType: action.payload } };
     case types.collateralAndPrice.SET_PRICE:
-      return { ...state, initialPrice: action.payload };
+      return { ...state, tokenDetails: { ...state.tokenDetails, initialPrice: action.payload } };
+    case types.collateralAndPrice.SET_MAX_SUPPLY:
+      return { ...state, tokenDetails: { ...state.tokenDetails, maxSupply: action.payload } };
     case types.curve.SET_CURVE:
-      return { ...state, curveShape: action.payload };
-    case types.riskProfile.SET_RISK:
-      return { ...state, riskProfile: action.payload };
+      return { ...state, tokenDetails: { ...state.tokenDetails, curveShape: action.payload } };
     case types.provider.SET_PROVIDER:
       return { ...state, provider: action.payload };
     case types.createMarket.CREATE_MARKET_PENDING:

@@ -6,7 +6,7 @@ import { JsonRpcProvider } from "@ethersproject/providers";
 import { StoreProvider } from "./store/store";
 import { INFURA_ID } from "./constants";
 
-import MultiStepSellFlow from "./SellFlow/MultiStepSellFlow";
+import MultiStepCreateFlow from "./CreateFlow/MultiStepCreateFlow";
 import BuyPage from "./BuyFlow/buyPage";
 import Navbar from "./components/navbar/navbar";
 import RootLanding from "./components/rootLanding/rootLanding";
@@ -54,7 +54,7 @@ function App(props) {
                 <RootLanding />
             </Route>
             <Route path="/create" exact >
-                <MultiStepSellFlow />
+                <MultiStepCreateFlow />
             </Route>
             <Route path="/buy" exact >
                 <BuyPage/>

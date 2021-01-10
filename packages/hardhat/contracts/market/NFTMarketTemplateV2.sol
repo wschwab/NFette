@@ -2,6 +2,8 @@ pragma solidity >=0.6.0 <0.7.0;
 
 import "../interfaces/INFTMarket.sol";
 import "../interfaces/ICurve.sol";
+// import "../interfaces/IAaveLendingPool.sol";
+// import "../interfaces/IaToken.sol";
 
 // import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/introspection/ERC165.sol";
@@ -14,7 +16,11 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 // import "@nomiclabs/hardhat/console.sol";
 
-contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownable*/ {
+contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownable*/ {
+
+    // IERC20 public usdc = IERC20(0xe22da380ee6B445bb8273C81944ADEB6E8450422);
+    // IaToken public aToken = IaToken(0x02F626c6ccb6D2ebC071c068DC1f02Bf5693416a);
+    // IAaveLendingPool public aaveLendingPool = IAaveLendingPool(0x580D4Fdc4BF8f9b5ae2fb9225D584fED4AD5375c);
 
     using SafeMath for uint256;
 
@@ -30,7 +36,7 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
     uint256 public initialBidPrice;
     ICurve private _bondigCurve;
     uint256[3] private _curveParameters;
-    IERC20 private _stakeToken;
+    // IERC20 private _stakeToken;
     // uint8 private constant DECIMALS = 18;
     mapping(uint256 => address) private _stakeholders;
     mapping(address => uint256) private _stakes;
@@ -75,8 +81,8 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory curveParameters,
-        address stakeTokenAddress
+        uint256[3] memory curveParameters
+        // address stakeTokenAddress
         ) ERC20(name, symbol) /*ERC20Capped(cap)*/ public {
 
             // console.log(msg.sender, "deploy a template with minter", minterAddress);
@@ -91,8 +97,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
                         cap,
                         _initialBidPrice,
                         bondingCurveAddr,
-                        curveParameters,
-                        stakeTokenAddress);
+                        curveParameters
+                        // stakeTokenAddress
+            );
 
     }
 
@@ -105,8 +112,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] calldata curveParameters,
-        address stakeTokenAddress) external override onlyIfNotInitialized returns (bool) {
+        uint256[3] calldata curveParameters
+        // address stakeTokenAddress
+        ) external override onlyIfNotInitialized returns (bool) {
 
         return _initialize(
             parentToken,
@@ -117,8 +125,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
             cap,
             _initialBidPrice,
             bondingCurveAddr,
-            curveParameters,
-            stakeTokenAddress);
+            curveParameters
+            // stakeTokenAddress
+        );
 
     }
 
@@ -131,8 +140,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory curveParameters,
-        address stakeTokenAddress) private returns (bool) {
+        uint256[3] memory curveParameters
+        // address stakeTokenAddress
+        ) private returns (bool) {
 
             // console.log("_initialize template", IERC721(parentToken).supportsInterface(0x80ac58cd), IERC721(parentToken).ownerOf(parentTokenId));
             // console.log("minterAddress", minterAddress);
@@ -155,9 +165,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
                 _initialBidPrice > 0, "NFTMarketTemplate: initialBidPrice invalid"
             );
 
-            require(
-                address(IERC20(stakeTokenAddress)) == stakeTokenAddress, "NFTMarketTemplate: Invalid stakeTokenAddress"
-            );
+            // require(
+            //     address(IERC20(stakeTokenAddress)) == stakeTokenAddress, "NFTMarketTemplate: Invalid stakeTokenAddress"
+            // );
 
             //TOOD: validate bondingCurveAddr
             require(
@@ -173,7 +183,7 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
             initialBidPrice = _initialBidPrice;
             _bondigCurve = ICurve(bondingCurveAddr);
             _curveParameters = curveParameters;
-            _stakeToken = IERC20(stakeTokenAddress);
+            // _stakeToken = IERC20(stakeTokenAddress);
             _openMarket = true;
             _totalStakeholders = 0;
 
@@ -252,9 +262,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         );
     }
 
-    function getStakeToken() external override view returns(address) {
-        return address(_stakeToken);
-    }
+    // function getStakeToken() external override view returns(address) {
+    //     return address(_stakeToken);
+    // }
 
     function stakeBalanceOf(address account) external override view returns(uint256) {
         return _stakes[account];
@@ -280,13 +290,13 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
 
         require(totalSupply() == 0 && cost >= initialBidPrice, "NFTMarketTemplate: buy cost does not cover the initial bid price");
 
-        require(_stakeToken.allowance(buyer, address(this)) >= cost,
-            "NFTMarketTemplate: User has not approved contract for token cost amount"
-        );
+        // require(_stakeToken.allowance(buyer, address(this)) >= cost,
+        //     "NFTMarketTemplate: User has not approved contract for token cost amount"
+        // );
 
-        require(_stakeToken.transferFrom(buyer, address(this), cost),
-            "NFTMarketTemplate: Transfering of collateral stake failed"
-        );
+        // require(_stakeToken.transferFrom(buyer, address(this), cost),
+        //     "NFTMarketTemplate: Transfering of collateral stake failed"
+        // );
 
         _stakeholders[_totalStakeholders] = buyer;
         _totalStakeholders = _totalStakeholders.add(1);
@@ -297,6 +307,7 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         // Final Shares are minted when the market closes
 
         // TODO: execute transition to DeFi position
+        // aaveLendingPool.deposit(address(_stakeToken), cost, 0);
         _mint(msg.sender, _tokens);
     }
 
@@ -315,7 +326,7 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
 
         // TODO: withdraw collateral from DeFi position
 
-        require(_stakeToken.transfer(sender, reward), "NFTMarketTemplate: of collateral failed");
+        // require(_stakeToken.transfer(sender, reward), "NFTMarketTemplate: of collateral failed");
 
         _stakes[sender] = _stakes[sender].sub(reward);
         _shares[sender] = _shares[sender].sub(_tokens);
