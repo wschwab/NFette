@@ -7,20 +7,16 @@ const createMarket = async (state)=> {
     const signer = await provider.getSigner();
     const contract = new ethers.Contract(address, abi, signer);
 
-    console.log("ADDRESS: ", address);
-    console.log("ABI: ", abi);
-    console.log("SIGNER: ", signer);
-
     const result = await contract
         .createMarket(
             state.nftDetails.address,
-            state.nftDetails.name, // this is incorrect, see below
+            parseInt(state.nftDetails.uri), // probably not a wise way to do this, see below
             state.tokenDetails.name,
             state.tokenDetails.symbol,
-            state.tokenDetails.maxSupply,
-            state.tokenDetails.initialPrice,
-            state.tokenDetails.curveShape,
-            state.tokenDetials.collateralType,
+            parseInt(state.tokenDetails.maxSupply),
+            parseInt(state.tokenDetails.initialPrice),
+            state.tokenDetails.curveShape, // not correct, see below
+            state.tokenDetials.collateralType, // currently not implemented
         )
         .catch(e => console.error(e));
 
@@ -49,5 +45,7 @@ Should probably get this working with USDC first, worst come to
 worst, it'll be the only collateral choice
 
 I have some errors in my understanding about URIs, not good
+
+need to convert the curves into addresses
 
 */
