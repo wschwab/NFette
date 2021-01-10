@@ -12,7 +12,6 @@ import Navbar from "./components/navbar/navbar";
 import RootLanding from "./components/rootLanding/rootLanding";
 
 import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
 
 // 🔭 block explorer URL

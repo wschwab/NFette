@@ -1,7 +1,6 @@
 import React from "react";
 import { useStep } from "react-hooks-helper";
 import { Transition } from "react-transition-group";
-// import LandingPage from "../components/landingPage/landingPage";
 import Overview from "./0-Overview/Overview";
 import CreateNFT from "./1-CreateNFT/createNFT";
 import ChooseCurve from "./3-ChooseCurve/chooseCurve";

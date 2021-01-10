@@ -1,17 +1,6 @@
 import types from "./types";
 
 export const useActions = (state, dispatch) => ({
-  // setProvider: (data) => {
-  //   dispatch({ type: types.SetProvider.SET_PROVIDER_PENDING });
-  //   dispatch({ type: types.SetProvider.SET_PROVIDER_REQUEST, payload: data });
-  // },
-  // setWalletConnected: data => {
-  //   dispatch({ type: types.SetWalletConnected.SET_WALLET_CONNECTED_PENDING });
-  //   dispatch({
-  //     type: types.SetWalletConnected.SET_WALLET_CONNECTED_REQUEST,
-  //     payload: data,
-  //   });
-  // },
   setNFTName: data => {
     dispatch({ type: types.createNFT.SET_NAME, payload: data });
   },
@@ -21,11 +10,17 @@ export const useActions = (state, dispatch) => ({
   setNFTUri: data => {
     dispatch({ type: types.createNFT.SET_URI, payload: data });
   },
+  setNFTContractAddress: data => {
+    dispatch({ type: types.createNFT.SET_CONTRACT_ADDRESS, payload: data });
+  },
   setTokenName: data => {
     dispatch({ type: types.token.SET_NAME, payload: data });
   },
   setTokenSymbol: data => {
     dispatch({ type: types.token.SET_SYMBOL, payload: data });
+  },
+  setTokenContractAddress: data => {
+    dispatch({ type: types.token.SET_CONTRACT_ADDRESS, payload: data });
   },
   setMaxSupply: data => {
     dispatch({ type: types.collateralAndPrice.SET_MAX_SUPPLY, payload: data });
@@ -41,6 +36,9 @@ export const useActions = (state, dispatch) => ({
   },
   setProvider: data => {
     dispatch({ type: types.provider.SET_PROVIDER, payload: data });
+  },
+  createNFT: data => {
+    dispatch({ type: types.createNFT.CREATE_NFT_REQUEST, payload: data });
   },
   createMarket: data => {
     dispatch({ type: types.createMarket.CREATE_MARKET_REQUEST, payload: data });

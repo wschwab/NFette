@@ -35,14 +35,16 @@ function Navbar(props) {
   const connectToWallet = async () => {
     props.web3Modal.connect().then((w3mProvider) => {
       setInjectedProvider(w3mProvider);
+      actions.setProvider(new Web3Provider(w3mProvider));
       setWalletAddress(
         w3mProvider.isPortis
-          ? w3mProvider._portis._selectedAddress
-          : w3mProvider.selectedAddress
-      );
-      setBlockChainContext(w3mProvider);
-      setWalletConnected(true);
-    });
+        ? w3mProvider._portis._selectedAddress
+        : w3mProvider.selectedAddress
+        );
+        setBlockChainContext(w3mProvider);
+        setWalletConnected(true);
+      });
+      
   };
 
   const history = useHistory();

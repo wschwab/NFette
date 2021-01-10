@@ -1,5 +1,6 @@
 import types from "./types";
 import createMarket from "../services/createMarket";
+import createNFT from "../CreateFlow/1-CreateNFT/createNFT";
 
 const applyMiddleware = dispatch => action => {
   switch (action.type) {
@@ -17,6 +18,19 @@ const applyMiddleware = dispatch => action => {
             payload: error,
           });
         });
+    case types.createNFT.CREATE_NFT_REQUEST:
+      return createNFT(action.payload)
+        .then(res => {
+          dispatch({
+            type: types.createNFT.CREATE_NFT_SUCCESS,
+            payload: res
+          });
+        }).catch(error => {
+          dispatch({
+            type: types.createNFT.CREATE_NFT_FAIL,
+            payload: error
+          });
+        })
     default:
       dispatch(action);
   }

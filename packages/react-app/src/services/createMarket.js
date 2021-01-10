@@ -3,28 +3,51 @@ import * as abi from "../contracts/NFTMarketFactory.abi";
 import * as address from "../contracts/NFTMarketFactory.address";
 
 const createMarket = async (state)=> {
-    debugger;
     const {provider}= state;
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(address, abi, signer); // address, abi, signer
+    const signer = await provider.getSigner();
+    const contract = new ethers.Contract(address, abi, signer);
 
     console.log("ADDRESS: ", address);
     console.log("ABI: ", abi);
     console.log("SIGNER: ", signer);
 
     const result = await contract
-        // .connect(signer)
         .createMarket(
-            state.nftDetails.name,
             state.nftDetails.address,
-            state.tokenDetails.maxSupply,
-            state.tokenDetials.collateralType,
-            state.tokenDetails.curveShape,
+            state.nftDetails.name, // this is incorrect, see below
             state.tokenDetails.name,
-            state.tokenDetails.symbol
+            state.tokenDetails.symbol,
+            state.tokenDetails.maxSupply,
+            state.tokenDetails.initialPrice,
+            state.tokenDetails.curveShape,
+            state.tokenDetials.collateralType,
         )
         .catch(e => console.error(e));
+
+    console.log("HERE'S THE RESULT: ", result);
+
     return result;
 }
 
 export default createMarket;
+
+/* notes to self:
+Here's a copy of the args for the createMarket function:
+address parentToken,
+uint256 parentTokenId,
+string memory name,
+string memory symbol,
+uint256 cap,
+uint256 initialBidPrice,
+address bondingCurveAddr,
+uint256[3] memory _curveParameters
+
+so these need formatting, and there isn't even anything in place
+for the multiple collateral types
+
+Should probably get this working with USDC first, worst come to 
+worst, it'll be the only collateral choice
+
+I have some errors in my understanding about URIs, not good
+
+*/

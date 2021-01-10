@@ -18,11 +18,14 @@ const initialState = {
     maxSupply: "",
     collateralType: "",
     initialPrice: "",
-    curveShape: ""
+    curveShape: "",
+    contractAddress: ""
   },
   provider: {},
   createMarketPending: false,
   createMarketSuccess: false,
+  createNFTPending: false,
+  createNFTSuccess: false,
   nftMarketData: {},
   error: {},
 };

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import {Store} from "../../store/store";
 import styles from "./createNFTStyles";
 import {withStyles} from "@material-ui/core/styles";
+import createNFT from "../../services/createNFT";
 
 
 function CreateNFT(props) {
@@ -15,9 +16,12 @@ function CreateNFT(props) {
         go("overview");
     }
 
-    const handleNext = (e) => {
+    const handleNext = async (e) => {
         e.preventDefault();
         formatTokenDetails();
+        const deployedContract = await createNFT(state);
+        actions.setNFTContractAddress(deployedContract.address);
+
         next();
     }
 
@@ -39,7 +43,7 @@ function CreateNFT(props) {
     }
 
     // const handleContractAddrChange = async e => {
-    //     actions.setNFTContract(e.target.value);
+    //     actions.setNFTContractAddress(e.target.value);
     // }
 
     
