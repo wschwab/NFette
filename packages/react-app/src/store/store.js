@@ -21,6 +21,11 @@ const initialState = {
     curveShape: "",
     contractAddress: ""
   },
+  curveAddresses: {
+    aggressive: "",
+    conventional: "",
+    slowAndSteady: ""
+  },
   provider: {},
   createMarketPending: false,
   createMarketSuccess: false,

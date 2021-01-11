@@ -15,7 +15,7 @@ const createMarket = async (state)=> {
             state.tokenDetails.symbol,
             parseInt(state.tokenDetails.maxSupply),
             parseInt(state.tokenDetails.initialPrice),
-            state.tokenDetails.curveShape, // not correct, see below
+            state.curveAddresses[state.tokenDetails.curveShape],
             state.tokenDetials.collateralType, // currently not implemented
         )
         .catch(e => console.error(e));
@@ -46,6 +46,6 @@ worst, it'll be the only collateral choice
 
 I have some errors in my understanding about URIs, not good
 
-need to convert the curves into addresses
+need to make sure the curve addresses are filled in somewhere
 
 */

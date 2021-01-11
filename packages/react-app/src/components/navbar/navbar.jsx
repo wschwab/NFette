@@ -40,9 +40,9 @@ function Navbar(props) {
         w3mProvider.isPortis
         ? w3mProvider._portis._selectedAddress
         : w3mProvider.selectedAddress
-        );
-        setBlockChainContext(w3mProvider);
-        setWalletConnected(true);
+      );
+      setBlockChainContext(w3mProvider);
+      setWalletConnected(true);
       });
       
   };
