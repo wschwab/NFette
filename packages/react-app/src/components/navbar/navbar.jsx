@@ -9,23 +9,20 @@ import { useHistory } from "react-router-dom";
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 
 function Navbar(props) {
-  const [walletConnected, setWalletConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState('');
   const [blockChainContext, setBlockChainContext] = useState(false);
   const [injectedProvider, setInjectedProvider] = useState({});
+  const {state, actions} = useContext(Store);
+  const { classes, web3Modal } = props;
+  const { walletConnected } = state;
+  const walletAddress = state.userAddress ? state.userAddress : ''
 
   const shortAddress = `${walletAddress.slice(0, 2)}...${walletAddress.slice(
     walletAddress.length - 4
   )}`;
 
-  const { web3Modal } = props
-
-  const {state, actions} = useContext(Store);
-  const { classes } = props;
-
   const logoutOfWeb3Modal = async () => {
-    setInjectedProvider({});
-    setWalletConnected(false);
+   actions.setProvider({});
+    actions.setWalletConnected(false);
     await web3Modal.clearCachedProvider();
     setTimeout(() => {
       window.location.reload();
@@ -34,14 +31,14 @@ function Navbar(props) {
 
   const connectToWallet = async () => {
     props.web3Modal.connect().then((w3mProvider) => {
-      setInjectedProvider(w3mProvider);
-      setWalletAddress(
+      actions.setProvider(w3mProvider);
+      actions.setWalletAddress(
         w3mProvider.isPortis
           ? w3mProvider._portis._selectedAddress
           : w3mProvider.selectedAddress
       );
       setBlockChainContext(w3mProvider);
-      setWalletConnected(true);
+      actions.setWalletConnected(true);
     });
   };
 

@@ -1,5 +1,6 @@
 import types from "./types";
 import createMarket from "../services/createMarket";
+import { setWalletAddress } from "../services/wallet";
 
 const applyMiddleware = dispatch => action => {
   switch (action.type) {
@@ -17,6 +18,30 @@ const applyMiddleware = dispatch => action => {
             payload: error,
           });
         });
+        case types.SetWalletAddress.SET_WALLET_ADDRESS_REQUEST:
+          return setWalletAddress(action.payload)
+            .then((res) => {
+              dispatch({
+                type: types.SetWalletAddress.SET_WALLET_ADDRESS_SUCCESS,
+                payload: res,
+              });
+            })
+            .catch((err) =>
+              dispatch({
+                type: types.SetWalletAddress.SET_WALLET_ADDRESS_FAIL,
+                payload: err.response,
+              })
+            );
+        case types.SetWalletConnected.SET_WALLET_CONNECTED_REQUEST:
+          return dispatch({
+            type: types.SetWalletConnected.SET_WALLET_CONNECTED_SUCCESS,
+            payload: action.payload,
+          });
+        case types.SetProvider.SET_PROVIDER_REQUEST:
+          return dispatch({
+            type: types.SetProvider.SET_PROVIDER_SUCCESS,
+            payload: action.payload,
+          });
     default:
       dispatch(action);
   }

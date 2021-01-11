@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./Overview";
+import styles from "./OverviewStyles";
 import {withStyles} from "@material-ui/core/styles";
 
 function Overview(props) {
