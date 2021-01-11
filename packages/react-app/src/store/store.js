@@ -20,6 +20,7 @@ const initialState = {
     initialPrice: "",
     curveShape: ""
   },
+  walletConnected: false,
   provider: {},
   createMarketPending: false,
   createMarketSuccess: false,
