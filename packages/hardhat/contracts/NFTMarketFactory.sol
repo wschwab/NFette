@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.6.0 <0.7.0;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
@@ -36,8 +37,9 @@ contract NFTMarketFactory is Deployer {
         string symbol,
         address indexed registeredBy,
         uint256 cap,
-        address bondingCurveAddr
-        // address stakeTokenAddress
+        address bondingCurveAddr,
+        bool isCollateralEth,
+        address stakeTokenAddress
     );
 
     constructor(address template) public {
@@ -54,8 +56,9 @@ contract NFTMarketFactory is Deployer {
         uint256 cap,
         uint256 initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory _curveParameters
-        // address stakeTokenAddress
+        uint256[3] memory _curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) public returns (address market) {
 
             address owner = msg.sender; // TODO: update to use Meta-Tx
@@ -75,9 +78,9 @@ contract NFTMarketFactory is Deployer {
                     cap,
                     initialBidPrice,
                     bondingCurveAddr,
-                    // _activeCurve,
-                    _curveParameters
-                    // stakeTokenAddress
+                    _curveParameters,
+                    isCollateralEth,
+                    stakeTokenAddress
                 ), 'NFTMarketFactory: Unable to initialize market');
             emit NFTMarketCreated(address(_template), market, owner);
             emit NFTMarketRegistered(
@@ -88,8 +91,9 @@ contract NFTMarketFactory is Deployer {
                 symbol,
                 owner,
                 cap,
-                bondingCurveAddr
-                // stakeTokenAddress
+                bondingCurveAddr,
+                isCollateralEth,
+                stakeTokenAddress
             );
             nftMarketCounter.add(1);
     }
