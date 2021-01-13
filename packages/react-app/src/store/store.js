@@ -21,10 +21,12 @@ const initialState = {
     curveShape: "",
     contractAddress: ""
   },
-  curveAddresses: {
-    aggressive: "",
-    conventional: "",
-    slowAndSteady: ""
+  curve: {
+    address: "",
+    curveShape: "",
+    aggressive: [],
+    conventional: [],
+    slowAndSteady: [0,1]
   },
   collateral: {
     eth: false,
