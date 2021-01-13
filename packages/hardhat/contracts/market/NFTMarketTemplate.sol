@@ -75,8 +75,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory curveParameters
-        // address stakeTokenAddress
+        uint256[3] memory curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) ERC20(name, symbol) /*ERC20Capped(cap)*/ public {
 
             // console.log(msg.sender, "deploy a template with minter", minterAddress);
@@ -91,12 +92,14 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
                         cap,
                         _initialBidPrice,
                         bondingCurveAddr,
-                        curveParameters
-                        // stakeTokenAddress
+                        curveParameters,
+                        isCollateralEth,
+                        stakeTokenAddress
             );
 
     }
 
+    // note to self: function was originally an override
     function initialize(
         address parentToken,
         uint256 parentTokenId,
@@ -106,8 +109,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] calldata curveParameters
-        // address stakeTokenAddress
+        uint256[3] calldata curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) external override onlyIfNotInitialized returns (bool) {
 
         return _initialize(
@@ -119,8 +123,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
             cap,
             _initialBidPrice,
             bondingCurveAddr,
-            curveParameters
-            // stakeTokenAddress
+            curveParameters,
+            isCollateralEth,
+            stakeTokenAddress
         );
 
     }
@@ -134,8 +139,9 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory curveParameters
-        // address stakeTokenAddress
+        uint256[3] memory curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) private returns (bool) {
 
             // console.log("_initialize template", IERC721(parentToken).supportsInterface(0x80ac58cd), IERC721(parentToken).ownerOf(parentTokenId));

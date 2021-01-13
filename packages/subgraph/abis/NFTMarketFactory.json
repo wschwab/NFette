@@ -98,6 +98,18 @@
         "internalType": "address",
         "name": "bondingCurveAddr",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isCollateralEth",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "stakeTokenAddress",
+        "type": "address"
       }
     ],
     "name": "NFTMarketRegistered",
@@ -144,6 +156,16 @@
         "internalType": "uint256[3]",
         "name": "_curveParameters",
         "type": "uint256[3]"
+      },
+      {
+        "internalType": "bool",
+        "name": "isCollateralEth",
+        "type": "bool"
+      },
+      {
+        "internalType": "address",
+        "name": "stakeTokenAddress",
+        "type": "address"
       }
     ],
     "name": "createMarket",
