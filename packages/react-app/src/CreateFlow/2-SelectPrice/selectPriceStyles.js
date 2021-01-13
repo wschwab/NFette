@@ -14,7 +14,7 @@ const styles = createStyles({
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
-    height: "10em",
+    height: "15em",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -22,7 +22,7 @@ const styles = createStyles({
   subheading: {
     fontSize: "3rem",
     textAlign: "left",
-    fontWeight: "normal",
+    fontWeight: '700',
     margin: "30px auto auto 0px",
   },
   infoBox: {
@@ -73,10 +73,24 @@ const styles = createStyles({
     padding: "10px",
     borderRadius: "5px",
   },
+  description: {
+    margin: "2rem 0px",
+    width: "450px",
+    fontSize: '1.5rem',
+    textAlign: 'left',
+    fontWeight: 200
+  },
+  link: {
+    margin: "2rem 0px",
+    width: "450px",
+    fontSize: '2rem',
+    textAlign: 'left',
+    fontWeight: 200
+  },
   btnBar: {
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     margin: "100px auto 0 0px",
   },
   btnLeft: {

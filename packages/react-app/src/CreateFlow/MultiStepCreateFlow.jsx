@@ -1,7 +1,6 @@
 import React from "react";
 import { useStep } from "react-hooks-helper";
 import { Transition } from "react-transition-group";
-// import LandingPage from "../components/landingPage/landingPage";
 import Overview from "./0-Overview/Overview";
 import CreateNFT from "./1-CreateNFT/createNFT";
 import ChooseCurve from "./3-ChooseCurve/chooseCurve";
@@ -21,6 +20,8 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 
+
+
 const steps = [
   { id: "overview"},
   { id: "createNFT"},
@@ -30,10 +31,10 @@ const steps = [
   { id: "final" },
 ];
 
-const MultiStepCreateFlow = () => {
+const MultiStepCreateFlow = (props) => {
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
-
+  props.setCurrentStep(step)
   
   return (
     <>

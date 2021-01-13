@@ -3,12 +3,12 @@ import {createStyles} from "@material-ui/core/styles";
 const styles = createStyles({
     root: {
         color: "white",
-        height: "70px",
+        height: "11rem",
         width: "100%",
         minWidth: "500px",
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: "flex-start",
         alignItems: "center",
         backgroundColor: "var(--main-white)",
         margin: "0 auto auto auto",
@@ -17,17 +17,19 @@ const styles = createStyles({
         top: "0"
     },
     headingContainer: {
-        width: "150px",
+        width: "180px",
         height: "100%",
-        margin: "auto",
+        marginLeft: "2rem",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        left: '-3rem'
     },
     nfetteLogo: {
-        width: "100%",
-        margin: "auto",
-        alignSelf: 'left'
+        height: "100%",
+        margin: "0",
+        alignSelf: 'left',
+        cursor: 'pointer'
     },
     heading: {
         color: "var(--main-white)",
@@ -43,8 +45,8 @@ const styles = createStyles({
         fontFamily: "var(--fancy-font)",
         margin: "auto auto auto 1px"
     },
-    button: {
-        fontSize: "1.5rem",
+    walletButton: {
+        fontSize: "2.3rem",
         margin: "auto 10px auto auto",
         padding: '10px',
         height: "5rem",
@@ -54,7 +56,7 @@ const styles = createStyles({
         right: "25px",
         borderRadius: "5px",
         backgroundColor: "var(--main-white)",
-        fontFamily: "var(--button-font)"
+        fontWeight: '700'
     },
     addressDisplay: {
         fontSize: "1.5rem",

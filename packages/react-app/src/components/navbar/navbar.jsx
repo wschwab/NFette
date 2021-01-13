@@ -20,6 +20,8 @@ function Navbar(props) {
     walletAddress.length - 4
   )}`;
 
+  console.log(props.currentStep)
+
   const logoutOfWeb3Modal = async () => {
    actions.setProvider({});
     actions.setWalletConnected(false);
@@ -51,6 +53,7 @@ function Navbar(props) {
   return (
     <nav className={classes.root}>
       <div className={classes.headingContainer} onClick={() => clickToHome()}>
+          
         <Logo
           className={classes.nfetteLogo}
         />
@@ -61,11 +64,10 @@ function Navbar(props) {
           {shortAddress}
         </button>
       ) : (
-        <button className={classes.button} onClick={connectToWallet}>
-          Connect
+        <button className={classes.walletButton} onClick={connectToWallet}>
+          Connect Wallet
         </button>
       )}
-      <div className="gradientBorder"></div>
     </nav>
   );
 }

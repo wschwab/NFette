@@ -37,6 +37,18 @@ code {
 .App {
   text-align: center;
 }
+.web3modal-modal-lightbox {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  animation: 3s !important;
+}
+.chnMFN {
+  border: 1.5px solid black !important;
+  /* animation: 3s !important; */
+}
+/* @keyframes animation {
+  0%   {transform: scale(.5);}
+  100% {transform: scale(1);}
+} */
 * {
   margin: 0;
   padding: 0;
@@ -73,15 +85,43 @@ input {
   cursor: pointer;
   border: none;
 }
-.gradientBorder {
+.gradientBorder{
   height: 3px;
   width: 100%;
   margin: auto auto 0 auto;
   background-image: var(--main-gradient);
+  animation: grow 1s ease-in;
 }
-
-/* .modal {
+@keyframes grow {
+0%   {transform: scale(0);}
+100% {transform: scale(1);}
 }
-
-.modal-heading-container {
-} */
+.gradientBorderShrink {
+height: 3px;
+width: 100%;
+margin: 10rem 0px 0px 0px;
+position: fixed;
+top: 0;
+animation: shrink 2.5s;
+}
+@keyframes shrink {
+0% {
+  transform: scale(1);
+  background-image: var(--main-gradient);
+}
+50% {
+  transform: scale(0);
+  background-image: var(--main-gradient);
+}
+60% {
+  background-image: none;
+};
+}
+.gradientBorderTop {
+  height: 3px;
+  width: 100%;
+  margin: 12rem 0px 0px 0px;
+  position: fixed;
+  top: 0;
+  background-image: var(--main-gradient);
+}
