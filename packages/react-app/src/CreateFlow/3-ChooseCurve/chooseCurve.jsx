@@ -35,6 +35,7 @@ import styles from "./chooseCurveStyles";
                         <div>Name: {state.nftDetails.name}</div>
                         <div>Contract Address: {state.nftDetails.contractAddress}</div>
                     </div>
+                     <div className={classes.infoDivider}></div>
                     <div className={classes.smallBox}>
                         <div>MaxSupply: {state.tokenDetails.maxSupply}</div>
                         <div>Collateral Type: {state.tokenDetails.collateralType}</div>
@@ -46,7 +47,9 @@ import styles from "./chooseCurveStyles";
                         <input className={classes.radio} name="curveOption" value="aggressive" checked={state.curveShape === "aggressive"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Concave className={classes.svg} />
                         <p className={classes.description}>
+                            <em>
                             Steep curve with high prices, early flattening out over supply
+                            </em>
                         </p>
                     </div>
                     <div className={classes.graphBox}>
@@ -54,7 +57,9 @@ import styles from "./chooseCurveStyles";
                         <input className={classes.radio} name="curveOption" value="slowAndSteady" checked={state.curveShape === "slowAndSteady"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Convex className={classes.svg} />
                         <p className={classes.description}>
+                            <em>
                             Steady low curve with exponential growth in supply
+                            </em>
                         </p>
                     </div>
                     <div className={classes.graphBox}>
@@ -62,7 +67,9 @@ import styles from "./chooseCurveStyles";
                         <input className={classes.radio} name="curveOption" value="conventional" checked={state.curveShape === "conventional"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Linear className={classes.svg} />
                         <p className={classes.description}>
+                            <em>
                             Linear predictable growth direct relationship in supply
+                            </em>
                         </p>
                     </div>
                 </div>

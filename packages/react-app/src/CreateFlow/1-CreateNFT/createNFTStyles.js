@@ -14,7 +14,7 @@ const styles = createStyles({
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
-    height: "10em",
+    height: "15em",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -22,8 +22,15 @@ const styles = createStyles({
   subheading: {
     fontSize: "3rem",
     textAlign: "left",
-    fontWeight: "normal",
+    fontWeight: "700",
     margin: "30px auto auto 0px",
+  },
+  gradientBorder: {
+    animation: "$animation 3s"
+  },
+  '@keyframes animation': {
+    from: {opacity: 0, transform: 'scale(0)'},
+    to: {opacity: 1, transform: 'scale(1)'}
   },
   form: {
     height: "80%",
@@ -48,10 +55,24 @@ const styles = createStyles({
       color: "var(--main-grey)",
     },
   },
+  description: {
+    margin: "2rem 0px",
+    width: "450px",
+    fontSize: "1.5rem",
+    textAlign: "left",
+    fontWeight: 200,
+  },
+  link: {
+    margin: "2rem 0px",
+    width: "450px",
+    fontSize: "2rem",
+    textAlign: "left",
+    fontWeight: 200,
+  },
   btnBar: {
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     alignSelf: "center",
     margin: "100px auto 0px 0px",
   },

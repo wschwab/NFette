@@ -16,7 +16,7 @@ const styles = createStyles({
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
-    height: "10em",
+    height: "15em",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -24,7 +24,7 @@ const styles = createStyles({
   subheading: {
     fontSize: "3rem",
     textAlign: "left",
-    fontWeight: "normal",
+    fontWeight: '700',
     margin: "30px auto auto 0px",
   },
   mainContainer: {

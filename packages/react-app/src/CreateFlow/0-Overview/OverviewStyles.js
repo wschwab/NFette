@@ -11,24 +11,30 @@ const styles = createStyles({
     alignItems: "center",
     backgroundColor: "var(--main-white)",
     position: "absolute",
-    top: "70px",
+    top: "90px",
   },
   heading: {
     fontFamily: "var(--fancy-font)",
-    fontSize: "10rem",
+    fontSize: "11rem",
     color: "inherit",
-    width: "70%",
+    width: "75%",
     minWidth: "750px",
+    animation: "$fadeIn 1s",
+  },
+  '@keyframes fadeIn': {
+    from: {opacity: 0, transform: 'translateY(20px)'},
+    to: {opacity: 1, transform: 'translateY(0)'}
   },
   subHeading: {
-    width: "70%",
-    fontSize: "1.7rem",
+    width: "50%",
+    fontSize: "2.5rem",
     fontFamily: "var(--plain-font)",
+    margin: '5rem'
   },
   stepsContainer: {
     marginTop: "50px",
     marginBottom: "50px",
-    width: "50%",
+    width: "40%",
     height: "150px",
     minWidth: "750px",
     display: "flex",

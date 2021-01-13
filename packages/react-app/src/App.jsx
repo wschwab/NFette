@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 import { JsonRpcProvider } from "@ethersproject/providers";
-
 import { StoreProvider } from "./store/store";
 import { INFURA_ID } from "./constants";
 
@@ -10,10 +8,16 @@ import MultiStepCreateFlow from "./CreateFlow/MultiStepCreateFlow";
 import BuyPage from "./BuyFlow/buyPage";
 import Navbar from "./components/navbar/navbar";
 import RootLanding from "./components/rootLanding/rootLanding";
+import CreateNFT from "./CreateFlow/1-CreateNFT/createNFT";
+import SelectPrice from './CreateFlow/2-SelectPrice/selectPrice'
+import ChooseCurve from "./CreateFlow/3-ChooseCurve/chooseCurve"
+import Review from './CreateFlow/4-Review/review'
+import Final from './CreateFlow/5-Final/final'
 
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
+import { useState } from "react";
 
 // 🔭 block explorer URL
 const blockExplorer = "https://etherscan.io/"; // for xdai: "https://blockscout.com/poa/xdai/"
@@ -39,22 +43,27 @@ const providerOptions = {
 const w3m = new Web3Modal({
   // network: "mainnet",
   cacheProvider: true,
-  providerOptions
+  providerOptions,
 });
 
+
+
+
 function App(props) {
+
+  const [currentStep, setCurrentStep] = useState('')
+
   return (
     <StoreProvider>
       <div className="App">
-        From old repo, uncomment when ready
         <BrowserRouter>
-          <Navbar web3Modal={w3m} />
+          <Navbar web3Modal={w3m} currentStep={currentStep} />
           <Switch>
             <Route path="/" exact >
                 <RootLanding />
             </Route>
             <Route path="/create" exact >
-                <MultiStepCreateFlow />
+                <MultiStepCreateFlow setCurrentStep={setCurrentStep} />
             </Route>
             <Route path="/buy" exact >
                 <BuyPage/>
