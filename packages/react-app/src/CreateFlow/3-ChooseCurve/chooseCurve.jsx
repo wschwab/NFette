@@ -43,7 +43,7 @@ import styles from "./chooseCurveStyles";
                 <div className={classes.graphBoxContainer}>
                     <div className={classes.graphBox}>
                         <h3 className={classes.graphType}>Aggressive</h3>
-                        <input className={classes.radio} name="curveOption" value="aggressive" checked={state.curveShape === "aggressive"} onChange={handleOptionChange} type="radio" label="Select" />
+                        <input className={classes.radio} name="curveOption" value="aggressive" checked={state.tokenDetails.curveShape === "aggressive"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Concave className={classes.svg} />
                         <p className={classes.description}>
                             Steep curve with high prices, early flattening out over supply
@@ -51,7 +51,7 @@ import styles from "./chooseCurveStyles";
                     </div>
                     <div className={classes.graphBox}>
                         <h3 className={classes.graphType}>Slow and Steady</h3>
-                        <input className={classes.radio} name="curveOption" value="slowAndSteady" checked={state.curveShape === "slowAndSteady"} onChange={handleOptionChange} type="radio" label="Select" />
+                        <input className={classes.radio} name="curveOption" value="slowAndSteady" checked={state.tokenDetails.curveShape === "slowAndSteady"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Convex className={classes.svg} />
                         <p className={classes.description}>
                             Steady low curve with exponential growth in supply
@@ -59,7 +59,7 @@ import styles from "./chooseCurveStyles";
                     </div>
                     <div className={classes.graphBox}>
                         <h3 className={classes.graphType}>Conventional</h3>
-                        <input className={classes.radio} name="curveOption" value="conventional" checked={state.curveShape === "conventional"} onChange={handleOptionChange} type="radio" label="Select" />
+                        <input className={classes.radio} name="curveOption" value="conventional" checked={state.tokenDetails.curveShape === "conventional"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Linear className={classes.svg} />
                         <p className={classes.description}>
                             Linear predictable growth direct relationship in supply

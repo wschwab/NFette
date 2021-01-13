@@ -9,7 +9,7 @@ const createMarket = async (state)=> {
 
     const result = await contract
         .createMarket(
-            state.nftDetails.address,
+            state.nftDetails.contractAddress,
             parseInt(state.nftDetails.uri), // probably not a wise way to do this, see below
             state.tokenDetails.name,
             state.tokenDetails.symbol,
