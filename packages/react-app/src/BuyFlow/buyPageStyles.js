@@ -20,6 +20,19 @@ const styles = createStyles({
         width: "70%",
         minWidth: "750px",
     },
+    buyContainer: {
+        width: '70%',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    leftPanel: {
+        width: '45%',
+    },
+    rightPanel: {
+        width: '45%'
+    },
 })
 
 export default styles;
