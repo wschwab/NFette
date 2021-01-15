@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./buyPageStyles";
 import {withStyles} from "@material-ui/core/styles";
-import MyChart from "./priceChart";
+import Chart from "./priceChart";
 
 function BuyPage(props) {
   const { classes } = props;
@@ -14,7 +14,7 @@ function BuyPage(props) {
           
         </div>
         <div className={classes.rightPanel}>
-          {/* <MyChart /> */}
+          {/* <Chart /> */}
         </div>
       </div>
     </div>

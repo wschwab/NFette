@@ -1,7 +1,8 @@
 import React from 'react'
 import { Chart } from 'react-charts'
 
-export default function MyChart() {
+{/* This chart is hard coded for now */}
+export default function Chart() {
   const data = React.useMemo(
     () => [
       {
