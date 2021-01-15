@@ -10,11 +10,11 @@ const styles = createStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     position: "absolute",
-    top: "150px",
+    top: "120px",
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
-    height: "15em",
+    height: "10em",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -47,20 +47,20 @@ const styles = createStyles({
     height: "50%",
   },
   label: {
-    margin: "40px 0px 10px",
-    fontSize: "2rem",
+    margin: "10px 0px 10px",
+    fontSize: "1.5rem",
     textAlign: "left",
   },
   inputContainer: {
     width: "100%",
-    height: "80%",
+    height: "70%",
     display: "flex",
     textAlign: "left",
     flexDirection: "column",
   },
   input: {
     border: "2px solid var(--main-black)",
-    width: "500px",
+    width: "40%",
     "&:focus": {
       border: "2px solid orange",
     },
@@ -74,14 +74,14 @@ const styles = createStyles({
     borderRadius: "5px",
   },
   description: {
-    margin: "2rem 0px",
+    marginBottom: "2rem",
     width: "450px",
     fontSize: '1.5rem',
     textAlign: 'left',
     fontWeight: 200
   },
   link: {
-    margin: "2rem 0px",
+    margin: "1rem 0px",
     width: "450px",
     fontSize: '2rem',
     textAlign: 'left',
@@ -91,7 +91,7 @@ const styles = createStyles({
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",
-    margin: "100px auto 0 0px",
+    margin: "50px auto 0 0px",
   },
   btnLeft: {
     fontSize: "1.8rem",

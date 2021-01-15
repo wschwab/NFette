@@ -5,17 +5,18 @@ const styles = createStyles({
     color: "var(--main-black)",
     height: "calc(100vh - 70px)",
     width: "100vw",
+    height: "85vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "var(--main-white)",
     position: "absolute",
-    top: "90px",
+    top: "100px",
   },
   heading: {
     fontFamily: "var(--fancy-font)",
-    fontSize: "6rem",
+    fontSize: "5rem",
     color: "inherit",
     width: "70%",
     minWidth: "750px",
@@ -25,10 +26,10 @@ const styles = createStyles({
     margin: "5rem 0rem",
   },
   textfirst: {
-    fontSize: "2.5rem",
+    fontSize: "2rem",
   },
   textsecond: {
-    fontSize: "2.5rem",
+    fontSize: "2rem",
     fontWeight: "700",
   },
   text: {

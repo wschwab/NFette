@@ -10,11 +10,11 @@ const styles = createStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     position: "absolute",
-    top: "150px",
+    top: "120px",
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
-    height: "15em",
+    height: "10em",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -48,12 +48,6 @@ const styles = createStyles({
     border: "2px solid var(--main-black)",
     width: "500px",
     borderRadius: "5px",
-    "&:focus": {
-      border: "2px solid orange",
-    },
-    "&::placeholder": {
-      color: "var(--main-grey)",
-    },
   },
   description: {
     margin: "2rem 0px",
@@ -74,7 +68,7 @@ const styles = createStyles({
     display: "flex",
     justifyContent: "flex-end",
     alignSelf: "center",
-    margin: "100px auto 0px 0px",
+    margin: "50px auto 0px 0px",
   },
   btnLeft: {
     fontSize: "1.8rem",
