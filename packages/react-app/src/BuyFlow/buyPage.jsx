@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./buyPageStyles";
 import {withStyles} from "@material-ui/core/styles";
-import Chart from "./priceChart";
+// import Chart from "./priceChart";
 
 function BuyPage(props) {
   const { classes } = props;
