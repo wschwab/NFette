@@ -80,7 +80,7 @@ function CreateNFT(props) {
           className={classes.input}
           type="text"
           name="url"
-          placeholder="URL"
+          placeholder="URI"
         />
         <span className={classes.description}>
           <em>

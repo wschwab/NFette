@@ -5,6 +5,7 @@ const styles = createStyles({
     color: "var(--main-black)",
     height: "calc(100vh - 70px)",
     width: "100vw",
+    height: "85vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -15,7 +16,7 @@ const styles = createStyles({
   },
   heading: {
     fontFamily: "var(--fancy-font)",
-    fontSize: "11rem",
+    fontSize: "8rem",
     color: "inherit",
     width: "75%",
     minWidth: "750px",
@@ -27,12 +28,11 @@ const styles = createStyles({
   },
   subHeading: {
     width: "50%",
-    fontSize: "2.5rem",
+    fontSize: "2rem",
     fontFamily: "var(--plain-font)",
     margin: '5rem'
   },
   stepsContainer: {
-    marginTop: "50px",
     marginBottom: "50px",
     width: "40%",
     height: "150px",
@@ -47,7 +47,7 @@ const styles = createStyles({
     alignItems: "start",
     justifyContent: "flex-start",
     fontFamily: "var(--plain-font)",
-    fontSize: "2rem",
+    fontSize: "1.5rem",
     textAlign: "left",
     fontWeight: "500",
     margin: "auto",

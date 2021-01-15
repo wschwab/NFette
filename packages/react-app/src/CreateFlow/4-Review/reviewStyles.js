@@ -12,11 +12,11 @@ const styles = createStyles({
     justifyContent: "flex-start",
     borderRadius: "5px",
     position: "absolute",
-    top: "150px",
+    top: "120px",
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
-    height: "15em",
+    height: "10em",
     width: "100%",
     display: "flex",
     flexDirection: "column",
@@ -28,7 +28,7 @@ const styles = createStyles({
     margin: "30px auto auto 0px",
   },
   mainContainer: {
-    height: "40em",
+    height: "30em",
     width: "100%",
     display: "flex",
     flexDirection: "row",

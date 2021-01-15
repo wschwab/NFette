@@ -1,9 +1,10 @@
 import {createStyles} from "@material-ui/core/styles";
+import zIndex from "@material-ui/core/styles/zIndex";
 
 const styles = createStyles({
     root: {
         color: "white",
-        height: "11rem",
+        height: "9rem",
         width: "100%",
         minWidth: "500px",
         display: "flex",
@@ -14,7 +15,9 @@ const styles = createStyles({
         margin: "0 auto auto auto",
         position: "absolute",
         overflow: "hidden",
-        top: "0"
+        top: "0",
+        position: 'sticky',
+        zIndex: 1
     },
     headingContainer: {
         width: "180px",
@@ -26,10 +29,11 @@ const styles = createStyles({
         left: '-3rem'
     },
     nfetteLogo: {
-        height: "100%",
-        margin: "0",
+        height: "5rem",
+        // margin: "rem",
         alignSelf: 'left',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        position: 'fixed'
     },
     heading: {
         color: "var(--main-white)",
@@ -46,18 +50,20 @@ const styles = createStyles({
         margin: "auto auto auto 1px"
     },
     walletButton: {
-        fontSize: "2.3rem",
+        fontSize: "2rem",
         margin: "auto 10px auto auto",
         padding: '10px',
         height: "5rem",
         width: "auto",
         fontFamily: "var(--plain-font)",
-        position: "absolute",
+        // position: "absolute",
+        position: "fixed",
         right: "25px",
         borderRadius: "5px",
         backgroundColor: "var(--main-white)",
         fontWeight: '700'
     },
+
     addressDisplay: {
         fontSize: "1.5rem",
         padding: '10px',
