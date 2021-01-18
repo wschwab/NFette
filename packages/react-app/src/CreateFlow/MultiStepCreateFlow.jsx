@@ -20,15 +20,13 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 
-
-
 const steps = [
-  { id: "overview"},
-  { id: "createNFT"},
-  { id: "selectPrice" },
-  { id: "chooseCurve" },
-  { id: "review" },
-  { id: "final" },
+  { id: "overview", image: 'Logo'},
+  { id: "createNFT", image: 'Flow_logo_1'},
+  { id: "selectPrice", image: 'Flow_logo_2'},
+  { id: "chooseCurve", image: 'Flow_logo_3'},
+  { id: "review", image: 'Flow_logo_1'},
+  { id: "final", image: 'Flow_logo_2'},
 ];
 
 const MultiStepCreateFlow = (props) => {

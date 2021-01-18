@@ -1,39 +1,45 @@
 import {createStyles} from "@material-ui/core/styles";
-import zIndex from "@material-ui/core/styles/zIndex";
 
 const styles = createStyles({
-    root: {
+    wrapper: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+    },
+    wideRoot: {
         color: "white",
-        height: "9rem",
-        width: "100%",
+        height: "70px",
+        width: "95%",
         minWidth: "500px",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: "var(--main-white)",
-        margin: "0 auto auto auto",
+        margin: "1em auto auto auto",
         position: "absolute",
         overflow: "hidden",
-        top: "0",
-        position: 'sticky',
-        zIndex: 1
+        top: "0"
     },
-    headingContainer: {
-        width: "180px",
-        height: "100%",
-        marginLeft: "2rem",
+    narrowRoot: {
+        alignSelf: 'center',
+        color: "white",
+        height: "70px",
+        width: "900px",
+        minWidth: "500px",
         display: "flex",
-        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
         alignItems: "center",
-        left: '-3rem'
+        backgroundColor: "var(--main-white)",
+        margin: "1em auto auto auto",
+        position: "absolute",
+        overflow: "hidden",
+        top: "0"
     },
     nfetteLogo: {
-        height: "5rem",
-        // margin: "rem",
-        alignSelf: 'left',
-        cursor: 'pointer',
-        position: 'fixed'
+        width: "100%",
+        margin: "auto"
     },
     heading: {
         color: "var(--main-white)",
@@ -49,36 +55,22 @@ const styles = createStyles({
         fontFamily: "var(--fancy-font)",
         margin: "auto auto auto 1px"
     },
-    walletButton: {
-        fontSize: "2rem",
+    button: {
         margin: "auto 10px auto auto",
-        padding: '10px',
-        height: "5rem",
-        width: "auto",
-        fontFamily: "var(--plain-font)",
-        // position: "absolute",
-        position: "fixed",
-        right: "25px",
-        borderRadius: "5px",
-        backgroundColor: "var(--main-white)",
-        fontWeight: '700'
-    },
-
-    addressDisplay: {
-        fontSize: "1.5rem",
-        padding: '10px',
-        height: "5rem",
-        width: "20rem",
+        height: "25px",
+        width: "75px",
         fontFamily: "var(--plain-font)",
         position: "absolute",
+        top: "calc(50% - 12.5px)",
         right: "25px",
         borderRadius: "5px",
+        backgroundColor: "var(--main-grey)",
+        fontFamily: "var(--button-font)"
+    },
+    walletButton: {
         backgroundColor: "var(--main-white)",
-        fontFamily: "var(--button-font)",
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center"
-    }
+        fontSize: '2rem'
+    },
 })
 
 export default styles;

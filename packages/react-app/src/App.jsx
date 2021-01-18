@@ -13,6 +13,7 @@ import SelectPrice from './CreateFlow/2-SelectPrice/selectPrice'
 import ChooseCurve from "./CreateFlow/3-ChooseCurve/chooseCurve"
 import Review from './CreateFlow/4-Review/review'
 import Final from './CreateFlow/5-Final/final'
+import Main from './Main/Main'
 
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -56,20 +57,7 @@ function App(props) {
   return (
     <StoreProvider>
       <div className="App">
-        <BrowserRouter>
-          <Navbar web3Modal={w3m} currentStep={currentStep} />
-          <Switch>
-            <Route path="/" exact >
-                <RootLanding />
-            </Route>
-            <Route path="/create" exact >
-                <MultiStepCreateFlow setCurrentStep={setCurrentStep} />
-            </Route>
-            <Route path="/buy" exact >
-                <BuyPage/>
-            </Route>
-          </Switch>
-        </BrowserRouter>
+        <Main />
       </div>
     </StoreProvider>
   );
