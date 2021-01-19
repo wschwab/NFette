@@ -83,13 +83,14 @@ function Navbar(props) {
   console.log(flowStart)
   const conditionalClassNames = flowStart ? classes.narrowRoot : classes.wideRoot
 
-  console.log({ currentLogo });
+  console.log(props.currentStep);
   console.log({ conditionalClassNames });
 
   const history = useHistory();
 
   const clickToHome = () => {
     history.push("/");
+    // props.currentStep = 'overview'
   };
   return (
     <div className={classes.wrapper}>
