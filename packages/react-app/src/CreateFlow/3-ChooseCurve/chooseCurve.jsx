@@ -33,7 +33,8 @@ import styles from "./chooseCurveStyles";
                 <div className={classes.infoBox}>
                     <div className={classes.smallBox}>
                         <div>Name: {state.nftDetails.name}</div>
-                        <div>Contract Address: {state.nftDetails.contractAddress}</div>
+                        <div>Contract Address: 0xC54070dA....</div>
+                        {/* <div>Contract Address: {state.nftDetails.contractAddress}</div> */}
                     </div>
                      <div className={classes.infoDivider}></div>
                     <div className={classes.smallBox}>
@@ -43,7 +44,7 @@ import styles from "./chooseCurveStyles";
                 </div>
                 <div className={classes.graphBoxContainer}>
                     <div className={classes.graphBox}>
-                        <h3 className={classes.graphType}>Aggressive</h3>
+                        <h3 className={classes.graphType}>Sublinear</h3>
                         <input className={classes.radio} name="curveOption" value="aggressive" checked={state.curveShape === "aggressive"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Concave className={classes.svg} />
                         <p className={classes.description}>
@@ -53,7 +54,7 @@ import styles from "./chooseCurveStyles";
                         </p>
                     </div>
                     <div className={classes.graphBox}>
-                        <h3 className={classes.graphType}>Slow and Steady</h3>
+                        <h3 className={classes.graphType}>Polynomial</h3>
                         <input className={classes.radio} name="curveOption" value="slowAndSteady" checked={state.curveShape === "slowAndSteady"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Convex className={classes.svg} />
                         <p className={classes.description}>
@@ -63,7 +64,7 @@ import styles from "./chooseCurveStyles";
                         </p>
                     </div>
                     <div className={classes.graphBox}>
-                        <h3 className={classes.graphType}>Conventional</h3>
+                        <h3 className={classes.graphType}>Linear</h3>
                         <input className={classes.radio} name="curveOption" value="conventional" checked={state.curveShape === "conventional"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Linear className={classes.svg} />
                         <p className={classes.description}>

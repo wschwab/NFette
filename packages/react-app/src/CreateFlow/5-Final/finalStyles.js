@@ -84,7 +84,7 @@ const styles = createStyles({
     justifyContent: "center",
   },
   address: {
-    fontSize: "4rem",
+    fontSize: "3rem",
     marginBottom: "10px",
     fontWeight: "bold",
   },

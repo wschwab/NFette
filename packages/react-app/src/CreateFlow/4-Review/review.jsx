@@ -14,6 +14,11 @@ import styles from "./reviewStyles";
         console.log(result);
         next();
      }
+
+     const shortURI = `${state.nftDetails.uri.slice(0, 31)}...`;
+     const hasURI = state.nftDetails.uri ? shortURI : '';
+
+
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
@@ -32,7 +37,7 @@ import styles from "./reviewStyles";
                 </div>
                 <div className={classes.rightBox}>
                     <div className={classes.rightItem}> {state.nftDetails.name} </div>
-                    <div className={classes.rightItem}> {state.nftDetails.uri} </div>
+                    <div className={classes.rightItem}> {hasURI} </div>
                     <div className={classes.rightItem}> {state.tokenDetails.maxSupply} </div>
                     <div className={classes.rightItem}> {state.tokenDetails.collateralType} </div>
                     <div className={classes.rightItem}>{state.tokenDetails.curveShape}</div>
