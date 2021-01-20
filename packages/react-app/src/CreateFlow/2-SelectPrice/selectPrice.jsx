@@ -50,6 +50,7 @@ function SelectPrice(props) {
                     <label className={classes.label}>Initial Price for ERC20 Token on Market</label>
                     <input className={classes.input} onChange={handleInitialPrice} value={state.initialPrice} name="initialPrice" type="text" />
                     <span className={classes.description}><em>1 {state.tokenDetails.collateralType} = 1 Schrute Buck</em><br></br>One thousand Schrute Bucks equals an extra five minutes for lunch.</span>
+                    {/* Uncomment line below when we would like to calculate the current conversion to USD */}
                     {/* <span className={classes.description}><em>USD Estimated amount (0.00)</em></span> */}
                     <label className={classes.label}>Maximum number of tokens that can ever be in circulation</label>
                     <input className={classes.input} onChange={handleMaxSupply} value={state.initialPrice} name="maxSupply" type="text" />

@@ -9,8 +9,8 @@ function Final(props) {
   const { classes } = props;
   const { state, actions } = useContext(Store);
 
-  const shortURI = `${state.nftDetails.uri.slice(0, 31)}...`;
-  const hasURI = state.nftDetails.uri ? shortURI : '';
+  const tokenName = state.nftDetails.name
+  const printName = tokenName ? `${state.nftDetails.name}-SHARES` : ''
   
   return (
     <div className={classes.root}>
@@ -21,16 +21,15 @@ function Final(props) {
       <div className={classes.infoBox}>
         <div className={classes.smallBox}>
           <div>Name: {state.nftDetails.name}</div>
-          <div>Contract Address: 0xC54070dA79E7E3e2c95D3...</div>
+          <div>Contract Address: {state.nftDetails.contractAddress}</div>
           <div>NFT Symbol: {state.nftDetails.symbol}</div>
-          <div>Max Supply: 50 {state.nftDetails.maxSupply}</div>
-          {/* <div>URI: {hasURI}</div> */}
+          <div>Max Supply: {state.nftDetails.maxSupply}</div>
         </div>
         <div className={classes.infoDivider}></div>
         <div className={classes.smallBox}>
-          <div>Collateral Type: DAI {state.nftDetails.collateralType}</div>
-          <div>Initial Price: 50 {state.nftDetails.initialPrice}</div>
-          <div>ERC20 Name: {state.nftDetails.name}-SHARES</div>
+          <div>Collateral Type: {state.nftDetails.collateralType}</div>
+          <div>Initial Price: {state.nftDetails.initialPrice}</div>
+          <div>ERC20 Name: {printName}</div>
           <div>ERC20 Symbol: {state.nftDetails.symbol}</div>
         </div>
       </div>

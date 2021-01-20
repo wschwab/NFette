@@ -36,7 +36,7 @@ const styles = createStyles({
     position: "absolute",
     overflow: "hidden",
     top: "0",
-    animation: "$fadeIn 1s",
+    animation: "$fadeIn 2.5s",
   },
   "@keyframes fadeIn": {
     from: { opacity: 0, transform: "translateY(30px)" },

@@ -22,8 +22,6 @@ function Navbar(props) {
 
   const shortAddress = `${walletAddress.slice(0, 2)}...${walletAddress.slice(walletAddress.length - 4)}`;
 
-  console.log(props.currentStep.image);
-
   const logoutOfWeb3Modal = async () => {
     actions.setProvider({});
     actions.setWalletConnected(false);
@@ -48,49 +46,33 @@ function Navbar(props) {
 
   switch (props.currentStep.id) {
     case "overview":
-      console.log("here1");
       currentLogo = <Logo />;
       break;
     case "createNFT":
-      console.log("here2");
       currentLogo = <FlowLogo1 />;
       break;
     case "selectPrice":
-      console.log("here3");
       currentLogo = <FlowLogo2 />;
       break;
     case "chooseCurve":
-      console.log("here4");
       currentLogo = <FlowLogo3 />;
       break;
     case "review":
-      console.log("here5");
       currentLogo = <FlowLogo1 />;
       break;
     case "final":
-      console.log("here6");
       currentLogo = <FlowLogo2 />;
       break;
     default:
-      console.log("default");
       currentLogo = <Logo />;
       break;
   }
 
-
-  console.log(props.currentStep.id)
   const flowStart = props.currentStep.id !== 'overview' && props.currentStep.id !== '' && props.currentStep.id != undefined
-  console.log(flowStart)
   const conditionalClassNames = flowStart ? classes.narrowRoot : classes.wideRoot
-
-  console.log(props.currentStep);
-  console.log({ conditionalClassNames });
-
   const history = useHistory();
-
   const clickToHome = () => {
     history.push("/");
-    // props.currentStep = 'overview'
   };
   return (
     <div className={classes.wrapper}>

@@ -3,16 +3,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { StoreProvider } from "./store/store";
 import { INFURA_ID } from "./constants";
-
-import MultiStepCreateFlow from "./CreateFlow/MultiStepCreateFlow";
-import BuyPage from "./BuyFlow/buyPage";
-import Navbar from "./components/navbar/navbar";
-import RootLanding from "./components/rootLanding/rootLanding";
-import CreateNFT from "./CreateFlow/1-CreateNFT/createNFT";
-import SelectPrice from './CreateFlow/2-SelectPrice/selectPrice'
-import ChooseCurve from "./CreateFlow/3-ChooseCurve/chooseCurve"
-import Review from './CreateFlow/4-Review/review'
-import Final from './CreateFlow/5-Final/final'
 import Main from './Main/Main'
 
 import Web3Modal from "web3modal";

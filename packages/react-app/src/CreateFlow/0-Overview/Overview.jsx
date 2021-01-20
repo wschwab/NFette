@@ -1,13 +1,10 @@
 import React, { useState} from 'react';
 import styles from "./OverviewStyles";
 import {withStyles} from "@material-ui/core/styles";
-import { CSSTransition } from "react-transition-group";
-import { useHistory } from "react-router-dom";
 
 function Overview(props) {
     const {classes, navigation} = props;
     const {go} = navigation;
-    const history = useHistory();
 
     return (
         <div className={classes.root}>

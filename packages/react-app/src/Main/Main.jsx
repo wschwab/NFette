@@ -29,7 +29,7 @@ const providerOptions = {
 
 function Main() {
 
-    const [currentStep, setCurrentStep] = useState('')
+  const [currentStep, setCurrentStep] = useState('')
 
   return (
     <>

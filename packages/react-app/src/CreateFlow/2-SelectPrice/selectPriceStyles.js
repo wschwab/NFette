@@ -91,7 +91,7 @@ const styles = createStyles({
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",
-    margin: "50px auto 0 0px",
+    margin: "30px auto 0 0px",
   },
   btnLeft: {
     fontSize: "1.8rem",
