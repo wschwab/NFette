@@ -11,9 +11,18 @@ import styles from "./reviewStyles";
      
      const handleNext = async () => {
         const result = await actions.createMarket(state);
-        console.log(result);
         next();
      }
+
+     const shortURI = `${state.nftDetails.uri.slice(0, 31)}...`;
+     const hasURI = state.nftDetails.uri ? shortURI : '';
+
+     const tokenName = state.nftDetails.name
+     const printName = tokenName ? `${state.nftDetails.name}-SHARES` : ''
+     const tokenSymbol = state.nftDetails.symbol
+     const printSymbol = tokenSymbol ? `${state.nftDetails.symbol}-SHARES` : ''
+
+
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
@@ -32,12 +41,12 @@ import styles from "./reviewStyles";
                 </div>
                 <div className={classes.rightBox}>
                     <div className={classes.rightItem}> {state.nftDetails.name} </div>
-                    <div className={classes.rightItem}> {state.nftDetails.uri} </div>
+                    <div className={classes.rightItem}> {hasURI} </div>
                     <div className={classes.rightItem}> {state.tokenDetails.maxSupply} </div>
                     <div className={classes.rightItem}> {state.tokenDetails.collateralType} </div>
                     <div className={classes.rightItem}>{state.tokenDetails.curveShape}</div>
-                    <div className={classes.rightItem}>{state.tokenDetails.name}</div>
-                    <div className={classes.rightItem}>{state.tokenDetails.symbol}</div>
+                    <div className={classes.rightItem}>{printName}</div>
+                    <div className={classes.rightItem}>{printSymbol}</div>
                 </div>
             </div>
             <div className={classes.btnBar}>

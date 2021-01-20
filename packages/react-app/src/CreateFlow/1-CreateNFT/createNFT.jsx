@@ -92,7 +92,7 @@ function CreateNFT(props) {
           <em>Learn more here</em>
         </a>
         {/* <label  className={classes.label}  for="contractAddress">OR enter a contract address of a pre-existing NFT contract</label>
-                <input onChange={handleContractAddrChange} value={state.nftDetails.address} className={classes.input} type="text" name="address" placeholder="0x..."/> */}
+            <input onChange={handleContractAddrChange} value={state.nftDetails.address} className={classes.input} type="text" name="address" placeholder="0x..."/> */}
         <div className={classes.btnBar}>
           <button onClick={handleNext} className={classes.btnRight}>
             Create NFT

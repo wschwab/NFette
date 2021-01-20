@@ -44,12 +44,15 @@ code {
 }
 .chnMFN {
   border: 1.5px solid black !important;
-  /* animation: 3s !important; */
+  animation: fade ease-in 2s;
 }
-/* @keyframes animation {
-  0%   {transform: scale(.5);}
-  100% {transform: scale(1);}
-} */
+.nfetteLogo{
+  animation: fade ease-in 2s;
+}
+@keyframes fade {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
 * {
   margin: 0;
   padding: 0;

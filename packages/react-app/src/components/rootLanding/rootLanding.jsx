@@ -10,7 +10,6 @@ function RootLanding(props) {
 
   const history = useHistory();
   
-
   return (
     <div className={classes.root}>
       <div className="gradientBorderTop"></div>

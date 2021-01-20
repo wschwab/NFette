@@ -8,6 +8,10 @@ const etherscanLink = "https://etherscan.io/";
 function Final(props) {
   const { classes } = props;
   const { state, actions } = useContext(Store);
+
+  const tokenName = state.nftDetails.name
+  const printName = tokenName ? `${state.nftDetails.name}-SHARES` : ''
+  
   return (
     <div className={classes.root}>
       <div className={classes.modalHeadingContainer}>
@@ -17,16 +21,16 @@ function Final(props) {
       <div className={classes.infoBox}>
         <div className={classes.smallBox}>
           <div>Name: {state.nftDetails.name}</div>
-          <div>Contract Address: {state.nftDetails.name}</div>
+          <div>Contract Address: {state.nftDetails.contractAddress}</div>
           <div>NFT Symbol: {state.nftDetails.symbol}</div>
-          <div>URI: {state.nftDetails.uri}</div>
+          <div>Max Supply: {state.nftDetails.maxSupply}</div>
         </div>
         <div className={classes.infoDivider}></div>
         <div className={classes.smallBox}>
-          <div>Collateral Type: {state.nftDetails.name}</div>
-          <div>Initial Price: {state.nftDetails.name}</div>
-          <div>ERC20 Name: {state.nftDetails.symbol}</div>
-          <div>ERC20 Name: {state.nftDetails.uri}</div>
+          <div>Collateral Type: {state.nftDetails.collateralType}</div>
+          <div>Initial Price: {state.nftDetails.initialPrice}</div>
+          <div>ERC20 Name: {printName}</div>
+          <div>ERC20 Symbol: {state.nftDetails.symbol}</div>
         </div>
       </div>
       <div className={classes.mainContainer}>

@@ -68,7 +68,7 @@ const styles = createStyles({
     display: "flex",
     justifyContent: "flex-end",
     alignSelf: "center",
-    margin: "50px auto 0px 0px",
+    margin: "30px auto 0px 0px",
   },
   btnLeft: {
     fontSize: "1.8rem",
