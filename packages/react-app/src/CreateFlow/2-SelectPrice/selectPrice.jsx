@@ -21,18 +21,20 @@ function SelectPrice(props) {
     const handleMaxSupply = async e => {
         actions.setMaxSupply(e.target.value);
     }
-    
+    const shortURI = `${state.nftDetails.uri.slice(0, 31)}...`;
+    const hasURI = state.nftDetails.uri ? shortURI : '';
+
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
-            <h2 className={classes.subheading}>2. Set Token Details</h2>
+            <h2 className={classes.subheading}>2. Set your collateral type and price</h2>
                 <div className="gradientBorder"></div>
             </div>
             <div className={classes.infoBox}>
                     <div className={classes.smallBox}>
                         <div>Name: {state.nftDetails.name}</div>
                         <div>NFT Symbol: {state.nftDetails.symbol}</div>
-                        <div>URI: {state.nftDetails.uri}</div>
+                        <div>URI: {hasURI}</div>
                     </div>
                 </div>
                 <div className={classes.inputContainer}>
@@ -43,15 +45,17 @@ function SelectPrice(props) {
                          <option value="USDC" >USDC</option>
                         <option value="ETH">ETH</option>
                     </select>
+                    <span className={classes.description}>You can only use an ERC20 token on the Ethereum Blockchain as a collateral type (or payment).</span>
+                    <a href='' className={classes.link}><em>Learn more here</em></a>
                     <label className={classes.label}>Initial Price for ERC20 Token on Market</label>
                     <input className={classes.input} onChange={handleInitialPrice} value={state.initialPrice} name="initialPrice" type="text" />
+                    <span className={classes.description}><em>1 {state.tokenDetails.collateralType} = 1 Schrute Buck</em><br></br>One thousand Schrute Bucks equals an extra five minutes for lunch.</span>
+                    {/* Uncomment line below when we would like to calculate the current conversion to USD */}
+                    {/* <span className={classes.description}><em>USD Estimated amount (0.00)</em></span> */}
                     <label className={classes.label}>Maximum number of tokens that can ever be in circulation</label>
                     <input className={classes.input} onChange={handleMaxSupply} value={state.initialPrice} name="maxSupply" type="text" />
                 </div>
-                
-
                 <div className={classes.btnBar}>
-                    <button  onClick={()=> previous()}  className={classes.btnLeft}  >Back</button>
                     <button onClick={()=> next()} className={classes.btnRight}  >Next</button>
                 </div>
             </div>

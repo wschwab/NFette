@@ -12,7 +12,7 @@ const styles = createStyles({
     justifyContent: "flex-start",
     borderRadius: "5px",
     position: "absolute",
-    top: "150px",
+    top: "120px",
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
@@ -24,8 +24,38 @@ const styles = createStyles({
   subheading: {
     fontSize: "3rem",
     textAlign: "left",
-    fontWeight: "normal",
+    fontWeight: '700',
     margin: "30px auto auto 0px",
+  },
+  infoBox: {
+    width: "100%",
+    height: "20%",
+    display: "flex",
+    flexDirection: 'row',
+    alignItems: "center",
+  },
+  smallBox: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    width: "80%",
+    height: "100%",
+    fontSize: "1.5rem",
+    padding: "5px",
+    fontWeight: "bold",
+  },
+  infoDivider: {
+      display: 'inline-block',
+      width: '2px',
+      backgroundColor: 'black',
+      margin: '0 1rem',
+      height: '8rem',
+  },
+  divider: {
+    width: "100%",
+    height: "4px",
+    backgroundColor: "black",
   },
   mainContainer: {
     height: "50%",
@@ -46,7 +76,7 @@ const styles = createStyles({
   },
   innerBox: {
     width: "80%",
-    height: "100px",
+    height: "15rem",
     margin: "auto",
     display: "flex",
     flexDirection: "column",
@@ -54,14 +84,14 @@ const styles = createStyles({
     justifyContent: "center",
   },
   address: {
-    fontSize: "2.5rem",
+    fontSize: "3rem",
     marginBottom: "10px",
     fontWeight: "bold",
   },
-  divider: {
-    width: "100%",
-    height: "4px",
-    backgroundColor: "black",
+  link: {
+    margin: "3rem 0px 0px",
+    fontSize: '2rem',
+    fontWeight: 200
   },
   description: {
     fontSize: "2rem",

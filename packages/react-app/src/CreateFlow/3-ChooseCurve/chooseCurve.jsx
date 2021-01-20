@@ -35,6 +35,7 @@ import styles from "./chooseCurveStyles";
                         <div>Name: {state.nftDetails.name}</div>
                         <div>Contract Address: {state.nftDetails.contractAddress}</div>
                     </div>
+                     <div className={classes.infoDivider}></div>
                     <div className={classes.smallBox}>
                         <div>MaxSupply: {state.tokenDetails.maxSupply}</div>
                         <div>Collateral Type: {state.tokenDetails.collateralType}</div>
@@ -42,27 +43,33 @@ import styles from "./chooseCurveStyles";
                 </div>
                 <div className={classes.graphBoxContainer}>
                     <div className={classes.graphBox}>
-                        <h3 className={classes.graphType}>Aggressive</h3>
-                        <input className={classes.radio} name="curveOption" value="aggressive" checked={state.tokenDetails.curveShape === "aggressive"} onChange={handleOptionChange} type="radio" label="Select" />
+                        <h3 className={classes.graphType}>Sublinear</h3>
+                        <input className={classes.radio} name="curveOption" value="Sublinear" checked={state.curveShape === "aggressive"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Concave className={classes.svg} />
                         <p className={classes.description}>
+                            <em>
                             Steep curve with high prices, early flattening out over supply
+                            </em>
                         </p>
                     </div>
                     <div className={classes.graphBox}>
-                        <h3 className={classes.graphType}>Slow and Steady</h3>
-                        <input className={classes.radio} name="curveOption" value="slowAndSteady" checked={state.tokenDetails.curveShape === "slowAndSteady"} onChange={handleOptionChange} type="radio" label="Select" />
+                        <h3 className={classes.graphType}>Polynomial</h3>
+                        <input className={classes.radio} name="curveOption" value="Polynomial" checked={state.curveShape === "slowAndSteady"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Convex className={classes.svg} />
                         <p className={classes.description}>
+                            <em>
                             Steady low curve with exponential growth in supply
+                            </em>
                         </p>
                     </div>
                     <div className={classes.graphBox}>
-                        <h3 className={classes.graphType}>Conventional</h3>
-                        <input className={classes.radio} name="curveOption" value="conventional" checked={state.tokenDetails.curveShape === "conventional"} onChange={handleOptionChange} type="radio" label="Select" />
+                        <h3 className={classes.graphType}>Linear</h3>
+                        <input className={classes.radio} name="curveOption" value="Linear" checked={state.curveShape === "conventional"} onChange={handleOptionChange} type="radio" label="Select" />
                         <Linear className={classes.svg} />
                         <p className={classes.description}>
+                            <em>
                             Linear predictable growth direct relationship in supply
+                            </em>
                         </p>
                     </div>
                 </div>

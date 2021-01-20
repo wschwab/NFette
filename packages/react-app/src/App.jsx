@@ -1,18 +1,13 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 import { JsonRpcProvider } from "@ethersproject/providers";
-
 import { StoreProvider } from "./store/store";
 import { INFURA_ID } from "./constants";
-
-import MultiStepCreateFlow from "./CreateFlow/MultiStepCreateFlow";
-import BuyPage from "./BuyFlow/buyPage";
-import Navbar from "./components/navbar/navbar";
-import RootLanding from "./components/rootLanding/rootLanding";
+import Main from './Main/Main'
 
 import Web3Modal from "web3modal";
 import Portis from "@portis/web3";
+import { useState } from "react";
 
 // 🔭 block explorer URL
 const blockExplorer = "https://etherscan.io/"; // for xdai: "https://blockscout.com/poa/xdai/"
@@ -38,28 +33,20 @@ const providerOptions = {
 const w3m = new Web3Modal({
   // network: "mainnet",
   cacheProvider: true,
-  providerOptions
+  providerOptions,
 });
 
+
+
+
 function App(props) {
+
+  const [currentStep, setCurrentStep] = useState('')
+
   return (
     <StoreProvider>
       <div className="App">
-        From old repo, uncomment when ready
-        <BrowserRouter>
-          <Navbar web3Modal={w3m} />
-          <Switch>
-            <Route path="/" exact >
-                <RootLanding />
-            </Route>
-            <Route path="/create" exact >
-                <MultiStepCreateFlow />
-            </Route>
-            <Route path="/buy" exact >
-                <BuyPage/>
-            </Route>
-          </Switch>
-        </BrowserRouter>
+        <Main />
       </div>
     </StoreProvider>
   );

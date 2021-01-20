@@ -38,6 +38,24 @@ const reducer = (state, action) => {
       return { ...state, createMarketPending: false, error: action.payload, createMarketSuccess: false };
     case types.createMarket.CREATE_MARKET_SUCCESS:
       return { ...state, createMarketPending: false, nftMarketData: action.payload, createMarketSuccess: true };
+    case types.SetWalletAddress.SET_WALLET_ADDRESS_SUCCESS:
+        return { ...state, userAddress: action.payload, loading: false };
+    case types.SetWalletAddress.SET_WALLET_ADDRESS_FAIL:
+        return { ...state, loading: false, error: action.payload };
+    case types.SetWalletAddress.SET_WALLET_ADDRESS_PENDING:
+        return { ...state, loading: true };
+    case types.SetWalletConnected.SET_WALLET_CONNECTED_SUCCESS:
+        return { ...state, walletConnected: action.payload, loading: false };
+    case types.SetWalletConnected.SET_WALLET_CONNECTED_FAIL:
+        return { ...state, loading: false, error: action.payload };
+      case types.SetWalletConnected.SET_WALLET_CONNECTED_PENDING:
+        return { ...state, loading: true };
+      case types.SetProvider.SET_PROVIDER_SUCCESS:
+        return { ...state, provider: action.payload, loading: false };
+      case types.SetProvider.SET_PROVIDER_FAIL:
+        return { ...state, loading: false, error: action.payload };
+      case types.SetProvider.SET_PROVIDER_PENDING:
+        return { ...state, loading: true };
     default:
       return state;
   }

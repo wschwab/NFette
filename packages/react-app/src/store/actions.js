@@ -1,6 +1,24 @@
 import types from "./types";
 
 export const useActions = (state, dispatch) => ({
+  setProvider: (data) => {
+    dispatch({ type: types.SetProvider.SET_PROVIDER_PENDING });
+    dispatch({ type: types.SetProvider.SET_PROVIDER_REQUEST, payload: data });
+  },
+  setWalletAddress: (data) => {
+    dispatch({ type: types.SetWalletAddress.SET_WALLET_ADDRESS_PENDING });
+    dispatch({
+      type: types.SetWalletAddress.SET_WALLET_ADDRESS_REQUEST,
+      payload: data,
+    });
+  },
+  setWalletConnected: data => {
+    dispatch({ type: types.SetWalletConnected.SET_WALLET_CONNECTED_PENDING });
+    dispatch({
+      type: types.SetWalletConnected.SET_WALLET_CONNECTED_REQUEST,
+      payload: data,
+    });
+  },
   setNFTName: data => {
     dispatch({ type: types.createNFT.SET_NAME, payload: data });
   },

@@ -10,7 +10,7 @@ const styles = createStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     position: "absolute",
-    top: "150px",
+    top: "120px",
     left: "calc(50% - 450px)",
   },
   modalHeadingContainer: {
@@ -22,7 +22,7 @@ const styles = createStyles({
   subheading: {
     fontSize: "3rem",
     textAlign: "left",
-    fontWeight: "normal",
+    fontWeight: '700',
     margin: "30px auto auto 0px",
   },
   infoBox: {
@@ -47,20 +47,20 @@ const styles = createStyles({
     height: "50%",
   },
   label: {
-    margin: "40px 0px 10px",
-    fontSize: "2rem",
+    margin: "10px 0px 10px",
+    fontSize: "1.5rem",
     textAlign: "left",
   },
   inputContainer: {
     width: "100%",
-    height: "80%",
+    height: "70%",
     display: "flex",
     textAlign: "left",
     flexDirection: "column",
   },
   input: {
     border: "2px solid var(--main-black)",
-    width: "500px",
+    width: "40%",
     "&:focus": {
       border: "2px solid orange",
     },
@@ -73,11 +73,25 @@ const styles = createStyles({
     padding: "10px",
     borderRadius: "5px",
   },
+  description: {
+    marginBottom: "2rem",
+    width: "450px",
+    fontSize: '1.5rem',
+    textAlign: 'left',
+    fontWeight: 200
+  },
+  link: {
+    margin: "1rem 0px",
+    width: "450px",
+    fontSize: '2rem',
+    textAlign: 'left',
+    fontWeight: 200
+  },
   btnBar: {
     width: "100%",
     display: "flex",
-    justifyContent: "space-between",
-    margin: "100px auto 0 0px",
+    justifyContent: "flex-end",
+    margin: "30px auto 0 0px",
   },
   btnLeft: {
     fontSize: "1.8rem",

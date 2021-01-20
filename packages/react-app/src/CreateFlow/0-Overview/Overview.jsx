@@ -1,14 +1,16 @@
-import React from 'react';
-import styles from "./Overview";
+import React, { useState} from 'react';
+import styles from "./OverviewStyles";
 import {withStyles} from "@material-ui/core/styles";
 
 function Overview(props) {
     const {classes, navigation} = props;
     const {go} = navigation;
+
     return (
         <div className={classes.root}>
-            <div className={classes.heading}>Turn your NFT into an interest earning asset.</div>
-            <p className={classes.subHeading}>Turn your collection into an Automatic Market Maker one piece at a time and gain funding upfront for your next idea BEFORE you make it!</p>
+            <div className="gradientBorderTop"></div>
+            <div className={classes.heading}>Create a market in <br></br> a new digital economy</div>
+            <p className={classes.subHeading}>Create bonded <a href=''>ERC20 tokens</a> from your new NFT <a href=''>(Non-Fungible-Token)</a> and make it available as a tradeable asset on the blockchain, piece by piece.</p>
             <div className={classes.cardWrapper}>
             </div> 
             <div className={classes.stepsContainer}>
@@ -29,7 +31,7 @@ function Overview(props) {
                 </div>
             </div>
             <div className={classes.btnBar}>
-                <button onClick={()=>go("createNFT")} className={classes.btnRight}>Start creating an NFT</button>
+                <button onClick={()=> go("createNFT")} className={classes.btnRight}>Let's go!</button>
             </div>
         </div>
     )
