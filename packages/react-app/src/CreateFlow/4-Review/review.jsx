@@ -38,9 +38,9 @@ import styles from "./reviewStyles";
                     <div className={classes.rightItem}> {hasURI} </div>
                     <div className={classes.rightItem}> {state.tokenDetails.maxSupply} </div>
                     <div className={classes.rightItem}> {state.tokenDetails.collateralType} </div>
-                    <div className={classes.rightItem}>{state.tokenDetails.curveShape}</div>
-                    <div className={classes.rightItem}>{state.nftDetails.name}</div>
-                    <div className={classes.rightItem}>{state.nftDetails.symbol}</div>
+                    <div className={classes.rightItem}>{state.curve.curveShape}</div>
+                    <div className={classes.rightItem}>{state.tokenDetails.name}</div>
+                    <div className={classes.rightItem}>{state.tokenDetails.symbol}</div>
                 </div>
             </div>
             <div className={classes.btnBar}>

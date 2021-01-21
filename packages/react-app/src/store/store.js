@@ -15,7 +15,7 @@ const initialState = {
   tokenDetails: {
     name: "",
     symbol: "",
-    maxSupply: "",
+    maxSupply: "10000000",
     collateralType: "",
     initialPrice: "",
     contractAddress: ""

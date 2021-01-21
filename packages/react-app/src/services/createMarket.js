@@ -20,8 +20,8 @@ const createMarket = async (state)=> {
             state.tokenDetails.symbol,
             parseInt(state.tokenDetails.maxSupply),
             parseInt(state.tokenDetails.initialPrice),
+            state.curve.address,
             [state.curve[state.curve.curveShape][0],state.curve[state.curve.curveShape][1], parseInt(state.tokenDetails.initialPrice)],
-            state.curveAddresses,
             isCollateralEth,
             collateralAddress
         )

@@ -11,7 +11,7 @@ const createNFT = async state => {
     const contract = await factory.deploy(
         state.nftDetails.name,
         state.nftDetails.symbol,
-        parseInt(state.nftDetails.uri)
+        state.nftDetails.uri
     );
 
     await contract.deployTransaction.wait();

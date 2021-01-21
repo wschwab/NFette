@@ -53,7 +53,7 @@ function SelectPrice(props) {
                     {/* Uncomment line below when we would like to calculate the current conversion to USD */}
                     {/* <span className={classes.description}><em>USD Estimated amount (0.00)</em></span> */}
                     <label className={classes.label}>Maximum number of tokens that can ever be in circulation</label>
-                    <input className={classes.input} onChange={handleMaxSupply} value={state.initialPrice} name="maxSupply" type="text" />
+                    <input className={classes.input} onChange={handleMaxSupply} value={state.tokenDetails.maxSupply} placeholder="10000000" name="maxSupply" type="text" />
                 </div>
                 <div className={classes.btnBar}>
                     <button onClick={()=> next()} className={classes.btnRight}  >Next</button>
