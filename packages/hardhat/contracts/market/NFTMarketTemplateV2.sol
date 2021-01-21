@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.6.0 <0.7.0;
 
 import "../interfaces/INFTMarket.sol";
@@ -16,7 +17,8 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 // import "@nomiclabs/hardhat/console.sol";
 
-contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownable*/ {
+// note tp self: contract was not originally labelled as abstract
+abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownable*/ {
 
     // IERC20 public usdc = IERC20(0xe22da380ee6B445bb8273C81944ADEB6E8450422);
     // IaToken public aToken = IaToken(0x02F626c6ccb6D2ebC071c068DC1f02Bf5693416a);
@@ -28,7 +30,7 @@ contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Own
     // IERC721 public contentSubscription;
 
     address private _parentToken;
-    uint256 private _parentTokenId;
+    // uint256 private _parentTokenId;
     string private _name;
     string private _symbol;
     address private _minter;
@@ -74,15 +76,16 @@ contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Own
 
     constructor(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string memory name,
         string memory symbol,
         address minterAddress,
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory curveParameters
-        // address stakeTokenAddress
+        uint256[3] memory curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) ERC20(name, symbol) /*ERC20Capped(cap)*/ public {
 
             // console.log(msg.sender, "deploy a template with minter", minterAddress);
@@ -90,67 +93,72 @@ contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Own
             _registerInterface(_INTERFACE_ID_EIP_1633); // RFT interface
 
             _initialize(parentToken,
-                        parentTokenId,
+                        // parentTokenId,
                         name,
                         symbol,
                         minterAddress,
                         cap,
                         _initialBidPrice,
                         bondingCurveAddr,
-                        curveParameters
-                        // stakeTokenAddress
+                        curveParameters,
+                        isCollateralEth,
+                        stakeTokenAddress
             );
 
     }
 
+    // note to self: this function was marked as an override when I got it
     function initialize(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string calldata name,
         string calldata symbol,
         address minterAddress,
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] calldata curveParameters
-        // address stakeTokenAddress
+        uint256[3] calldata curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) external override onlyIfNotInitialized returns (bool) {
 
         return _initialize(
             parentToken,
-            parentTokenId,
+            // parentTokenId,
             name,
             symbol,
             minterAddress,
             cap,
             _initialBidPrice,
             bondingCurveAddr,
-            curveParameters
-            // stakeTokenAddress
+            curveParameters,
+            isCollateralEth,
+            stakeTokenAddress
         );
 
     }
 
     function _initialize(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string memory name,
         string memory symbol,
         address minterAddress,
         uint256 cap,
         uint256 _initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory curveParameters
-        // address stakeTokenAddress
+        uint256[3] memory curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) private returns (bool) {
 
             // console.log("_initialize template", IERC721(parentToken).supportsInterface(0x80ac58cd), IERC721(parentToken).ownerOf(parentTokenId));
             // console.log("minterAddress", minterAddress);
 
             require(
-                IERC721(parentToken).supportsInterface(0x80ac58cd) &&
-                IERC721(parentToken).ownerOf(parentTokenId) == minterAddress,  // TODO: How the NFT is minted/given ownership to this contract
-                "NFTMarketTemplate: Parent token isn't an ERC721 or it isn't owned by minter"
+                IERC721(parentToken).supportsInterface(0x80ac58cd)
+                // && IERC721(parentToken).ownerOf(parentTokenId) == minterAddress  // TODO: How the NFT is minted/given ownership to this contract
+                , "NFTMarketTemplate: Parent token isn't an ERC721 or it isn't owned by minter"
             );
 
             require(
@@ -175,7 +183,7 @@ contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Own
             );
 
             _parentToken = parentToken;
-            _parentTokenId = parentTokenId;
+            // _parentTokenId = parentTokenId;
             _name = name;
             _symbol = symbol;
             _minter = minterAddress;
@@ -236,9 +244,9 @@ contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Own
         return _parentToken;
     }
 
-    function parentTokenId() external view override returns(uint256) {
-        return _parentTokenId;
-    }
+    // function parentTokenId() external view override returns(uint256) {
+    //     return _parentTokenId;
+    // }
 
     /**
       * @notice This function returns the variables that determine the behaviour

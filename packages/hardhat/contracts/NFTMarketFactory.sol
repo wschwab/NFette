@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.6.0 <0.7.0;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
@@ -31,13 +32,14 @@ contract NFTMarketFactory is Deployer {
     event NFTMarketRegistered(
         address indexed marketAddress,
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string name,
         string symbol,
         address indexed registeredBy,
         uint256 cap,
-        address bondingCurveAddr
-        // address stakeTokenAddress
+        address bondingCurveAddr,
+        bool isCollateralEth,
+        address stakeTokenAddress
     );
 
     constructor(address template) public {
@@ -48,14 +50,15 @@ contract NFTMarketFactory is Deployer {
 
     function createMarket(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string memory name,
         string memory symbol,
         uint256 cap,
         uint256 initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] memory _curveParameters
-        // address stakeTokenAddress
+        uint256[3] memory _curveParameters,
+        bool isCollateralEth,
+        address stakeTokenAddress
         ) public returns (address market) {
 
             address owner = msg.sender; // TODO: update to use Meta-Tx
@@ -68,28 +71,29 @@ contract NFTMarketFactory is Deployer {
             require(
                 marketInstance.initialize(
                     parentToken,
-                    parentTokenId,
+                    // parentTokenId,
                     name,
                     symbol,
                     owner,
                     cap,
                     initialBidPrice,
                     bondingCurveAddr,
-                    // _activeCurve,
-                    _curveParameters
-                    // stakeTokenAddress
+                    _curveParameters,
+                    isCollateralEth,
+                    stakeTokenAddress
                 ), 'NFTMarketFactory: Unable to initialize market');
             emit NFTMarketCreated(address(_template), market, owner);
             emit NFTMarketRegistered(
                 market,
                 parentToken,
-                parentTokenId,
+                // parentTokenId,
                 name,
                 symbol,
                 owner,
                 cap,
-                bondingCurveAddr
-                // stakeTokenAddress
+                bondingCurveAddr,
+                isCollateralEth,
+                stakeTokenAddress
             );
             nftMarketCounter.add(1);
     }

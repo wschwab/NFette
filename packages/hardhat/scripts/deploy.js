@@ -15,7 +15,7 @@ const main = async () => {
   // the following are a mock ERC20 and mock ERC721 for testing purposes, 
   // and should not be deployed in a mainnet deployment
   const mockERC20  = await deploy("ERC20Mock", ["Stake token", "STAKE"]);
-  const mockERC721 = await deploy("MyNFT", ["MyNFette", "NFETTE", "nfette.io"]);
+  const mockERC721 = await deploy("NFetteNFT", ["NFetteNFTs", "NFETTE", "nfette.io"]);
 
   // const exampleToken = await deploy("ExampleToken")
   // const examplePriceOracle = await deploy("ExamplePriceOracle")

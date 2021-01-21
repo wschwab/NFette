@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Store } from "../../store/store";
 import styles from "./createNFTStyles";
-import { withStyles } from "@material-ui/core/styles";
+import {withStyles} from "@material-ui/core/styles";
+import createNFT from "../../services/createNFT";
 
 function CreateNFT(props) {
   const { state, actions } = useContext(Store);
@@ -14,11 +15,14 @@ function CreateNFT(props) {
     go("overview");
   };
 
-  const handleNext = e => {
-    e.preventDefault();
-    formatTokenDetails();
-    next();
-  };
+    const handleNext = async (e) => {
+        e.preventDefault();
+        formatTokenDetails();
+        const deployedContract = await createNFT(state);
+        actions.setNFTContractAddress(deployedContract.address);
+
+        next();
+    }
 
   const formatTokenDetails = () => {
     actions.setTokenName(`${state.nftDetails.name}-SHARES`);
@@ -37,9 +41,9 @@ function CreateNFT(props) {
     actions.setNFTUri(e.target.value);
   };
 
-  // const handleContractAddrChange = async e => {
-  //     actions.setNFTContract(e.target.value);
-  // }
+    // const handleContractAddrChange = async e => {
+    //     actions.setNFTContractAddress(e.target.value);
+    // }
 
   return (
     <div className={classes.root}>

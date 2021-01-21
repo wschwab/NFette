@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from "react";
 import { useActions } from "./actions";
 import reducer from "./reducer";
 import applyMiddleware from "./middleware";
+import * as curveAddress from "../contracts/Curve.address";
 
 export const Store = createContext();
 
@@ -15,15 +16,29 @@ const initialState = {
   tokenDetails: {
     name: "",
     symbol: "",
-    maxSupply: "",
+    maxSupply: "10000000",
     collateralType: "",
     initialPrice: "",
-    curveShape: ""
+    contractAddress: ""
+  },
+  curve: {
+    address: curveAddress,
+    curveShape: "",
+    Sublinear: [],
+    Polynomial: [1,1],
+    Linear: [0,1]
+  },
+  collateral: {
+    dai: "0x6b175474e89094c44da98b954eedeac495271d0f",
+    usdc: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    mtx: ""
   },
   walletConnected: false,
   provider: {},
   createMarketPending: false,
   createMarketSuccess: false,
+  createNFTPending: false,
+  createNFTSuccess: false,
   nftMarketData: {},
   error: {},
 };

@@ -6,7 +6,6 @@ import { INFURA_ID } from "./constants";
 import Main from './Main/Main'
 
 import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
 import { useState } from "react";
 
