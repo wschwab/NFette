@@ -10,6 +10,7 @@ import styles from "./reviewStyles";
      const {previous, next} = navigation;
      
      const handleNext = async () => {
+        console.log(`HERE'S THE WHOLE STATE OF THINGS: `, state);
         const result = await actions.createMarket(state);
         next();
      }

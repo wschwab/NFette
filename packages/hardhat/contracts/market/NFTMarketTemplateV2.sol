@@ -30,7 +30,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
     // IERC721 public contentSubscription;
 
     address private _parentToken;
-    uint256 private _parentTokenId;
+    // uint256 private _parentTokenId;
     string private _name;
     string private _symbol;
     address private _minter;
@@ -76,7 +76,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
 
     constructor(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string memory name,
         string memory symbol,
         address minterAddress,
@@ -93,7 +93,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
             _registerInterface(_INTERFACE_ID_EIP_1633); // RFT interface
 
             _initialize(parentToken,
-                        parentTokenId,
+                        // parentTokenId,
                         name,
                         symbol,
                         minterAddress,
@@ -110,7 +110,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
     // note to self: this function was marked as an override when I got it
     function initialize(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string calldata name,
         string calldata symbol,
         address minterAddress,
@@ -124,7 +124,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
 
         return _initialize(
             parentToken,
-            parentTokenId,
+            // parentTokenId,
             name,
             symbol,
             minterAddress,
@@ -140,7 +140,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
 
     function _initialize(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string memory name,
         string memory symbol,
         address minterAddress,
@@ -156,9 +156,9 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
             // console.log("minterAddress", minterAddress);
 
             require(
-                IERC721(parentToken).supportsInterface(0x80ac58cd) &&
-                IERC721(parentToken).ownerOf(parentTokenId) == minterAddress,  // TODO: How the NFT is minted/given ownership to this contract
-                "NFTMarketTemplate: Parent token isn't an ERC721 or it isn't owned by minter"
+                IERC721(parentToken).supportsInterface(0x80ac58cd)
+                // && IERC721(parentToken).ownerOf(parentTokenId) == minterAddress  // TODO: How the NFT is minted/given ownership to this contract
+                , "NFTMarketTemplate: Parent token isn't an ERC721 or it isn't owned by minter"
             );
 
             require(
@@ -183,7 +183,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
             );
 
             _parentToken = parentToken;
-            _parentTokenId = parentTokenId;
+            // _parentTokenId = parentTokenId;
             _name = name;
             _symbol = symbol;
             _minter = minterAddress;
@@ -244,9 +244,9 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
         return _parentToken;
     }
 
-    function parentTokenId() external view override returns(uint256) {
-        return _parentTokenId;
-    }
+    // function parentTokenId() external view override returns(uint256) {
+    //     return _parentTokenId;
+    // }
 
     /**
       * @notice This function returns the variables that determine the behaviour

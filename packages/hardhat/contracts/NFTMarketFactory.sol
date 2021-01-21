@@ -32,7 +32,7 @@ contract NFTMarketFactory is Deployer {
     event NFTMarketRegistered(
         address indexed marketAddress,
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string name,
         string symbol,
         address indexed registeredBy,
@@ -50,7 +50,7 @@ contract NFTMarketFactory is Deployer {
 
     function createMarket(
         address parentToken,
-        uint256 parentTokenId,
+        // uint256 parentTokenId,
         string memory name,
         string memory symbol,
         uint256 cap,
@@ -71,7 +71,7 @@ contract NFTMarketFactory is Deployer {
             require(
                 marketInstance.initialize(
                     parentToken,
-                    parentTokenId,
+                    // parentTokenId,
                     name,
                     symbol,
                     owner,
@@ -86,7 +86,7 @@ contract NFTMarketFactory is Deployer {
             emit NFTMarketRegistered(
                 market,
                 parentToken,
-                parentTokenId,
+                // parentTokenId,
                 name,
                 symbol,
                 owner,

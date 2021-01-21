@@ -7,7 +7,7 @@ interface INFTMarket is IRFT/*, IERC721Receiver*/ {
 
     function initialize(
         address _parentToken,
-        uint256 _parentTokenId,
+        // uint256 _parentTokenId,
         string calldata _name,
         string calldata _symbol,
         address _minterAddress,

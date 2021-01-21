@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from "react";
 import { useActions } from "./actions";
 import reducer from "./reducer";
 import applyMiddleware from "./middleware";
+import * as curveAddress from "../contracts/Curve.address";
 
 export const Store = createContext();
 
@@ -21,7 +22,7 @@ const initialState = {
     contractAddress: ""
   },
   curve: {
-    address: "",
+    address: curveAddress,
     curveShape: "",
     Sublinear: [],
     Polynomial: [1,1],

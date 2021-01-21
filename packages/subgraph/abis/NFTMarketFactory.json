@@ -65,12 +65,6 @@
       },
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "parentTokenId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
         "internalType": "string",
         "name": "name",
         "type": "string"
@@ -121,11 +115,6 @@
         "internalType": "address",
         "name": "parentToken",
         "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "parentTokenId",
-        "type": "uint256"
       },
       {
         "internalType": "string",
