@@ -7,15 +7,16 @@ interface INFTMarket is IRFT/*, IERC721Receiver*/ {
 
     function initialize(
         address _parentToken,
-        uint256 _parentTokenId,
+        // uint256 _parentTokenId,
         string calldata _name,
         string calldata _symbol,
         address _minterAddress,
         uint256 _cap,
         uint256 initialBidPrice,
         address bondingCurveAddr,
-        uint256[3] calldata curveParameters
-        // address _stakeTokenAddress
+        uint256[3] calldata curveParameters,
+        bool isCollateralEth,
+        address _stakeTokenAddress
     ) external returns (bool);
 
     // function mint(

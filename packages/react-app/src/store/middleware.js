@@ -1,5 +1,6 @@
 import types from "./types";
 import createMarket from "../services/createMarket";
+import createNFT from "../CreateFlow/1-CreateNFT/createNFT";
 import { setWalletAddress } from "../services/wallet";
 
 const applyMiddleware = dispatch => action => {
@@ -18,6 +19,19 @@ const applyMiddleware = dispatch => action => {
             payload: error,
           });
         });
+    case types.createNFT.CREATE_NFT_REQUEST:
+      return createNFT(action.payload)
+        .then(res => {
+          dispatch({
+            type: types.createNFT.CREATE_NFT_SUCCESS,
+            payload: res
+          });
+        }).catch(error => {
+          dispatch({
+            type: types.createNFT.CREATE_NFT_FAIL,
+            payload: error
+          });
+        })
         case types.SetWalletAddress.SET_WALLET_ADDRESS_REQUEST:
           return setWalletAddress(action.payload)
             .then((res) => {
