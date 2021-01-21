@@ -7,8 +7,8 @@ import {withStyles} from "@material-ui/core/styles";
 function SelectPrice(props) {
     const {state, actions} = useContext(Store);
 
-    const {classes, navigation} = props;
-    const {next, previous} = navigation;
+    const { classes, navigation } = props;
+    const { next } = navigation;
 
     const handleCollateral = async e => {
         actions.setCollateralType(e.target.value);
@@ -39,7 +39,7 @@ function SelectPrice(props) {
                 </div>
                 <div className={classes.inputContainer}>
                     <label className={classes.label}>Collateral Type accepted</label>
-                    <select className={classes.select} name="collateral type" value={state.collateralType} onChange={handleCollateral}>
+                    <select className={classes.select} name="collateral type" value={state.tokenDetails.collateralType} onChange={handleCollateral}>
                     <option value="" selected></option>
                         <option value="DAI" >DAI</option>
                          <option value="USDC" >USDC</option>
@@ -48,7 +48,7 @@ function SelectPrice(props) {
                     <span className={classes.description}>You can only use an ERC20 token on the Ethereum Blockchain as a collateral type (or payment).</span>
                     <a href='' className={classes.link}><em>Learn more here</em></a>
                     <label className={classes.label}>Initial Price for ERC20 Token on Market</label>
-                    <input className={classes.input} onChange={handleInitialPrice} value={state.initialPrice} name="initialPrice" type="text" />
+                    <input className={classes.input} onChange={handleInitialPrice} value={state.tokenDetails.initialPrice} name="initialPrice" type="text" />
                     <span className={classes.description}><em>1 {state.tokenDetails.collateralType} = 1 Schrute Buck</em><br></br>One thousand Schrute Bucks equals an extra five minutes for lunch.</span>
                     {/* Uncomment line below when we would like to calculate the current conversion to USD */}
                     {/* <span className={classes.description}><em>USD Estimated amount (0.00)</em></span> */}

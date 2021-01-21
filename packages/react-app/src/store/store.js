@@ -18,20 +18,19 @@ const initialState = {
     maxSupply: "",
     collateralType: "",
     initialPrice: "",
-    curveShape: "",
     contractAddress: ""
   },
   curve: {
     address: "",
     curveShape: "",
-    aggressive: [],
-    conventional: [],
-    slowAndSteady: [0,1]
+    Sublinear: [],
+    Polynomial: [1,1],
+    Linear: [0,1]
   },
   collateral: {
-    eth: false,
     dai: "0x6b175474e89094c44da98b954eedeac495271d0f",
-    usdc: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    usdc: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    mtx: ""
   },
   walletConnected: false,
   provider: {},

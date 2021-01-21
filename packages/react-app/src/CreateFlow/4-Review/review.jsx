@@ -17,12 +17,6 @@ import styles from "./reviewStyles";
      const shortURI = `${state.nftDetails.uri.slice(0, 31)}...`;
      const hasURI = state.nftDetails.uri ? shortURI : '';
 
-     const tokenName = state.nftDetails.name
-     const printName = tokenName ? `${state.nftDetails.name}-SHARES` : ''
-     const tokenSymbol = state.nftDetails.symbol
-     const printSymbol = tokenSymbol ? `${state.nftDetails.symbol}-SHARES` : ''
-
-
     return (
         <div className={classes.root}>
             <div className={classes.modalHeadingContainer}>
@@ -45,8 +39,8 @@ import styles from "./reviewStyles";
                     <div className={classes.rightItem}> {state.tokenDetails.maxSupply} </div>
                     <div className={classes.rightItem}> {state.tokenDetails.collateralType} </div>
                     <div className={classes.rightItem}>{state.tokenDetails.curveShape}</div>
-                    <div className={classes.rightItem}>{printName}</div>
-                    <div className={classes.rightItem}>{printSymbol}</div>
+                    <div className={classes.rightItem}>{state.nftDetails.name}</div>
+                    <div className={classes.rightItem}>{state.nftDetails.symbol}</div>
                 </div>
             </div>
             <div className={classes.btnBar}>

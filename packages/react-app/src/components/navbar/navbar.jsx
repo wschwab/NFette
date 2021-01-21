@@ -33,7 +33,7 @@ function Navbar(props) {
 
   const connectToWallet = async () => {
     props.web3Modal.connect().then(w3mProvider => {
-      actions.setProvider(w3mProvider);
+      actions.setProvider(new ethers.providers.Web3Provider(w3mProvider));
       actions.setWalletAddress(
         w3mProvider.isPortis ? w3mProvider._portis._selectedAddress : w3mProvider.selectedAddress,
       );

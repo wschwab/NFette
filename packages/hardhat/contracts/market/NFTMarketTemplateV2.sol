@@ -120,7 +120,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
         uint256[3] calldata curveParameters,
         bool isCollateralEth,
         address stakeTokenAddress
-        ) external onlyIfNotInitialized returns (bool) {
+        ) external override onlyIfNotInitialized returns (bool) {
 
         return _initialize(
             parentToken,
