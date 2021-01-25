@@ -1,7 +1,7 @@
 pragma solidity >=0.6.0 <0.7.0;
 
-import "../interfaces/INFTMarket.sol";
-import "../interfaces/ICurve.sol";
+import "./interfaces/INFTMarket.sol";
+import "./interfaces/ICurve.sol";
 
 // import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/introspection/ERC165.sol";
@@ -68,7 +68,7 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
 
     constructor(
         address parentToken,
-        uint256 parentTokenId,
+        //uint256 parentTokenId,
         string memory name,
         string memory symbol,
         address minterAddress,
