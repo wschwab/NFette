@@ -22,17 +22,27 @@ const styles = createStyles({
     },
     buyContainer: {
         width: '70%',
+        height: "45rem",
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
     },
     leftPanel: {
-        width: '45%',
+        width: '40%',
+    },
+    image: {
+        height: '20rem',
+        width: 'auto',
     },
     rightPanel: {
-        width: '45%'
+        textAlign: 'left',
+        width: '60%'
     },
+    button: {
+        color: "var(--main-white)",
+    },
+
 })
 
 export default styles;

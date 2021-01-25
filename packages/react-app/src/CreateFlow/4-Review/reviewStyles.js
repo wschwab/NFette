@@ -44,6 +44,7 @@ const styles = createStyles({
     justifyContent: "center",
     fontSize: "2rem",
     fontWeight: "300",
+    textAlign: 'left'
   },
   rightBox: {
     height: "100%",
@@ -55,6 +56,7 @@ const styles = createStyles({
     justifyContent: "center",
     fontSize: "2rem",
     fontWeight: "600",
+    textAlign: 'left'
   },
   leftItem: {
     margin: "auto 15px auto auto",

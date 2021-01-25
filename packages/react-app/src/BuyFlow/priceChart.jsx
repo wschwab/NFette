@@ -2,7 +2,7 @@ import React from 'react'
 import { Chart } from 'react-charts'
 
 {/* This chart is hard coded for now */}
-export default function Chart() {
+export default function PriceChart() {
   const data = React.useMemo(
     () => [
       {
@@ -13,10 +13,10 @@ export default function Chart() {
         label: 'Series 1',
         data: [[0, 1], [1.5, 1.5], [2, 3], [2.2, 7]]
       },
-      {
-        label: 'Series 2',
-        data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
-      }
+      // {
+      //   label: 'Series 2',
+      //   data: [[0, 3], [1, 1], [2, 5], [3, 6], [4, 4]]
+      // }
     ],
     []
   )
@@ -32,8 +32,8 @@ export default function Chart() {
   return (
     <div
       style={{
-        width: '250px',
-        height: '170px'
+        width: '200px',
+        height: '150px'
       }}
     >
       <Chart data={data} axes={axes} />

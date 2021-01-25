@@ -4,7 +4,6 @@ import * as bytecode from "../contracts/MyNFT.bytecode";
 
 const createNFT = async state => {
     const { actions, provider } = state;
-    // console.log("PROVIDER FROM INSIDE CREATENFT: ", state.provider);
     const signer = await provider.getSigner();
     const factory = new ethers.ContractFactory(abi, bytecode, signer);
 
