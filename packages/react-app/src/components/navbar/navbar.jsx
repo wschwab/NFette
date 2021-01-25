@@ -32,19 +32,18 @@ function Navbar(props) {
 
 
   const connectToWallet = async () => {
-    var w3mProvider = await props.web3Modal.connect();
-      if(w3mProvider.isPortis){
-        actions.setProvider(new ethers.providers.Web3Provider(w3mProvider._portis.provider));
-        actions.setWalletAddress(
-          w3mProvider._portis._selectedAddress 
-        );
-        actions.setWalletConnected(true);
-      }
-      else{
-        actions.setProvider(new ethers.providers.Web3Provider(w3mProvider));
-        actions.setWalletAddress(w3mProvider.selectedAddress);
-        actions.setWalletConnected(true);
-      }
+    if (web3Modal.cachedProvider) {
+      debugger;
+      var w3mProvider = await props.web3Modal.connect();
+      setConnectedState(w3mProvider, actions);
+    }
+    else{
+      debugger;
+      var w3mProvider = await props.web3Modal.connect();
+      setConnectedState(w3mProvider, actions);
+     
+    }
+    await props.web3Modal.toggleModal();
  ;
   };
 
@@ -102,3 +101,18 @@ function Navbar(props) {
 }
 
 export default withStyles(styles)(Navbar);
+function setConnectedState(w3mProvider, actions) {
+  if (w3mProvider.isPortis) {
+    actions.setProvider(new ethers.providers.Web3Provider(w3mProvider._portis.provider));
+    actions.setWalletAddress(
+      w3mProvider._portis._selectedAddress
+    );
+    actions.setWalletConnected(true);
+  }
+  else {
+    actions.setProvider(new ethers.providers.Web3Provider(w3mProvider));
+    actions.setWalletAddress(w3mProvider.selectedAddress);
+    actions.setWalletConnected(true);
+  }
+}
+
