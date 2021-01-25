@@ -72,6 +72,14 @@ const styles = createStyles({
     backgroundColor: "var(--main-grey)",
     fontFamily: "var(--button-font)",
   },
+  addressDisplay: {
+    backgroundColor: "var(--main-white)",
+    width: '15rem',
+    fontSize: "1.5rem",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
   walletButton: {
     backgroundColor: "var(--main-white)",
     fontSize: "2rem",

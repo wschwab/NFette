@@ -1,6 +1,6 @@
 import React, { useState, useContext, useCallback, useEffect } from "react";
 import { Store } from "../../store/store";
-import { ReactComponent as Logo } from "../../Media/NfetteLogo.svg";
+import { ReactComponent as Logo } from "../../Media/nfette_logo.svg";
 import { ReactComponent as WalletIcon } from "../../Media/Wallet_Icon.svg";
 import { ReactComponent as FlowLogo1 } from "../../Media/flow_logo_1.svg";
 import { ReactComponent as FlowLogo2 } from "../../Media/flow_logo_2.svg";
@@ -20,7 +20,7 @@ function Navbar(props) {
   const { walletConnected } = state;
   const walletAddress = state.userAddress ? state.userAddress : "";
 
-  const shortAddress = `${walletAddress.slice(0, 2)}...${walletAddress.slice(walletAddress.length - 4)}`;
+  const shortAddress = `${walletAddress.slice(0, 2)}...${walletAddress.slice(walletAddress.length - 6)}`;
 
   const logoutOfWeb3Modal = async () => {
     actions.setProvider({});
