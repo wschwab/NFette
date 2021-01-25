@@ -44,14 +44,11 @@ code {
 }
 .chnMFN {
   border: 1.5px solid black !important;
-  animation: fade ease-in 2s;
-}
-.nfetteLogo{
-  animation: fade ease-in 2s;
+  animation: fade ease-in 0.5s;
 }
 @keyframes fade {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+  0%   { opacity: 0; transform: translateY(50px) }
+  100% { opacity: 1; transform: translateY(0)}
 }
 * {
   margin: 0;
@@ -84,7 +81,6 @@ input {
   padding: 10px 30px;
   border-radius: 5px;
   font-family: var(--plain-font);
-  /* font-family: var(--button-font); */
   background-color: var(--main-grey);
   cursor: pointer;
   border: none;

@@ -57,6 +57,7 @@ const styles = createStyles({
     fontSize: "1.5rem",
     padding: "5px",
     fontWeight: "bold",
+    textAlign: 'left'
   },
   divider: {
     display: "inline-block",

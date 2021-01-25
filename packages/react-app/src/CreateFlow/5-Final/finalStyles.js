@@ -39,6 +39,7 @@ const styles = createStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start",
+    textAlign: 'left',
     width: "80%",
     height: "100%",
     fontSize: "1.5rem",
