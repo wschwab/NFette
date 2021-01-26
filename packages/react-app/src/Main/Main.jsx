@@ -42,7 +42,7 @@ function Main() {
           <Route path="/create" exact>
             <MultiStepCreateFlow setCurrentStep={setCurrentStep} />
           </Route>
-          <Route path="/buy" exact>
+          <Route path="/market" exact>
             <BuyPage />
           </Route>
         </Switch>
