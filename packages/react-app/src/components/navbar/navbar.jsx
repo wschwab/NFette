@@ -32,13 +32,11 @@ function Navbar(props) {
 
 
   const connectToWallet = async () => {
-    if (web3Modal.cachedProvider) {
-      debugger;
-      var w3mProvider = await props.web3Modal.connect();
+    if (props.web3Modal.cachedProvider) {
+      var w3mProvider = await props.web3Modal.connectTo(web3Modal.cachedProvider);
       setConnectedState(w3mProvider, actions);
     }
     else{
-      debugger;
       var w3mProvider = await props.web3Modal.connect();
       setConnectedState(w3mProvider, actions);
      
