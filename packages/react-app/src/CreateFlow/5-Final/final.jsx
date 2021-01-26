@@ -1,17 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { withStyles } from "@material-ui/core/styles";
 import { Store } from "../../store/store";
 import styles from "./finalStyles";
-
-const etherscanLink = "https://etherscan.io/";
+import { useHistory } from "react-router-dom";
 
 function Final(props) {
   const { classes } = props;
   const { state, actions } = useContext(Store);
+  const [copied, setCopied] = useState(false);
+  const history = useHistory();
 
-  const tokenName = state.nftDetails.name
-  const printName = tokenName ? `${state.nftDetails.name}-SHARES` : ''
-  
+  const tokenName = state.nftDetails.name;
+  const printName = tokenName ? `${state.nftDetails.name}-SHARES` : "";
+  const shortAddress = `${state.nftDetails.contractAddress.slice(0, 25)}...`;
+
+  const copyHandler = () => {
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 1500);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.modalHeadingContainer}>
@@ -21,7 +31,7 @@ function Final(props) {
       <div className={classes.infoBox}>
         <div className={classes.smallBox}>
           <div>Name: {state.nftDetails.name}</div>
-          <div>Contract Address: {state.nftDetails.contractAddress}</div>
+          <div>Contract Address: {shortAddress}</div>
           <div>NFT Symbol: {state.nftDetails.symbol}</div>
           <div>Max Supply: {state.nftDetails.maxSupply}</div>
         </div>
@@ -37,12 +47,17 @@ function Final(props) {
         <div className={classes.innerBox}>
           <p className={classes.address}>{state.nftDetails.contractAddress}</p>
           <div className={classes.divider}></div>
-          <a className={classes.link} href={etherscanLink}>
-            Copy Contract Address for your NFT
-          </a>
+          <CopyToClipboard className={classes.link} text={state.nftDetails.contractAddress} onCopy={copyHandler}>
+            {copied ? <button>Copied!</button> : <button>Copy Contract Address for your NFT</button>}
+          </CopyToClipboard>
         </div>
       </div>
-      <div className={classes.btnBar}>
+      <div
+        className={classes.btnBar}
+        onClick={() => {
+          history.push("/market");
+        }}
+      >
         <button className={`${classes.middle} button`}>View Market</button>
       </div>
     </div>

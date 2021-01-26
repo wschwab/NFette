@@ -24,12 +24,12 @@ function BuyPage(props) {
           {state.nftDetails.title === "" ? (
             <div className={classes.title}>Title of piece</div>
           ) : (
-            <div className={classes.title}>{state.nftDetails.name}</div>
+            <div className={classes.title}>Title of piece: {state.nftDetails.name}</div>
           )}
           {state.nftDetails.symbol === "" ? (
-            <div className={classes.token}>Name and symbol</div>
+            <div className={classes.token}>Symbol</div>
           ) : (
-            <div className={classes.token}>{state.nftDetails.symbol}</div>
+            <div className={classes.token}>Symbol: {state.nftDetails.symbol}</div>
           )}
           {state.nftDetails.contractAddress === "" ? (
             <div className={classes.contractAddress}>Contract Address:</div>
@@ -39,15 +39,15 @@ function BuyPage(props) {
           {state.nftDetails.initialPrice === "" ? (
             <div className={classes.price}>Price</div>
           ) : (
-            <div className={classes.price}>{state.nftDetails.initialPrice}</div>
+            <div className={classes.price}>Price: {state.nftDetails.initialPrice}</div>
           )}
           {state.nftDetails.maxSupply === "" ? (
-            <div className={classes.maxSupply}>Max Supply of tokens available</div>
+            <div className={classes.maxSupply}>Max Supply of tokens</div>
           ) : (
-            <div className={classes.maxSupply}>{state.nftDetails.maxSupply}</div>
+            <div className={classes.maxSupply}>Max Supply of tokens:{state.nftDetails.maxSupply}</div>
           )}
           {state.nftDetails.collateralType === "" ? (
-            <div className={classes.maxSupply}>Accepted Collateral</div>
+            <div className={classes.maxSupply}>Accepted Collateral: </div>
           ) : (
             <div className={classes.maxSupply}>Accepted Collateral: {state.nftDetails.collateralType}</div>
           )}
