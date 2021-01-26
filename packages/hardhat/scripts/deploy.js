@@ -9,13 +9,21 @@ const main = async () => {
 
   console.log("\n\n 📡 Deploying...\n");
 
-  const factory = await deploy("NFTMarketFactory",["0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"]);
+  const [owner] = await ethers.getSigners();
+
+  const mockERC721 = await deploy("NFetteNFT", ["NFetteNFTs", "NFETTE", "nfette.io"]);
+  
   const curve = await deploy("Curve");
+
+  const marketTemplate  = await deploy("NFTMarketTemplate", [mockERC721.address, "NFetteNFTs", "NFETTE",owner.address, ethers.utils.parseEther("1000000"), ethers.utils.parseEther("1"), curve.address, ["0", "1", ethers.utils.parseEther("1")],true,"0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"]);
+
+  const factory = await deploy("NFTMarketFactory",[marketTemplate.address]);
+
 
   // the following are a mock ERC20 and mock ERC721 for testing purposes, 
   // and should not be deployed in a mainnet deployment
   const mockERC20  = await deploy("ERC20Mock", ["Stake token", "STAKE"]);
-  const mockERC721 = await deploy("NFetteNFT", ["NFetteNFTs", "NFETTE", "nfette.io"]);
+  
 
   // const exampleToken = await deploy("ExampleToken")
   // const examplePriceOracle = await deploy("ExamplePriceOracle")

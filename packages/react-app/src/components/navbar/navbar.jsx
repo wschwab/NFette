@@ -13,7 +13,6 @@ import { useHistory } from "react-router-dom";
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 
 function Navbar(props) {
-  const [blockChainContext, setBlockChainContext] = useState(false);
   const [injectedProvider, setInjectedProvider] = useState({});
   const { state, actions } = useContext(Store);
   const { classes, web3Modal } = props;
@@ -31,15 +30,19 @@ function Navbar(props) {
     }, 1);
   };
 
+
   const connectToWallet = async () => {
-    props.web3Modal.connect().then(w3mProvider => {
-      actions.setProvider(new ethers.providers.Web3Provider(w3mProvider));
-      actions.setWalletAddress(
-        w3mProvider.isPortis ? w3mProvider._portis._selectedAddress : w3mProvider.selectedAddress,
-      );
-      setBlockChainContext(w3mProvider);
-      actions.setWalletConnected(true);
-    });
+    if (props.web3Modal.cachedProvider) {
+      var w3mProvider = await props.web3Modal.connectTo(web3Modal.cachedProvider);
+      setConnectedState(w3mProvider, actions);
+    }
+    else{
+      var w3mProvider = await props.web3Modal.connect();
+      setConnectedState(w3mProvider, actions);
+     
+    }
+    await props.web3Modal.toggleModal();
+ ;
   };
 
   let currentLogo = <Logo />;
@@ -96,3 +99,18 @@ function Navbar(props) {
 }
 
 export default withStyles(styles)(Navbar);
+function setConnectedState(w3mProvider, actions) {
+  if (w3mProvider.isPortis) {
+    actions.setProvider(new ethers.providers.Web3Provider(w3mProvider._portis.provider));
+    actions.setWalletAddress(
+      w3mProvider._portis._selectedAddress
+    );
+    actions.setWalletConnected(true);
+  }
+  else {
+    actions.setProvider(new ethers.providers.Web3Provider(w3mProvider));
+    actions.setWalletAddress(w3mProvider.selectedAddress);
+    actions.setWalletConnected(true);
+  }
+}
+

@@ -59,11 +59,11 @@ contract NFTMarketFactory is Deployer {
         uint256[3] memory _curveParameters,
         bool isCollateralEth,
         address stakeTokenAddress
-        ) public returns (address market) {
+        ) public {
 
             address owner = msg.sender; // TODO: update to use Meta-Tx
             // console.log("NEW Market owner", owner);
-            market = deploy(_template);
+            address market = deploy(_template);
 
             require(market != address(0), 'NFTMarketFactory: Failed to perform minimal deploy of a new subscription');
 

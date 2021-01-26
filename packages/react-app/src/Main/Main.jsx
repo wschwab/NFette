@@ -21,7 +21,7 @@ const providerOptions = {
   };
   
   const w3m = new Web3Modal({
-    // network: "mainnet",
+    network: "mainnet",
     cacheProvider: true,
     providerOptions,
   });
