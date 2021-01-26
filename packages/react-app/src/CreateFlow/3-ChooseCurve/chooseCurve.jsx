@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {Store} from "../../store/store";
 import {withStyles} from "@material-ui/core/styles";
-import {ReactComponent as Concave} from "../../Media/Concave_Graph.svg";
 import {ReactComponent as Convex} from "../../Media/Convex_Graph.svg";
 import {ReactComponent as Linear} from "../../Media/Linear_Graph.svg";
 import styles from "./chooseCurveStyles";
@@ -42,16 +41,6 @@ import styles from "./chooseCurveStyles";
                     </div>
                 </div>
                 <div className={classes.graphBoxContainer}>
-                    <div className={classes.graphBox}>
-                        <h3 className={classes.graphType}>Sublinear</h3>
-                        <input className={classes.radio} name="curveOption" value="Sublinear" checked={state.curve.curveShape === "Sublinear"} onChange={handleOptionChange} type="radio" label="Select" />
-                        <Concave className={classes.svg} />
-                        <p className={classes.description}>
-                            <em>
-                            Initially steep curve, flattening out over supply
-                            </em>
-                        </p>
-                    </div>
                     <div className={classes.graphBox}>
                         <h3 className={classes.graphType}>Polynomial</h3>
                         <input className={classes.radio} name="curveOption" value="Polynomial" checked={state.curve.curveShape === "Polynomial"} onChange={handleOptionChange} type="radio" label="Select" />

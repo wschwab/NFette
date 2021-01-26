@@ -24,7 +24,6 @@ const initialState = {
   curve: {
     address: curveAddress,
     curveShape: "",
-    Sublinear: [],
     Polynomial: [1,1],
     Linear: [0,1]
   },
