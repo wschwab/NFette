@@ -1,8 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { Store } from "../store/store";
 import { Chart } from 'react-charts'
+import { VictoryChart, VictoryArea, VictoryAxis } from "victory";
+import { FunctionPlot } from "./FunctionPlot";
 
 {/* This chart is hard coded for now */}
 export default function PriceChart() {
+  const { state } = useContext(Store);
+  const linearData = [
+    {
+      fn: "x",
+      derivative: {
+        fn: "1",
+        updateOnMouseMove: true
+      }
+    }
+  ]
+
+  const polynomialData = [
+    {
+      fn: "",
+      derivative: {
+        fn: "",
+        updateOnMouseMove: true
+      }
+    }
+  ]
+  const options = {
+    data: state.
+  }
+
   const data = React.useMemo(
     () => [
       {
@@ -36,7 +63,7 @@ export default function PriceChart() {
         height: '150px'
       }}
     >
-      <Chart data={data} axes={axes} />
+      <FunctionPlot options={options} />
     </div>
   )
 }
