@@ -1,4 +1,4 @@
-// this arcan formula is shamelessly copy-pasted from https://github.com/mauriciopoppe/function-plot/issues/118#issuecomment-697965333
+// this arcane formula is shamelessly copy-pasted from https://github.com/mauriciopoppe/function-plot/issues/118#issuecomment-697965333
 
 import React, { useEffect, useRef } from 'react';
 import functionPlot from 'function-plot';
