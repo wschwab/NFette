@@ -10,6 +10,8 @@ import styles from "./chooseCurveStyles";
      const {previous, next} = navigation;
      const {state, actions} = useContext(Store);
 
+    const shortAddress = `${state.nftDetails.contractAddress.slice(0, 25)}...`;
+
     const handleOptionChange = e => {
         actions.setCurve(e.target.value);
     }
@@ -32,7 +34,7 @@ import styles from "./chooseCurveStyles";
                 <div className={classes.infoBox}>
                     <div className={classes.smallBox}>
                         <div>Name: {state.nftDetails.name}</div>
-                        <div>Contract Address: {state.nftDetails.contractAddress}</div>
+                        <div>Contract Address: {shortAddress}</div>
                     </div>
                      <div className={classes.infoDivider}></div>
                     <div className={classes.smallBox}>
