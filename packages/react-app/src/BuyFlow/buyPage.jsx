@@ -3,11 +3,15 @@ import { Store } from "../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
+import { getMTXBalance, getSharesBalance } from "../services/balance";
+import { providers } from "web3modal";
 
 function BuyPage(props) {
   const { classes } = props;
   const { state, actions } = useContext(Store);
   const imageUrlExample = "https://www.verdict.co.uk/wp-content/uploads/2020/04/shutterstock_1300066633.jpg";
+
+  const address = state.provider !== {} ? state.provider.getSigner().getAddress() : "";
 
   return (
     <div className={classes.root}>
@@ -54,8 +58,21 @@ function BuyPage(props) {
           <PriceChart />
         </div>
       </div>
-      <div className={classes.buttons}>
-        <button>Buy Shares</button>
+      <div>
+        <div>
+          <h2>Buy {state.tokenDetails.name} Tokens</h2>
+          <p>Balance: {() => getMTXBalance(address, state.collateral.MTX)} MTX</p>
+          <div  className={classes.buttons}>
+            <button>Buy</button>
+          </div>
+        </div>
+        <div>
+          <h2>Sell {state.tokenDetails.name} Tokens</h2>
+          <p>Balance: {() => getSharesBalance(address, state.tokenDetails.contractAddress)} {state.tokenDetails.name}</p>
+          <div  className={classes.buttons}>
+            <button>Sell</button>
+          </div>
+        </div>
       </div>
     </div>
   );
