@@ -92,6 +92,7 @@ const styles = createStyles({
   link: {
     margin: "3rem 0px 0px",
     fontSize: '2rem',
+    backgroundColor: "var(--main-white)",
     fontWeight: 200
   },
   description: {
