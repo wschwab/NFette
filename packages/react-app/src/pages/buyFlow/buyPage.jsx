@@ -13,15 +13,18 @@ function BuyPage(props) {
   const imageUrlExample = "https://www.verdict.co.uk/wp-content/uploads/2020/04/shutterstock_1300066633.jpg";
 
   useEffect(() => {
-    importDetails(state, actions);
-  }, [])
+    const url = window.location.href;
+    const splitUrl = url.split("/");
+    const marketAddress = splitUrl[splitUrl.length -1];
+    importDetails(marketAddress, state, actions);
+  }, []);
 
   return (
     <div className={classes.root}>
       <div className={classes.heading}>Market Listing</div>
       <div className={classes.buyContainer}>
         <div className={classes.leftPanel}>
-          {state.nftDetails.uri === "" ? (
+          {state.nftDetails.uri === "nfette.io" ? (
             <img src={imageUrlExample} className={classes.image} />
           ) : (
             <img src={state.nftDetails.uri} className={classes.image} />
@@ -41,7 +44,7 @@ function BuyPage(props) {
           {state.nftDetails.contractAddress === "" ? (
             <div className={classes.contractAddress}>Contract Address:</div>
           ) : (
-            <div className={classes.contractAddress}>Contract Address: {state.nftDetails.contractAddress}</div>
+            <div className={classes.contractAddress}>Contract Address: {state.tokenDetails.contractAddress}</div>
           )}
           {state.tokenDetails.initialPrice === "" ? (
             <div className={classes.price}>Price</div>

@@ -52,7 +52,7 @@ function RootLanding(props) {
         <div className={classes.stepBox}>
           <button
           onClick={() => {
-              history.push("/market");
+              history.push(`/market/${state.tokenDetails.contractAddress}`);
             }}
             className={classes.btnRight}
             

@@ -15,7 +15,20 @@ const main = async () => {
   
   const curve = await deploy("Curve");
 
-  const marketTemplate  = await deploy("NFTMarketTemplate", [mockERC721.address, "NFetteNFTs", "NFETTE",owner.address, ethers.utils.parseEther("1000000"), ethers.utils.parseEther("1"), curve.address, ["0", "1", ethers.utils.parseEther("1")],true,"0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"]);
+  const marketTemplate  = await deploy(
+    "NFTMarketTemplate", 
+    [
+      mockERC721.address, 
+      "NFetteNFTs", 
+      "NFETTE",
+      owner.address, 
+      ethers.utils.parseEther("1000000"), 
+      ethers.utils.parseEther("1"), 
+      curve.address, 
+      ["1", "1", ethers.utils.parseEther("1")],
+      true,
+      "0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"
+    ]);
 
   const factory = await deploy("NFTMarketFactory",[marketTemplate.address]);
 

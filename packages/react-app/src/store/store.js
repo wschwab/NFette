@@ -3,6 +3,7 @@ import { useActions } from "./actions";
 import reducer from "./reducer";
 import applyMiddleware from "./middleware";
 import * as curveAddress from "../contracts/Curve.address";
+import * as marketAddress from "../contracts/NFTMarketTemplate.address";
 
 export const Store = createContext();
 
@@ -20,7 +21,7 @@ const initialState = {
     maxSupply: "10000000",
     collateralType: "",
     initialPrice: "",
-    contractAddress: ""
+    contractAddress: marketAddress
   },
   curve: {
     address: curveAddress,

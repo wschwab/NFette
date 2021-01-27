@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import MultiStepCreateFlow from "../../pages/createFlow/MultiStepCreateFlow";
 import BuyPage from "../../pages/buyFlow/buyPage";
 import Navbar from "../navbar/navbar";
 import RootLanding from "../../pages/rootLanding/rootLanding";
+import { Store } from "../../store/store";
 
 import Web3Modal from "web3modal";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
-import { useState } from "react";
 
 const providerOptions = {
     portis: {
@@ -28,7 +28,7 @@ const providerOptions = {
   
 
 function Main() {
-
+  const { state } = useContext(Store);
   const [currentStep, setCurrentStep] = useState('')
 
   return (
@@ -42,7 +42,7 @@ function Main() {
           <Route path="/create" exact>
             <MultiStepCreateFlow setCurrentStep={setCurrentStep} />
           </Route>
-          <Route path="/market" exact>
+          <Route path={`/market/${state.tokenDetails.contractAddress}`} exact>
             <BuyPage />
           </Route>
         </Switch>
