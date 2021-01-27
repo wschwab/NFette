@@ -33,9 +33,9 @@ The end of the file also contains settings for the Solidity compiler, including 
 
 Contract tests go in the `test` directory. There is a suite of tests for the contracts that is not, as of this writing, a part of the repo, though we hope to reintegrate them. Hardhat uses a custom implementation of [Waffle](https://ethereum-waffle.readthedocs.io/en/latest/getting-started.html).
 
-`scripts` contains a deployment script (`deploy.js`) which currently deploys a NFette factory, a test NFT contract, and a mock ERC20 token for testing. (`publish.js` handles some subgraph integration, and `watch.js` integrates a hot reload feature that while running recompiles and deploys the contracts any time a change is made and saved, and injects the abi and address into the frontend.)
+`scripts` contains a deployment script (`deploy.js`) which currently deploys a NFette factory, a test NFT contract, a NFette market template, and a mock ERC20 token for testing. (It also intitalizes the market template.) (`publish.js` handles some subgraph integration, and `watch.js` integrates a hot reload feature that while running recompiles and deploys the contracts any time a change is made and saved, and injects the abi and address into the frontend.)
 
-`contracts` is where the NFette contract suite lives. At the root level there are four contracts. We'll detail them briefly here and dive deeper on them below. 
+`contracts` is where the NFette contract suite lives. At the root level there are five contracts. We'll detail them briefly here and dive deeper on them below. 
 
 `Curve` contains most of the math for using a bonding curve to determine token buy and sell values, though there are some parameters passed in from the ERC20 marketplaces. This allows the Curve contract to map any curve, and isn't restricted to just one.
 
@@ -43,9 +43,11 @@ Contract tests go in the `test` directory. There is a suite of tests for the con
 
 `NFetteNFT` is the NFT contract NFette generates. We may not be using this functionality of NFette, instead importing NFTs from Mintbase, so it can be largely ignored. In any event, it inherits an OpenZeppelin NFT, and gives it a mint function.
 
-`NFTMarketFactory` is the factory contract that deploys an ERC20 market around the NFT. There is also a v1 contract in the directory. (`NFTMarketFactoryv2` is the beginnings of a refactor, but has barely been started, and is not in scope before the event.)
+`NFTMarketFactory` is the factory contract that deploys an ERC20 market around the NFT. There is also a v1 contract in the directory.
 
-The `interfaces` directory contains interface contracts in order to enable cross-contract communication more efficiently, and the `market` directory contains `NFTMarketTemplatev2` which is the template for an NFette ERC20 market. (There is also a `NFTMarketTemplate` contract from a previous attempt.)
+`NFTMarketTemplate` is the template of an NFette market, the ERC20 contract that prices using a the bonding curve in `Curve.sol`.
+
+The `interfaces` directory contains interface contracts in order to enable cross-contract communication more efficiently, and the `market` directory contains an `NFTMarketTemplatev2` which is a second version of the template for an NFette ERC20 market. (We may switch the `NFTMarketTemplate` in the root of the contracts directory for this during development.)
 
 ## React-App
 
@@ -55,15 +57,15 @@ You can set a `.env` file in the same directory as the `.sample.env` with a `REA
 
 Moving into `src`, you'll see the following:
 
-* `BuyFlow`: where the components for the page for buying and selling the NFette ERC20 tokens live
 * `components`: a general components folder, including many of the Scaffold-Eth components, and some for NFette
-* `CreateFlow`: the components for the part of the app dedicated to creating a market around an NFT
+* `containers`: the components for `main`, which handles all of the routes in NFette, and of the navbar, are in this directory
 * `hooks`: a number of hooks from Scaffold-Eth, see the Scaffold-Eth README for more details
-* `Media` contains any relevant images, and also some from various implementation ideas that were not carried out into fruition
-* `services`: web3 services (using the [ethers.js](https://docs.ethers.io) library) for connecting a wallet to NFette, minting a NFette NFT, and creating a market.
-* `store`: NFette implements a Redux-like global state store, though it does this using Context as opposed to actually using Redux. Pretty much any useful piece of state is stored here in the `store.js` file, and is stored using actions from `actions.js`.
+* `media` contains any relevant images, and also some from various implementation ideas that were not carried out into fruition
+* `pages`: the specific components for the buy page, market creation page, and landing page are here
+* `services`: web3 services (using the [ethers.js](https://docs.ethers.io) library) for connecting a wallet to NFette, checking wallet balances, minting a NFette NFT, and creating a market.
+* `store`: NFette implements a Redux-like global state store, though it does this using Context as opposed to actually using Redux. Pretty much any useful piece of state is stored here in the `store.js` file, and is stored using actions from `actions.js`. Any state variable used throughout the app should be initialized in the `initialState` object in `store.js`, which makes it a good reference point.
 
-The app uses the standard React setup of an `App.jsx` being set up in `index.jsx`. In that vein, the routes for the app and Context wrappers are all implemented in `App.jsx`.
+The app uses the standard React setup of an `App.jsx` being set up in `index.jsx`. In that vein, the routes for the app and Context wrappers are all implemented in `App.jsx`. `App.jsx` was purposely kept sparse, with the various routes being set in `/containers/main/main.jsx`
 
 # NFette in Depth
 
@@ -77,7 +79,7 @@ NFette implements a Redux-like global store for state variables. Most important 
 
 Global variables are stored in `/src/store/store.js`. You can see the structure of the state in the `initialState` object, which represents the values for these variables when the state is initialized.
 
-The state object has four main sub-objects: `nftDetails`, `tokenDetails`, `curve`, and `collateral`. In addition, there is a `provider` object for the [ethers web3 provider](https://docs.ethers.io/v5/api/providers/), and another for errors.
+The state object has four main sub-objects: `nftDetails`, `tokenDetails`, `curve`, and `collateral`. In addition, there is a `provider` object for the [ethers web3 provider](https://docs.ethers.io/v5/api/providers/), and another for errors. The user's address is also injected into `userAddress` when they connect their wallet.
 
 Following a Redux-like pattern, state variables are not changed by directly altering `store.js` in the frontend code. Instead, `dispatch`s are implemented in `/src/store/actions.js`. As such, you will see many components that have a line such as:
 ```
@@ -91,20 +93,22 @@ This unbundles access to the actions (to change global state variables), a web3 
 
 NFette opts for individually styling components, and as such, components are generally given their own directory with a dedicated `.js` file implementing css using [Material-UI Styles](https://material-ui.com/styles/basics/).
 
-### Buy Flow (`/src/BuyFlow/`)
+### Buy Flow (`/src/pages/buyFlow/`)
 
-The `BuyFlow` contains the logic for a frontend screen allowing a user to buy NFette ERC20 shares of an NFT (that has had such a market set up using the NFette contracts). This part of the app, while very relevant to integration, is still under construction. The component structure (as of this writing) is a general component for the page `buyPage.jsx` along with a dedicated styles `.js`, and a separate component `priceChart.jsx` to graph a visualisation of the bonding curve, along with highlighting the current point on the curve determined by total supply.
+The `buyFlow` contains the logic for a frontend screen allowing a user to buy NFette ERC20 shares of an NFT (that has had such a market set up using the NFette contracts). This part of the app, while very relevant to integration, is still under construction. The component structure (as of this writing) is a general component for the page `buyPage.jsx` along with a dedicated styles `.js`, and a separate component `priceChart.jsx` to graph a visualisation of the bonding curve, which in turn relies on a custom component made to leverage the `function-plot` library (using the code from [this](https://github.com/mauriciopoppe/function-plot/issues/118#issuecomment-697965333) issue.
 
-### Create Flow (`/src/CreateFlow/`)
+### Create Flow (`/src/pages/createFlow/`)
 
-The `CreateFlow` contains the frontend logic for minting a NFT and creating a NFette market around it. The codebase (as of this writing) assumes the user is minting a new NFT, but this is scheduled to be changed in order to reflect that artists will be importing NFTs from Mintbase. The Create Flow, while containing six separate screens, is still all contained in the `/create` route set in `App.jsx`, leveraging `useStep` from the `react-hooks-hepler` library to make a multi-step page.
+The `createFlow` contains the frontend logic for minting a NFT and creating a NFette market around it. The codebase (as of this writing) assumes the user is minting a new NFT, but this is scheduled to be changed in order to reflect that artists will be importing NFTs from Mintbase. The Create Flow, while containing six separate screens, is still all contained in the `/create` route set in `App.jsx`, leveraging `useStep` from the `react-hooks-hepler` library to make a multi-step page.
 
-The logic for the steps along with transitions (using the `react-transition-group` library) is contained in the `MultiStepCreateFlow.jsx` file in the root of `CreateFlow`.
+The logic for the steps along with transitions (using the `react-transition-group` library) is contained in the `MultiStepCreateFlow.jsx` file in the root of `createFlow`.
 
-`0-Overview/` contains the overview screen at the begninng of the Create Flow, along with its styles. `1-CreateNFT/` contains the component for the next screen, which contains the input fields necessary to mint a new NFT contract. As stated before, there are plans to modify this to instead read this data (name, symbol, baseURI or URI index) from an existing NFT contract. At current writing, clicking the "Next" button triggers the `createNFT` service which deploys an NFT contract. (In this setup, the artist's wallet would be making a transaction in order to do so.)
+`0-Overview/` contains the overview screen at the begninng of the Create Flow, along with its styles. `1-CreateNFT/` contains the component for the next screen, which contains the input fields necessary to mint a new NFT contract. As stated before, there are plans to modify this to instead read this data (name, symbol, baseURI or URI index) from an existing NFT contract. At current writing, clicking the "Next" button triggers the `createNFT` service which deploys an NFT contract. (In this setup, the artist's wallet would be making a transaction in order to do so.) 
+
+**note:** once we're working on integration, we'd like to talk with you about the best way to migrate this into importing a Mintbase NFT.
 
 `2-SelectPrice` contains the component with the inputs for most of the logic needed for the creation of the NFette ERC20 market. Since the event is using a dedicated token, instead of offering ETH, DAI, and USDC as collateral, only the MTX token will be available. `3-ChooseCurve` wraps this up by letting the artist pick which function will determine token pricing. As of this writing it displays three options, one may be dropped due to a problem with the specific way that the bonding curves are implemented in the contracts. All input is saved to the global state store.
 
 `4-Review` gives a review screen displaying all the relevant data, and asks for the artist to confirm market creation. Clicking the "Next" button activates the `createMarket` service, which passes the NFT information to the NFette factory. (This is another wallet transaction.)
 
-`5-Final` is still under construction, but also displays details, along with the address of the deployed market.
+`5-Final` also displays details, along with the address of the deployed market, which is copied to the clipboard if clicked on.
