@@ -3,7 +3,7 @@ import { Store } from "../../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
-import { getMTXBalance, getSharesBalance } from "../services/balance";
+import { getMTXBalance, getSharesBalance } from "../../services/balance";
 import { providers } from "web3modal";
 
 function BuyPage(props) {
