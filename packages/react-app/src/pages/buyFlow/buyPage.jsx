@@ -1,15 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Store } from "../../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
 import { getMTXBalance, getSharesBalance } from "../../services/balance";
 import { providers } from "web3modal";
+import { importDetails } from "../../services/importDetails";
 
 function BuyPage(props) {
   const { classes } = props;
   const { state, actions } = useContext(Store);
   const imageUrlExample = "https://www.verdict.co.uk/wp-content/uploads/2020/04/shutterstock_1300066633.jpg";
+
+  useEffect(() => {
+    importDetails(state, actions);
+  }, [])
 
   return (
     <div className={classes.root}>
@@ -38,20 +43,20 @@ function BuyPage(props) {
           ) : (
             <div className={classes.contractAddress}>Contract Address: {state.nftDetails.contractAddress}</div>
           )}
-          {state.nftDetails.initialPrice === "" ? (
+          {state.tokenDetails.initialPrice === "" ? (
             <div className={classes.price}>Price</div>
           ) : (
-            <div className={classes.price}>Price: {state.nftDetails.initialPrice}</div>
+            <div className={classes.price}>Price: {state.tokenDetails.initialPrice}</div>
           )}
-          {state.nftDetails.maxSupply === "" ? (
+          {state.tokenDetails.maxSupply === "" ? (
             <div className={classes.maxSupply}>Max Supply of tokens</div>
           ) : (
-            <div className={classes.maxSupply}>Max Supply of tokens:{state.nftDetails.maxSupply}</div>
+            <div className={classes.maxSupply}>Max Supply of tokens:{state.tokenDetails.maxSupply}</div>
           )}
-          {state.nftDetails.collateralType === "" ? (
+          {state.tokenDetails.collateralType === "" ? (
             <div className={classes.maxSupply}>Accepted Collateral: </div>
           ) : (
-            <div className={classes.maxSupply}>Accepted Collateral: {state.nftDetails.collateralType}</div>
+            <div className={classes.maxSupply}>Accepted Collateral: {state.tokenDetails.collateralType}</div>
           )}
           <PriceChart />
         </div>
@@ -66,7 +71,7 @@ function BuyPage(props) {
         </div>
         <div>
           <h2>Sell {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {() => getSharesBalance(state.userAddress, state.tokenDetails.contractAddress)} {state.tokenDetails.name}</p>
+          <p>Balance: {() => getSharesBalance(state.userAddress, state.tokenDetails.contractAddress)} {state.tokenDetails.symbol}</p>
           <div  className={classes.buttons}>
             <button>Sell</button>
           </div>

@@ -40,6 +40,9 @@ export const useActions = (state, dispatch) => ({
   setTokenContractAddress: data => {
     dispatch({ type: types.token.SET_CONTRACT_ADDRESS, payload: data });
   },
+  setCurrentSupply: data => {
+    dispatch({ type: types.token.SET_CURRENT_SUPPLY, payload: data });
+  },
   setMaxSupply: data => {
     dispatch({ type: types.collateralAndPrice.SET_MAX_SUPPLY, payload: data });
   },

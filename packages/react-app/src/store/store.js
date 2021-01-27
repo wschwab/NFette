@@ -16,6 +16,7 @@ const initialState = {
   tokenDetails: {
     name: "",
     symbol: "",
+    currentSupply: "",
     maxSupply: "10000000",
     collateralType: "",
     initialPrice: "",

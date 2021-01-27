@@ -34,6 +34,8 @@ interface INFTMarket is IRFT/*, IERC721Receiver*/ {
     function minter() external view returns(address);
     function cap() external view returns(uint256);
     function isInitialized() external view returns(bool);
+    function parentToken() external view returns(address);
+    function initialBidPrice() external view returns(uint256);
 
     function stakeBalanceOf(address account) external view returns(uint256);
     function sharesBalanceOf(address account) external view returns(uint256);
@@ -47,7 +49,7 @@ interface INFTMarket is IRFT/*, IERC721Receiver*/ {
         uint256,
         uint256
     );
-    // function getStakeToken() external view returns(address);
+    function getStakeToken() external view returns(address);
     function getMarketStatus() external view returns(uint256, bool);
     function closeMarket() external returns (bool);
 
