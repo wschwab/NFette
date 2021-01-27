@@ -78,8 +78,17 @@ const styles = createStyles({
     fontFamily: "var(--plain-font)",
     backgroundColor: "var(--main-grey)",
   },
-  btnRight: {
+  btn: {
     fontSize: "1.8rem",
+    padding: "20px 0px",
+    width: "10em",
+    borderRadius: "10px",
+    fontFamily: "var(--plain-font)",
+    backgroundColor: "var(--main-grey)",
+  },
+  btnFaded: {
+    fontSize: "1.8rem",
+    opacity: '0.4',
     padding: "20px 0px",
     width: "10em",
     borderRadius: "10px",

@@ -2,8 +2,6 @@ import React, { useContext, useState } from "react";
 import { Store } from "../../store/store";
 import styles from "./rootLandingStyles";
 import { withStyles } from "@material-ui/core/styles";
-import MultiStepCreateFlow from "../../CreateFlow/MultiStepCreateFlow";
-import BuyPage from "../../BuyFlow/buyPage";
 import { useHistory } from "react-router-dom";
 
 function RootLanding(props) {

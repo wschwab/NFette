@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Store } from "../store/store";
+import { Store } from "../../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
@@ -21,7 +21,7 @@ function BuyPage(props) {
           )}
         </div>
         <div className={classes.rightPanel}>
-          {state.nftDetails.title === "" ? (
+          {state.nftDetails.name === "" ? (
             <div className={classes.title}>Title of piece</div>
           ) : (
             <div className={classes.title}>Title of piece: {state.nftDetails.name}</div>
