@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {Store} from "../../store/store";
+import {Store} from "../../../store/store";
 import styles from "./selectPriceStyles";
 import {withStyles} from "@material-ui/core/styles";
 

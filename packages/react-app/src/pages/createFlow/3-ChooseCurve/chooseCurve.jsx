@@ -1,14 +1,16 @@
 import React, { useContext, useState } from 'react';
-import {Store} from "../../store/store";
+import {Store} from "../../../store/store";
 import {withStyles} from "@material-ui/core/styles";
-import {ReactComponent as Convex} from "../../Media/Convex_Graph.svg";
-import {ReactComponent as Linear} from "../../Media/Linear_Graph.svg";
+import {ReactComponent as Convex} from "../../../media/Convex_Graph.svg";
+import {ReactComponent as Linear} from "../../../media/Linear_Graph.svg";
 import styles from "./chooseCurveStyles";
 
  function ChooseCurve(props) {
      const {classes, navigation} = props;
      const {previous, next} = navigation;
      const {state, actions} = useContext(Store);
+
+    const shortAddress = `${state.nftDetails.contractAddress.slice(0, 25)}...`;
 
     const handleOptionChange = e => {
         actions.setCurve(e.target.value);
@@ -32,7 +34,7 @@ import styles from "./chooseCurveStyles";
                 <div className={classes.infoBox}>
                     <div className={classes.smallBox}>
                         <div>Name: {state.nftDetails.name}</div>
-                        <div>Contract Address: {state.nftDetails.contractAddress}</div>
+                        <div>Contract Address: {shortAddress}</div>
                     </div>
                      <div className={classes.infoDivider}></div>
                     <div className={classes.smallBox}>

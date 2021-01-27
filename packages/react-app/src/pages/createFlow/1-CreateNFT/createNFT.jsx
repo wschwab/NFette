@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Store } from "../../store/store";
+import { Store } from "../../../store/store";
 import styles from "./createNFTStyles";
 import {withStyles} from "@material-ui/core/styles";
-import createNFT from "../../services/createNFT";
+import createNFT from "../../../services/createNFT";
 
 function CreateNFT(props) {
   const { state, actions } = useContext(Store);
-
+  const { walletConnected } = state;
   const { classes, navigation } = props;
   const { next, go } = navigation;
 
@@ -23,6 +23,10 @@ function CreateNFT(props) {
 
         next();
     }
+
+    const displayMessage = console.log('Error message logs')
+
+
 
   const formatTokenDetails = () => {
     actions.setTokenName(`${state.nftDetails.name}-SHARES`);
@@ -98,9 +102,13 @@ function CreateNFT(props) {
         {/* <label  className={classes.label}  for="contractAddress">OR enter a contract address of a pre-existing NFT contract</label>
             <input onChange={handleContractAddrChange} value={state.nftDetails.address} className={classes.input} type="text" name="address" placeholder="0x..."/> */}
         <div className={classes.btnBar}>
-          <button onClick={handleNext} className={classes.btnRight}>
+          {walletConnected ? <button onClick={handleNext} className={classes.btn}> 
             Create NFT
           </button>
+          :
+          <span onClick={displayMessage} className={classes.btnFaded}> 
+            Create NFT
+          </span>}
         </div>
       </form>
     </div>

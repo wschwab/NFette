@@ -1,10 +1,10 @@
 import React, { useState, useContext, useCallback, useEffect } from "react";
 import { Store } from "../../store/store";
-import { ReactComponent as Logo } from "../../Media/nfette_logo.svg";
-import { ReactComponent as WalletIcon } from "../../Media/Wallet_Icon.svg";
-import { ReactComponent as FlowLogo1 } from "../../Media/flow_logo_1.svg";
-import { ReactComponent as FlowLogo2 } from "../../Media/flow_logo_2.svg";
-import { ReactComponent as FlowLogo3 } from "../../Media/flow_logo_3.svg";
+import { ReactComponent as Logo } from "../../media/nfette_logo.svg";
+import { ReactComponent as WalletIcon } from "../../media/Wallet_Icon.svg";
+import { ReactComponent as FlowLogo1 } from "../../media/flow_logo_1.svg";
+import { ReactComponent as FlowLogo2 } from "../../media/flow_logo_2.svg";
+import { ReactComponent as FlowLogo3 } from "../../media/flow_logo_3.svg";
 
 import { ethers } from "ethers";
 import styles from "./navbarStyles";
@@ -77,6 +77,7 @@ function Navbar(props) {
   const clickToHome = () => {
     history.push("/");
   };
+  
   return (
     <div className={classes.wrapper}>
     <nav className={conditionalClassNames}>

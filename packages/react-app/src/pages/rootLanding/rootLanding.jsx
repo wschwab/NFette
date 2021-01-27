@@ -1,13 +1,12 @@
-import React, {useState} from "react";
+import React, { useContext, useState } from "react";
+import { Store } from "../../store/store";
 import styles from "./rootLandingStyles";
 import { withStyles } from "@material-ui/core/styles";
-import MultiStepCreateFlow from "../../CreateFlow/MultiStepCreateFlow";
-import BuyPage from "../../BuyFlow/buyPage";
 import { useHistory } from "react-router-dom";
 
 function RootLanding(props) {
   const { classes, navigation } = props;
-
+  const { state, actions } = useContext(Store);
   const history = useHistory();
   
   return (
@@ -42,7 +41,6 @@ function RootLanding(props) {
         <div className={classes.stepBox}>
           <button
             onClick={() => {
-             
               history.push("/create");
             }}
             className={classes.btnRight}
@@ -54,8 +52,7 @@ function RootLanding(props) {
         <div className={classes.stepBox}>
           <button
           onClick={() => {
-              
-              history.push("/buy");
+              history.push("/market");
             }}
             className={classes.btnRight}
             

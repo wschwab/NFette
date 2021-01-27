@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import MultiStepCreateFlow from "../CreateFlow/MultiStepCreateFlow";
-import BuyPage from "../BuyFlow/buyPage";
-import Navbar from "../components/navbar/navbar";
-import RootLanding from "../components/rootLanding/rootLanding";
+import MultiStepCreateFlow from "../../pages/createFlow/MultiStepCreateFlow";
+import BuyPage from "../../pages/buyFlow/buyPage";
+import Navbar from "../navbar/navbar";
+import RootLanding from "../../pages/rootLanding/rootLanding";
 
 import Web3Modal from "web3modal";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -42,7 +42,7 @@ function Main() {
           <Route path="/create" exact>
             <MultiStepCreateFlow setCurrentStep={setCurrentStep} />
           </Route>
-          <Route path="/buy" exact>
+          <Route path="/market" exact>
             <BuyPage />
           </Route>
         </Switch>

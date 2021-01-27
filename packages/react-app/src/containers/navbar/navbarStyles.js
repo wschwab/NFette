@@ -83,7 +83,7 @@ const styles = createStyles({
   walletButton: {
     backgroundColor: "var(--main-white)",
     fontSize: "2rem",
-  },
-});
+  },  
+})
 
 export default styles;

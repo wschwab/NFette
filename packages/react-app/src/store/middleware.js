@@ -1,6 +1,6 @@
 import types from "./types";
 import createMarket from "../services/createMarket";
-import createNFT from "../CreateFlow/1-CreateNFT/createNFT";
+import createNFT from "../pages/createFlow/1-CreateNFT/createNFT"
 import { setWalletAddress } from "../services/wallet";
 
 const applyMiddleware = dispatch => action => {
