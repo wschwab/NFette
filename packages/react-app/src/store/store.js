@@ -35,6 +35,7 @@ const initialState = {
   },
   walletConnected: false,
   provider: {},
+  userAddress: "",
   createMarketPending: false,
   createMarketSuccess: false,
   createNFTPending: false,
