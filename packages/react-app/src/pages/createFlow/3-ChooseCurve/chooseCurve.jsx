@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import {Store} from "../../store/store";
+import {Store} from "../../../store/store";
 import {withStyles} from "@material-ui/core/styles";
-import {ReactComponent as Convex} from "../../Media/Convex_Graph.svg";
-import {ReactComponent as Linear} from "../../Media/Linear_Graph.svg";
+import {ReactComponent as Convex} from "../../../media/Convex_Graph.svg";
+import {ReactComponent as Linear} from "../../../media/Linear_Graph.svg";
 import styles from "./chooseCurveStyles";
 
  function ChooseCurve(props) {

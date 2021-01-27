@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { withStyles } from "@material-ui/core/styles";
-import { Store } from "../../store/store";
+import { Store } from "../../../store/store";
 import styles from "./finalStyles";
 import { useHistory } from "react-router-dom";
 
@@ -48,7 +48,7 @@ function Final(props) {
           <p className={classes.address}>{state.nftDetails.contractAddress}</p>
           <div className={classes.divider}></div>
           <CopyToClipboard className={classes.link} text={state.nftDetails.contractAddress} onCopy={copyHandler}>
-            {copied ? <button>Copied!</button> : <button>Copy Contract Address for your NFT</button>}
+            {copied ? <button>Copied!</button> : <button>Click here to copy contract address for your NFT</button>}
           </CopyToClipboard>
         </div>
       </div>

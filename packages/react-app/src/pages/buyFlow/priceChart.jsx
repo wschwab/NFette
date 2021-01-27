@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Store } from "../store/store";
+import { Store } from "../../store/store";
 import { FunctionPlot } from "./FunctionPlot";
 
 export default function PriceChart() {

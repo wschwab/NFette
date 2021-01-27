@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import {withStyles} from "@material-ui/core/styles";
-import {Store} from "../../store/store";
+import {Store} from "../../../store/store";
 import styles from "./reviewStyles";
 
  function Review(props) {
