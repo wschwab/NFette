@@ -31,7 +31,7 @@ export const importDetails = async (state, actions) => {
     actions.setNFTUri(await nftContract.baseURI());
 
     // Curve details
-    const curveDetails = await marketContract.getCurve();
+    const curveDetails = await marketContract.getCurve(); // may need to be decoded
     const curveType = curveDetails[0] === 0 ? "linear" : "polynomial";
     actions.setCurve(curveType);
 }

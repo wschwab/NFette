@@ -12,7 +12,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
-// import "@nomiclabs/hardhat/console.sol";
 
 contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownable*/ {
 
@@ -237,7 +236,7 @@ contract NFTMarketTemplate is INFTMarket, /*ERC20Capped,*/ERC20, ERC165/*, Ownab
     }
 
     function initialBidPrice() external view override returns(uint256) {
-        return _initialBidPrice
+        return _initialBidPrice;
     }
 
     // function parentTokenId() external view override returns(uint256) {

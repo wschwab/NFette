@@ -35,7 +35,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
     string private _symbol;
     address private _minter;
     uint256 private _cap;
-    uint256 public initialBidPrice;
+    uint256 public _initialBidPrice;
     ICurve private _bondigCurve;
     uint256[3] private _curveParameters;
     // IERC20 private _stakeToken;
@@ -81,7 +81,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
         string memory symbol,
         address minterAddress,
         uint256 cap,
-        uint256 _initialBidPrice,
+        uint256 initialBidPrice,
         address bondingCurveAddr,
         uint256[3] memory curveParameters,
         bool isCollateralEth,
@@ -98,7 +98,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
                         symbol,
                         minterAddress,
                         cap,
-                        _initialBidPrice,
+                        initialBidPrice,
                         bondingCurveAddr,
                         curveParameters,
                         isCollateralEth,
@@ -115,7 +115,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
         string calldata symbol,
         address minterAddress,
         uint256 cap,
-        uint256 _initialBidPrice,
+        uint256 initialBidPrice,
         address bondingCurveAddr,
         uint256[3] calldata curveParameters,
         bool isCollateralEth,
@@ -129,7 +129,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
             symbol,
             minterAddress,
             cap,
-            _initialBidPrice,
+            initialBidPrice,
             bondingCurveAddr,
             curveParameters,
             isCollateralEth,
@@ -145,7 +145,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
         string memory symbol,
         address minterAddress,
         uint256 cap,
-        uint256 _initialBidPrice,
+        uint256 initialBidPrice,
         address bondingCurveAddr,
         uint256[3] memory curveParameters,
         bool isCollateralEth,
@@ -170,7 +170,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
             );
 
             require(
-                _initialBidPrice > 0, "NFTMarketTemplate: initialBidPrice invalid"
+                initialBidPrice > 0, "NFTMarketTemplate: initialBidPrice invalid"
             );
 
             // require(
@@ -188,7 +188,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
             _symbol = symbol;
             _minter = minterAddress;
             _cap = cap;
-            initialBidPrice = _initialBidPrice;
+            _initialBidPrice = initialBidPrice;
             _bondigCurve = ICurve(bondingCurveAddr);
             _curveParameters = curveParameters;
             // _stakeToken = IERC20(stakeTokenAddress);
@@ -244,6 +244,10 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
         return _parentToken;
     }
 
+    function initialBidPrice() external view override returns(uint256) {
+        return _initialBidPrice;
+    }
+
     // function parentTokenId() external view override returns(uint256) {
     //     return _parentTokenId;
     // }
@@ -296,7 +300,7 @@ abstract contract NFTMarketTemplateV2 is INFTMarket, /*ERC20Capped,*/ERC20, ERC1
         // console.log('initialBidPrice', initialBidPrice);
         // console.log('allowance', _stakeToken.allowance(buyer, address(this)));
 
-        require(totalSupply() == 0 && cost >= initialBidPrice, "NFTMarketTemplate: buy cost does not cover the initial bid price");
+        require(totalSupply() == 0 && cost >= _initialBidPrice, "NFTMarketTemplate: buy cost does not cover the initial bid price");
 
         // require(_stakeToken.allowance(buyer, address(this)) >= cost,
         //     "NFTMarketTemplate: User has not approved contract for token cost amount"
