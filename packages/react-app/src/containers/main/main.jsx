@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import MultiStepCreateFlow from "../../pages/createFlow/MultiStepCreateFlow";
 import BuyPage from "../../pages/buyFlow/buyPage";
@@ -7,7 +7,7 @@ import RootLanding from "../../pages/rootLanding/rootLanding";
 import Web3Modal from "web3modal";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
-import { useState } from "react";
+import { Store } from "../../store/store";
 
 const providerOptions = {
     portis: {
@@ -27,8 +27,12 @@ const providerOptions = {
   
 
 function Main() {
-
+  const { state, actions } = useContext(Store);
   const [currentStep, setCurrentStep] = useState('')
+
+  if(window.ethereum) window.ethereum.on("chainChanged", newChainId => {
+    actions.setChainId(parseInt(newChainId, 16));
+  })
 
   return (
     <>

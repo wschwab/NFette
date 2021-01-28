@@ -48,8 +48,8 @@ function Navbar(props) {
   }
 
   useEffect(() => {
-    autoConnect()
-  }, [])
+    autoConnect();
+  }, [state.chainId])
 
   async function setConnectedState(w3mProvider, actions) {
     if (w3mProvider.isPortis) {
