@@ -30,6 +30,7 @@ export const getSharesBalance = async (userAddress, marketAddress, provider) => 
 export const getBuyPrice = async (amount, marketAddress, provider) => {
     const contract = new ethers.Contract(marketAddress, marketAbi, provider);
     console.log("AMOUNT: ", amount, "TYPEOF amount: ", typeof amount);
+    // debugger;
     const buyPriceRaw = await contract.getBuyCost(ethers.utils.parseEther(amount));
     const buyPrice = ethers.utils.formatEther(buyPriceRaw);
 
