@@ -55,14 +55,14 @@ function BuyPage(props) {
       <div>
         <div>
           <h2>Buy {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {() => await getMTXBalance(state.userAddress, state.collateral.MTX, provider)} MTX</p>
+          <p>Balance: {() => getMTXBalance(state.userAddress, state.collateral.MTX, provider)} MTX</p>
           <div  className={classes.buttons}>
             <button>Buy</button>
           </div>
         </div>
         <div>
           <h2>Sell {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {() => await getSharesBalance(state.userAddress, state.tokenDetails.contractAddress, provider)} {state.tokenDetails.symbol}</p>
+          <p>Balance: {() => getSharesBalance(state.userAddress, state.tokenDetails.contractAddress, provider)} {state.tokenDetails.symbol}</p>
           <div  className={classes.buttons}>
             <button>Sell</button>
           </div>
