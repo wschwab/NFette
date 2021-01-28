@@ -15,9 +15,8 @@ export const importDetails = async (marketAddress, state, actions) => {
     const initialPriceRaw = await marketContract.initialBidPrice();
     actions.setTokenName(await marketContract.name());
     actions.setTokenSymbol(await marketContract.symbol());
-    actions.setCurrentSupply(currentSupplyRaw.toString());
+    actions.setCurrentSupply(ethers.utils.parseEther(currentSupplyRaw.toString()));
     actions.setMaxSupply(ethers.utils.formatUnits(maxSupplyRaw.toString(), 18));
-    console.log(initialPriceRaw.toString());
     actions.setInitialPrice(ethers.utils.formatEther(initialPriceRaw));
     const collateral = await marketContract.getStakeToken();
     for (let i = 0; i < Object.keys(state.collateral).length - 1; i++) {

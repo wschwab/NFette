@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { ethers } from "ethers";
 import { Store } from "../../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
