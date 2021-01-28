@@ -14,8 +14,7 @@ import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers";
 
 function Navbar(props) {
   const [injectedProvider, setInjectedProvider] = useState({});
-  const [networkName, setNetworkName] = useState('');
-  const [chainId, setChainId] = useState('');
+  const [networkName, setNetworkName] = useState("");
   const { state, actions } = useContext(Store);
   const { classes, web3Modal } = props;
   const { walletConnected } = state;
@@ -59,7 +58,7 @@ function Navbar(props) {
       actions.setProvider(provider);
       actions.setWalletConnected(true);
       const network = await provider.getNetwork()
-      setChainId(network.chainId)
+      actions.setChainId(network.chainId)
       setNetworkName(network.name)
     } else {
       const provider = new ethers.providers.Web3Provider(w3mProvider)
@@ -67,7 +66,7 @@ function Navbar(props) {
       actions.setProvider(provider);
       actions.setWalletConnected(true);
       const network = await provider.getNetwork()
-      setChainId(network.chainId)
+      actions.setChainId(network.chainId)
       setNetworkName(network.name)
     }
   }
@@ -116,7 +115,7 @@ function Navbar(props) {
         {walletConnected ? (
           <button className={classes.addressDisplay} onClick={logoutOfWeb3Modal}>
             <WalletIcon />
-            {chainId} - {networkName} - {shortAddress}
+            {state.chainId} - {networkName} - {shortAddress}
           </button>
         ) : (
           <button className={classes.walletButton} onClick={connectToWallet}>

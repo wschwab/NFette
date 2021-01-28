@@ -55,6 +55,9 @@ export const useActions = (state, dispatch) => ({
   setProvider: data => {
     dispatch({ type: types.provider.SET_PROVIDER, payload: data });
   },
+  setChainId: data => {
+    dispatch({ type: types.provider.SET_CHAIN_ID, payload: data });
+  },
   createNFT: data => {
     dispatch({ type: types.createNFT.CREATE_NFT_REQUEST, payload: data });
   },

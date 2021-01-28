@@ -20,6 +20,7 @@ const localProvider = new JsonRpcProvider(localProviderUrlFromEnv);
 //     package: Portis,
 //     options: {
 //       id: "f5c8dbd5-f553-4641-943e-9223c9e65a0a",
+//       network: "rinkeby"
 //     },
 //   },
 // };
