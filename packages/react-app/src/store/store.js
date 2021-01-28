@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import { useActions } from "./actions";
 import reducer from "./reducer";
-import applyMiddleware from "./middleware";
+import { applyMiddleware } from "./middleware";
 import * as curveAddress from "../contracts/Curve.address";
 
 export const Store = createContext();

@@ -13,6 +13,9 @@ function BuyPage(props) {
     <div className={classes.root}>
       <div className={classes.heading}>Market Listing</div>
       <div className={classes.buyContainer}>
+      <div className={classes.topPanel}>
+        
+      </div>
         <div className={classes.leftPanel}>
           {state.nftDetails.uri === "" ? (
             <img src={imageUrlExample} className={classes.image} />
