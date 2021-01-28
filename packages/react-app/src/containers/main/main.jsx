@@ -1,11 +1,9 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 import MultiStepCreateFlow from "../../pages/createFlow/MultiStepCreateFlow";
 import BuyPage from "../../pages/buyFlow/buyPage";
 import Navbar from "../navbar/navbar";
 import RootLanding from "../../pages/rootLanding/rootLanding";
-
 import Web3Modal from "web3modal";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
@@ -22,7 +20,7 @@ const providerOptions = {
   
   const w3m = new Web3Modal({
     network: "mainnet",
-    cacheProvider: true,
+    cacheProvider: false,
     providerOptions,
   });
   
