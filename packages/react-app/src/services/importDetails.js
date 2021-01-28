@@ -11,13 +11,14 @@ export const importDetails = async (marketAddress, state, actions) => {
 
     // ERC20 details
     const currentSupplyRaw = await marketContract.totalSupply();
-    const maxSupplyRaw = await marketContract.cap()
+    const maxSupplyRaw = await marketContract.cap();
     const initialPriceRaw = await marketContract.initialBidPrice();
     actions.setTokenName(await marketContract.name());
     actions.setTokenSymbol(await marketContract.symbol());
     actions.setCurrentSupply(currentSupplyRaw.toString());
     actions.setMaxSupply(ethers.utils.formatUnits(maxSupplyRaw.toString(), 18));
-    actions.setInitialPrice(initialPriceRaw.toString());
+    console.log(initialPriceRaw.toString());
+    actions.setInitialPrice(ethers.utils.formatEther(initialPriceRaw));
     const collateral = await marketContract.getStakeToken();
     for (let i = 0; i < Object.keys(state.collateral).length - 1; i++) {
         if (Object.values(state.collateral)[i] === collateral) {
@@ -37,4 +38,12 @@ export const importDetails = async (marketAddress, state, actions) => {
     const curveDetailsRaw = await marketContract.getCurve()
     const curveType = curveDetailsRaw[0].toString() === "0" ? "linear" : "polynomial";
     actions.setCurve(curveType);
+}
+
+export const nftDetails = async (nftAddress, state, actions) => {
+    const nftContract = new ethers.Contract(nftAddress, nftAbi, state.provider);
+
+    actions.setNFTName(await nftContract.name());
+    actions.setNFTSymbol(await nftContract.symbol());
+    actions.setNFTUri(await nftContract.baseURI());
 }
