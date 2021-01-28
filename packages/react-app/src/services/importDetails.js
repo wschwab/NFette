@@ -3,7 +3,7 @@ import * as marketAbi from "../contracts/NFTMarketTemplate.abi";
 import * as nftAbi from "../contracts/NFetteNFT.abi";
 
 export const importDetails = async (marketAddress, state, actions) => {
-    debugger;
+    
     // need to figure out how to best get the market address
     await actions.setTokenContractAddress(marketAddress); 
     const marketContract = new ethers.Contract(marketAddress, marketAbi, state.provider);

@@ -109,7 +109,7 @@ async function setConnectedState(w3mProvider, actions) {
     await actions.setWalletConnected(true);
   }
   else {
-    debugger;
+    
     await actions.setProvider(new ethers.providers.Web3Provider(w3mProvider));
     await actions.setWalletAddress(w3mProvider.selectedAddress);
     await actions.setWalletConnected(true);
