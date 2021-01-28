@@ -23,12 +23,13 @@ function BuyPage(props) {
   }, []);
 
   const estimatePrice = async amount => {
+    debugger;
     const price = await getBuyPrice(amount, state.tokenDetails.contractAddress, provider);
     return price;
   }
 
   // this variable is here for testing purposes
-  const estimateOne = async () => estimatePrice(1);
+  //const estimateOne = async () => await estimatePrice(1);
 
   return (
     <div className={classes.root}>
@@ -54,14 +55,14 @@ function BuyPage(props) {
       <div>
         <div>
           <h2>Buy {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {() => getMTXBalance(state.userAddress, state.collateral.MTX, provider)} MTX</p>
+          <p>Balance: {() => await getMTXBalance(state.userAddress, state.collateral.MTX, provider)} MTX</p>
           <div  className={classes.buttons}>
             <button>Buy</button>
           </div>
         </div>
         <div>
           <h2>Sell {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {() => getSharesBalance(state.userAddress, state.tokenDetails.contractAddress, provider)} {state.tokenDetails.symbol}</p>
+          <p>Balance: {() => await getSharesBalance(state.userAddress, state.tokenDetails.contractAddress, provider)} {state.tokenDetails.symbol}</p>
           <div  className={classes.buttons}>
             <button>Sell</button>
           </div>

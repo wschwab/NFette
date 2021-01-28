@@ -5,7 +5,7 @@ import * as nftAbi from "../contracts/NFetteNFT.abi";
 export const importDetails = async (marketAddress, state, actions) => {
     
     // need to figure out how to best get the market address
-    await actions.setTokenContractAddress(marketAddress); 
+    await actions.setTokenContractAddress(marketAddress);
     const marketContract = new ethers.Contract(marketAddress, marketAbi, state.provider);
     const nftAddress = await marketContract.parentToken();
     const nftContract = new ethers.Contract(nftAddress, nftAbi, state.provider);
@@ -35,7 +35,7 @@ export const importDetails = async (marketAddress, state, actions) => {
     await actions.setNFTUri(await nftContract.baseURI());
 
     // Curve details
-    const curveDetailsRaw = await marketContract.getCurve()
+    const curveDetailsRaw = await marketContract.getCurve();
     const curveType = curveDetailsRaw[0].toString() === "0" ? "linear" : "polynomial";
     await actions.setCurve(curveType);
 
@@ -45,7 +45,8 @@ export const importDetails = async (marketAddress, state, actions) => {
         current supply: ${ethers.utils.formatUnits(currentSupplyRaw.toString(), 18)}
         max supply: ${ethers.utils.formatUnits(maxSupplyRaw.toString(), 18)}
         collateral: ${collateral}
-    `)
+    `);
+    return true;
 }
 
 // export const nftDetails = async (nftAddress, state, actions) => {
