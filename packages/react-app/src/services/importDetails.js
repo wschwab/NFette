@@ -15,7 +15,7 @@ export const importDetails = async (marketAddress, state, actions) => {
     const initialPriceRaw = await marketContract.initialBidPrice();
     actions.setTokenName(await marketContract.name());
     actions.setTokenSymbol(await marketContract.symbol());
-    actions.setCurrentSupply(ethers.utils.parseEther(currentSupplyRaw.toString()));
+    actions.setCurrentSupply(ethers.utils.formatUnits(currentSupplyRaw.toString(), 18));
     actions.setMaxSupply(ethers.utils.formatUnits(maxSupplyRaw.toString(), 18));
     actions.setInitialPrice(ethers.utils.formatEther(initialPriceRaw));
     const collateral = await marketContract.getStakeToken();
@@ -37,6 +37,14 @@ export const importDetails = async (marketAddress, state, actions) => {
     const curveDetailsRaw = await marketContract.getCurve()
     const curveType = curveDetailsRaw[0].toString() === "0" ? "linear" : "polynomial";
     actions.setCurve(curveType);
+
+    console.log(`
+        market address: ${marketAddress} 
+        nft address: ${nftAddress} 
+        current supply: ${ethers.utils.formatUnits(currentSupplyRaw.toString(), 18)}
+        max supply: ${ethers.utils.formatUnits(maxSupplyRaw.toString(), 18)}
+        collateral: ${collateral}
+    `)
 }
 
 export const nftDetails = async (nftAddress, state, actions) => {
