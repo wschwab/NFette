@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { utils } = require("ethers");
 const fs = require("fs");
 const chalk = require("chalk");
@@ -48,35 +49,25 @@ module.exports = {
       */
     },
     rinkeby: {
-      url: "https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      url: `https://rinkeby.infura.io/v3/${process.env.RINKEBY_INFURA_KEY}`,
+      accounts: [`${process.env.RINKEBY_DEPLOYER_PRIV_KEY}`],
     },
     mainnet: {
-      url: "https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      url: `https://mainnet.infura.io/v3/${process.env.MAINNET_INFURA_KEY}`,
+      accounts: [`${process.env.MAINNET_DEPLOYER_PRIV_KEY}`],
     },
     ropsten: {
-      url: "https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      url: `https://ropsten.infura.io/v3/${process.env.ROPSTEN_INFURA_KEY}`,
+      accounts: [`${process.env.ROPSTEN_DEPLOYER_PRIV_KEY}`],
     },
     goerli: {
-      url: "https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", //<---- YOUR INFURA ID! (or it won't work)
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      url: `https://goerli.infura.io/v3/${process.env.GOERLI_INFURA_KEY}`,
+      accounts: [`${process.env.GOERLI_DEPLOYER_PRIV_KEY}`],
     },
     xdai: {
       url: 'https://dai.poa.network',
       gasPrice: 1000000000,
-      accounts: {
-        mnemonic: mnemonic(),
-      },
+      accounts: [`${process.env.XDAI_DEPLOYER_PRIV_KEY}`],
     },
   },
   solidity: {
