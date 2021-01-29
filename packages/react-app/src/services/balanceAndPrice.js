@@ -14,7 +14,7 @@ export const getMTXBalance = async (userAddress, tokenAddress, provider) => {
     // I'll leave a log to see how decimals comes back
     const decimals = await contract.decimals();
     // console.log("DECIMALS: ", decimals);
-    const balance = ethers.utils.parseUnits(rawBalance, decimals);
+    const balance = ethers.utils.formatUnits(rawBalance, decimals);
 
     return balance;
 }
@@ -22,16 +22,17 @@ export const getMTXBalance = async (userAddress, tokenAddress, provider) => {
 export const getSharesBalance = async (userAddress, marketAddress, provider) => {
     const contract = new ethers.Contract(marketAddress, marketAbi, provider);
     const rawBalance = await contract.balanceOf(userAddress);
-    const balance = ethers.utils.parseEther(rawBalance);
+    const balance = ethers.utils.formatEther(rawBalance);
 
     return balance;
 }
-
+// ethers.utils.parseUnits(amount.toString(), 18)
 export const getBuyPrice = async (amount, marketAddress, provider) => {
+    const formattedAmount = typeof amount === "string" ? amount : amount.toString();
     const contract = new ethers.Contract(marketAddress, marketAbi, provider);
     console.log("AMOUNT: ", amount, "TYPEOF amount: ", typeof amount);
     // debugger;
-    const buyPriceRaw = await contract.getBuyCost(ethers.utils.parseEther(amount));
+    const buyPriceRaw = await contract.getBuyCost(formattedAmount);
     const buyPrice = ethers.utils.formatEther(buyPriceRaw);
 
     return buyPrice;
