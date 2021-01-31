@@ -13,11 +13,29 @@ const main = async () => {
 
   const mockERC721 = await deploy("NFetteNFT", ["NFetteNFTs", "NFETTE", "nfette.io"]);
   
-  const curve = await deploy("Curve");
+  const curve = await deploy("Curve", [], { gasLimit: ethers.BigNumber.from("400000") });
 
-  const marketTemplate  = await deploy("NFTMarketTemplate", [mockERC721.address, "NFetteNFTs", "NFETTE",owner.address, ethers.utils.parseEther("1000000"), ethers.utils.parseEther("1"), curve.address, ["0", "1", ethers.utils.parseEther("1")],true,"0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"]);
+  const marketTemplate  = await deploy(
+    "NFTMarketTemplate", 
+    [
+      mockERC721.address, 
+      "NFetteNFTs", 
+      "NFETTE",
+      owner.address, 
+      ethers.utils.parseEther("1000000"), 
+      ethers.utils.parseEther("1"), 
+      curve.address, ["0", "1", ethers.utils.parseEther("1")],
+      true,
+      "0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"
+    ],
+    { gasLimit: ethers.BigNumber.from("3000000") }
+  );
 
-  const factory = await deploy("NFTMarketFactory",[marketTemplate.address]);
+  const factory = await deploy(
+    "NFTMarketFactory",
+    [marketTemplate.address],
+    { gasLimit: ethers.BigNumber.from("600000") }
+  );
 
 
   // the following are a mock ERC20 and mock ERC721 for testing purposes, 
@@ -36,12 +54,19 @@ const main = async () => {
   );
 };
 
-const deploy = async (contractName, _args) => {
+const deploy = async (contractName, _args, _overrides) => {
   console.log(` 🛰  Deploying: ${contractName}`);
 
   const contractArgs = _args || [];
+  // console.log(`${contractName} args: ${_args}`);
+  // console.log(`${contractName} overrides: ${_overrides}`);
   const contractArtifacts = await ethers.getContractFactory(contractName);
-  const deployed = await contractArtifacts.deploy(...contractArgs);
+  let deployed;
+  if(_overrides !== undefined) {
+    deployed = await contractArtifacts.deploy(...contractArgs, _overrides);
+  } else {
+    deployed = await contractArtifacts.deploy(...contractArgs)
+  }
   const encoded = abiEncodeArgs(deployed, contractArgs);
   fs.writeFileSync(`artifacts/${contractName}.address`, deployed.address);
 
@@ -51,6 +76,11 @@ const deploy = async (contractName, _args) => {
     "deployed to:",
     chalk.magenta(deployed.address),
   );
+
+  console.log(
+    "gasLimit ",
+    deployed.deployTransaction.gasLimit.toString()
+  )
 
   if (!encoded || encoded.length <= 2) return deployed;
   fs.writeFileSync(`artifacts/${contractName}.args`, encoded.slice(2));
