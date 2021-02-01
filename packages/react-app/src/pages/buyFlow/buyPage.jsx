@@ -4,7 +4,7 @@ import { Store } from "../../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
-import { getMTXBalance, getSharesBalance, getBuyPrice } from "../../services/balanceAndPrice";
+import { getRARBalance, getSharesBalance, getBuyPrice } from "../../services/balanceAndPrice";
 import { buyShareTokens, sellShareTokens } from "../../services/token";
 // import { providers } from "web3modal";
 import { importDetails } from "../../services/importDetails";
@@ -13,7 +13,7 @@ function BuyPage(props) {
   const { classes } = props;
   const { state, actions, state: { provider } } = useContext(Store);
   const [ balances, setBalances] = useState({
-    mtx: null,
+    rar: null,
     shares: null,
     priceForOne: null
   });
@@ -31,7 +31,7 @@ function BuyPage(props) {
       await importDetails(marketAddress, state, actions);
       // debugger;
       setBalances({
-        mtx: await getMTXBalance(state.userAddress, state.collateral.MTX, provider),
+        rar: await getRARBalance(state.userAddress, state.collateral.RAR, provider),
         shares: await getSharesBalance(state.userAddress, state.tokenDetails.contractAddress, provider),
         priceForOne: await getBuyPrice(1, state.tokenDetails.contractAddress, provider)
       });
@@ -94,7 +94,7 @@ function BuyPage(props) {
       <div>
         <form>
           <h2>Buy {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {balances.mtx} MTX</p>
+          <p>Balance: {balances.rar} RAR</p>
           <label>Amount to Buy</label>          
           <input type="text" onChange={handleBuyChange} value={buyAmount} />
           <div  className={classes.buttons}>

@@ -33,7 +33,7 @@ const initialState = {
   collateral: {
     DAI: "0x6b175474e89094c44da98b954eedeac495271d0f",
     USDC: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    MTX: erc20address, // this is only for testing!!!
+    RAR: erc20address, // this is only for testing!!!
     ETH: "0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39",
   },
   walletConnected: false,

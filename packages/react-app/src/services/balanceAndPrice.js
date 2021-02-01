@@ -7,7 +7,7 @@ export const getERC20Balance = async (ethAddress, contract, decimals) => {
     return Number(ethers.utils.parseUnits(tokenBalance.toString(), decimals));
 };
 
-export const getMTXBalance = async (userAddress, tokenAddress, provider) => {
+export const getRARBalance = async (userAddress, tokenAddress, provider) => {
     const contract = new ethers.Contract(tokenAddress, erc20abi, provider);
     const rawBalance = await contract.balanceOf(userAddress);
     // I think ethers auto-formats, if it doesn't, we can call the contract for the decimals
