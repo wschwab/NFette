@@ -13,11 +13,7 @@ const main = async () => {
   
   const mockERC721 = await deploy("NFetteNFT", ["NFetteNFTs", "NFETTE", "nfette.io"]);
   
-  const curve = await deploy("Curve");
-  
-  // the following is a mock ERC20 for testing purposes, 
-  // and should not be deployed in a mainnet deployment
-  const mockERC20  = await deploy("ERC20Mock", ["Stake", "STAKE"]);
+  const curve = await deploy("Curve", [], { gasLimit: ethers.BigNumber.from("400000") });
 
   const marketTemplate  = await deploy(
     "NFTMarketTemplate", 
@@ -28,13 +24,18 @@ const main = async () => {
       owner.address, 
       ethers.utils.parseEther("1000000"), 
       ethers.utils.parseEther("1"), 
-      curve.address, 
-      ["1", "1", ethers.utils.parseEther("1")],
+      curve.address, ["0", "1", ethers.utils.parseEther("1")],
       true,
-      mockERC20.address // "0xFD78740eF045f6bAfc3D480dd40b67f26C6656b7"
-    ]);
+      "0x88401c6B9EB21e0CB2a3B0563067eEE1CcfF97f7" // RAR on Rinkeby
+    ],
+    { gasLimit: ethers.BigNumber.from("3000000") }
+  );
 
-  const factory = await deploy("NFTMarketFactory",[marketTemplate.address]);
+  const factory = await deploy(
+    "NFTMarketFactory",
+    [marketTemplate.address],
+    { gasLimit: ethers.BigNumber.from("600000") }
+  );
 
   console.log(
     " 💾  Artifacts (address, abi, and args) saved to: ",
@@ -43,12 +44,19 @@ const main = async () => {
   );
 };
 
-const deploy = async (contractName, _args) => {
+const deploy = async (contractName, _args, _overrides) => {
   console.log(` 🛰  Deploying: ${contractName}`);
 
   const contractArgs = _args || [];
+  // console.log(`${contractName} args: ${_args}`);
+  // console.log(`${contractName} overrides: ${_overrides}`);
   const contractArtifacts = await ethers.getContractFactory(contractName);
-  const deployed = await contractArtifacts.deploy(...contractArgs);
+  let deployed;
+  if(_overrides !== undefined) {
+    deployed = await contractArtifacts.deploy(...contractArgs, _overrides);
+  } else {
+    deployed = await contractArtifacts.deploy(...contractArgs)
+  }
   const encoded = abiEncodeArgs(deployed, contractArgs);
   fs.writeFileSync(`artifacts/${contractName}.address`, deployed.address);
 
@@ -58,6 +66,11 @@ const deploy = async (contractName, _args) => {
     "deployed to:",
     chalk.magenta(deployed.address),
   );
+
+  console.log(
+    "gasLimit ",
+    deployed.deployTransaction.gasLimit.toString()
+  )
 
   if (!encoded || encoded.length <= 2) return deployed;
   fs.writeFileSync(`artifacts/${contractName}.args`, encoded.slice(2));

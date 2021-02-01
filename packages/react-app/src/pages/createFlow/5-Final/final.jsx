@@ -33,12 +33,12 @@ function Final(props) {
           <div>Name: {state.nftDetails.name}</div>
           <div>Contract Address: {shortAddress}</div>
           <div>NFT Symbol: {state.nftDetails.symbol}</div>
-          <div>Max Supply: {state.nftDetails.maxSupply}</div>
+          <div>Max Supply: {state.tokenDetails.maxSupply}</div>
         </div>
         <div className={classes.infoDivider}></div>
         <div className={classes.smallBox}>
-          <div>Collateral Type: {state.nftDetails.collateralType}</div>
-          <div>Initial Price: {state.nftDetails.initialPrice}</div>
+          <div>Collateral Type: {state.tokenDetails.collateralType}</div>
+          <div>Initial Price: {state.tokenDetails.initialPrice}</div>
           <div>ERC20 Name: {printName}</div>
           <div>ERC20 Symbol: {state.nftDetails.symbol}</div>
         </div>

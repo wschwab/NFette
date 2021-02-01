@@ -3,6 +3,7 @@ import { Store } from "../../store/store";
 import styles from "./rootLandingStyles";
 import { withStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import { SwitchNetwork } from "../../components/SwitchNetwork";
 
 function RootLanding(props) {
   const { classes, navigation } = props;
@@ -11,6 +12,7 @@ function RootLanding(props) {
   
   return (
     <div className={classes.root}>
+      {state.chainId === null || state.chainId === 4 || state.chainId === 31337 ? "" : <SwitchNetwork />}
       <div className="gradientBorderTop"></div>
       <div className={classes.heading}>
         <h2 className={classes.headingText}>Virtually define the value of what is 
@@ -44,6 +46,7 @@ function RootLanding(props) {
               history.push("/create");
             }}
             className={classes.btnRight}
+            disabled={state.chainId === null}
           >
             Create Market
           </button>
@@ -55,7 +58,7 @@ function RootLanding(props) {
               history.push(`/market/${state.tokenDetails.contractAddress}`);
             }}
             className={classes.btnRight}
-            
+            disabled={state.chainId === null}
           >
             View Market
           </button>

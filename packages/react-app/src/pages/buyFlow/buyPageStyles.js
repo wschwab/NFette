@@ -21,23 +21,36 @@ const styles = createStyles({
         minWidth: "750px",
     },
     buyContainer: {
-        width: '70%',
-        height: "45rem",
+        width: '80%',
+        height: "40rem",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        // alignItems: "center",
+    },
+    leftPanel: {
+        width: '40%',
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
     },
-    leftPanel: {
-        width: '40%',
-    },
     image: {
-        height: '20rem',
-        width: 'auto',
+        height: 'auto',
+        width: '90%',
+        
     },
     rightPanel: {
         textAlign: 'left',
-        width: '60%'
+        width: '60%',
+        display: "flex",
+        flexDirection: "column",
+        // justifyContent: "center",
+        alignItems: "flex-start",
+    },
+    functionPlot: {
+        width: '200px',
+        height: '200px',
     },
     button: {
         color: "var(--main-white)",

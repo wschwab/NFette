@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import { useActions } from "./actions";
 import reducer from "./reducer";
-import applyMiddleware from "./middleware";
+import { applyMiddleware } from "./middleware";
 import * as curveAddress from "../contracts/Curve.address";
 import * as marketAddress from "../contracts/NFTMarketTemplate.address";
 import * as erc20address from "../contracts/ERC20Mock.address"; // only for testing!
@@ -38,6 +38,7 @@ const initialState = {
   },
   walletConnected: false,
   provider: {},
+  chainId: null,
   userAddress: "",
   createMarketPending: false,
   createMarketSuccess: false,
