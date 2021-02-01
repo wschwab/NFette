@@ -23,6 +23,7 @@ const types = {
   },
   provider: {
     SET_PROVIDER: "SET_PROVIDER",
+    SET_CHAIN_ID: "SET_CHAIN_ID"
   },
   SetWalletAddress: {
     SET_WALLET_ADDRESS_REQUEST: "SET_WALLET_ADDRESS_REQUEST",
