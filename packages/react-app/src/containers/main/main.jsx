@@ -4,10 +4,11 @@ import MultiStepCreateFlow from "../../pages/createFlow/MultiStepCreateFlow";
 import BuyPage from "../../pages/buyFlow/buyPage";
 import Navbar from "../navbar/navbar";
 import RootLanding from "../../pages/rootLanding/rootLanding";
+import { Store } from "../../store/store";
+
 import Web3Modal from "web3modal";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
-import { Store } from "../../store/store";
 
 const providerOptions = {
     portis: {
@@ -27,9 +28,9 @@ const providerOptions = {
   
 
 function Main() {
-  const { state, actions } = useContext(Store);
-  const [currentStep, setCurrentStep] = useState('')
 
+  const [currentStep, setCurrentStep] = useState('')
+  const { state, actions } = useContext(Store);
   if(window.ethereum) window.ethereum.on("chainChanged", newChainId => {
     actions.setChainId(parseInt(newChainId, 16));
   })
@@ -45,7 +46,7 @@ function Main() {
           <Route path="/create" exact>
             <MultiStepCreateFlow setCurrentStep={setCurrentStep} />
           </Route>
-          <Route path="/market" exact>
+          <Route path={`/market/${state.tokenDetails.contractAddress}`} exact>
             <BuyPage />
           </Route>
         </Switch>

@@ -6,11 +6,11 @@ const { utils } = require("ethers");
 const R = require("ramda");
 
 const main = async () => {
-
+  
   console.log("\n\n 📡 Deploying...\n");
-
+  
   const [owner] = await ethers.getSigners();
-
+  
   const mockERC721 = await deploy("NFetteNFT", ["NFetteNFTs", "NFETTE", "nfette.io"]);
   
   const curve = await deploy("Curve", [], { gasLimit: ethers.BigNumber.from("400000") });
@@ -36,16 +36,6 @@ const main = async () => {
     [marketTemplate.address],
     { gasLimit: ethers.BigNumber.from("600000") }
   );
-
-
-  // the following are a mock ERC20 and mock ERC721 for testing purposes, 
-  // and should not be deployed in a mainnet deployment
-  const mockERC20  = await deploy("ERC20Mock", ["Stake token", "STAKE"]);
-  
-
-  // const exampleToken = await deploy("ExampleToken")
-  // const examplePriceOracle = await deploy("ExamplePriceOracle")
-  // const smartContractWallet = await deploy("SmartContractWallet",[exampleToken.address,examplePriceOracle.address])
 
   console.log(
     " 💾  Artifacts (address, abi, and args) saved to: ",

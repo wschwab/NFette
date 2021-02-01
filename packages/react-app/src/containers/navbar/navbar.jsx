@@ -23,8 +23,8 @@ function Navbar(props) {
   const shortAddress = `${walletAddress.slice(0, 2)}...${walletAddress.slice(walletAddress.length - 6)}`;
 
   const logoutOfWeb3Modal = async () => {
-    actions.setProvider({});
-    actions.setWalletConnected(false);
+    await actions.setProvider({});
+    await actions.setWalletConnected(false);
     await web3Modal.clearCachedProvider();
     // remove below if you don't wish to logout on refresh 
     // for wallet related issues I am leaving this in for now

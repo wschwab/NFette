@@ -1,15 +1,76 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { ethers } from "ethers";
 import { Store } from "../../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
-import { getMTXBalance, getSharesBalance } from "../../services/balance";
-import { providers } from "web3modal";
+import { getRARBalance, getSharesBalance, getBuyPrice } from "../../services/balanceAndPrice";
+import { buyShareTokens, magicMint, sellShareTokens } from "../../services/token";
+// import { providers } from "web3modal";
+import { importDetails } from "../../services/importDetails";
 
 function BuyPage(props) {
   const { classes } = props;
-  const { state, actions } = useContext(Store);
+  const { state, actions, state: { provider } } = useContext(Store);
+  const [ balances, setBalances] = useState({
+    rar: null,
+    shares: null,
+    priceForOne: null
+  });
+  const [ buyAmount, setBuyAmount ] = useState(0);
+  const [ sellAmount, setSellAmount ] = useState(0);
   const imageUrlExample = "https://www.verdict.co.uk/wp-content/uploads/2020/04/shutterstock_1300066633.jpg";
+
+  useEffect(() => {
+    // magicMint is for local testing purposes
+    magicMint(state);
+    const url = window.location.href;
+    const splitUrl = url.split("/");
+    // console.log(splitUrl);
+    const marketAddress = splitUrl[splitUrl.length -1];
+    // console.log(marketAddress);
+    const initialize = async () => {
+      await importDetails(marketAddress, state, actions);
+      // debugger;
+      setBalances({
+        rar: await getRARBalance(state.userAddress, state.collateral.RAR, provider),
+        shares: await getSharesBalance(state.userAddress, state.tokenDetails.contractAddress, provider),
+        priceForOne: await getBuyPrice(1, state.tokenDetails.contractAddress, provider)
+      });
+    }
+    initialize();
+    console.log("balances: ", balances);
+  }, []);
+
+  const checkIfNumber = (value) => {
+    return /^[\d]*\.?[\d]{0,9}$/.test(value);
+  };
+
+  const eraseZeroIfFirstNonDecimalDigit = (value) => {
+    return /^\d+$/.test(value[1]) ? value.replace(/^0+/, "") : value;
+  };
+  const handleBuyChange = (e) => {
+    let val = eraseZeroIfFirstNonDecimalDigit(e.target.value);
+    if (checkIfNumber(val)) {
+      setBuyAmount(val);
+    }
+  };
+  const handleSellChange = (e) => {
+    let val = eraseZeroIfFirstNonDecimalDigit(e.target.value);
+    if (checkIfNumber(val)) {
+      setSellAmount(val);
+    }
+  };
+
+  const handleSubmitBuy = async e => {
+    e.target.preventDefault();
+    await buyShareTokens(buyAmount);
+  }
+
+  const handleSubmitSell = async e => {
+    e.target.preventDefault();
+    await sellShareTokens(sellAmount);
+  }
 
   return (
     <div className={classes.root}>
@@ -19,61 +80,41 @@ function BuyPage(props) {
         
       </div>
         <div className={classes.leftPanel}>
-          {state.nftDetails.uri === "" ? (
+          {state.nftDetails.uri === "nfette.io" ? (
             <img src={imageUrlExample} className={classes.image} />
           ) : (
             <img src={state.nftDetails.uri} className={classes.image} />
           )}
         </div>
         <div className={classes.rightPanel}>
-          {state.nftDetails.name === "" ? (
-            <div className={classes.title}>Title of piece</div>
-          ) : (
-            <div className={classes.title}>Title of piece: {state.nftDetails.name}</div>
-          )}
-          {state.nftDetails.symbol === "" ? (
-            <div className={classes.token}>Symbol</div>
-          ) : (
-            <div className={classes.token}>Symbol: {state.nftDetails.symbol}</div>
-          )}
-          {state.nftDetails.contractAddress === "" ? (
-            <div className={classes.contractAddress}>Contract Address:</div>
-          ) : (
-            <div className={classes.contractAddress}>Contract Address: {state.nftDetails.contractAddress}</div>
-          )}
-          {state.nftDetails.initialPrice === "" ? (
-            <div className={classes.price}>Price</div>
-          ) : (
-            <div className={classes.price}>Price: {state.tokenDetails.initialPrice} {state.tokenDetails.collateralType}</div>
-          )}
-          {state.nftDetails.maxSupply === "" ? (
-            <div className={classes.maxSupply}>Max Supply of tokens</div>
-          ) : (
-            <div className={classes.maxSupply}>Max Supply of tokens:{state.tokenDetails.maxSupply}</div>
-          )}
-          {/* {state.nftDetails.collateralType === "" ? (
-            <div className={classes.maxSupply}>Accepted Collateral: </div>
-          ) : (
-            <div className={classes.maxSupply}>Accepted Collateral: {state.tokenDetails.collateralType}</div>
-          )} */}
+          <div className={classes.title}>Title of piece: {state.nftDetails.name}</div>
+          <div className={classes.token}>Symbol: {state.tokenDetails.symbol}</div>
+          <div className={classes.contractAddress}>Contract Address: {state.tokenDetails.contractAddress}</div>
+          <div className={classes.price}>Price: {balances.priceForOne}</div>
+          <div className={classes.maxSupply}>Max Supply of tokens:{state.tokenDetails.maxSupply}</div>
+          <div className={classes.maxSupply}>Accepted Collateral: {state.tokenDetails.collateralType}</div>
           <PriceChart />
         </div>
       </div>
       <div>
-        <div>
+        <form>
           <h2>Buy {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {() => getMTXBalance(state.userAddress, state.collateral.MTX)} MTX</p>
+          <p>Balance: {balances.rar} RAR</p>
+          <label>Amount to Buy</label>          
+          <input type="text" onChange={handleBuyChange} value={buyAmount} />
           <div  className={classes.buttons}>
-            <button>Buy</button>
+            <button type="submit" onSubmit={handleSubmitBuy}>Buy</button>
           </div>
-        </div>
-        <div>
+        </form>
+        <form>
           <h2>Sell {state.tokenDetails.name} Tokens</h2>
-          <p>Balance: {() => getSharesBalance(state.userAddress, state.tokenDetails.contractAddress)} {state.tokenDetails.name}</p>
+          <p>Balance: {balances.shares} {state.tokenDetails.symbol}</p>
+          <label>Amount to Sell</label>
+          <input type="text" onChange={handleSellChange} value={sellAmount} />
           <div  className={classes.buttons}>
-            <button>Sell</button>
+            <button button="submit" onSubmit={handleSubmitSell}>Sell</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
