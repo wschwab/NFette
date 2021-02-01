@@ -3,6 +3,8 @@ import { Store } from "../../store/store";
 import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
+import { getMTXBalance, getSharesBalance } from "../../services/balance";
+import { providers } from "web3modal";
 
 function BuyPage(props) {
   const { classes } = props;
@@ -57,8 +59,21 @@ function BuyPage(props) {
           <PriceChart />
         </div>
       </div>
-      <div className={classes.buttons}>
-        <button>Buy Shares</button>
+      <div>
+        <div>
+          <h2>Buy {state.tokenDetails.name} Tokens</h2>
+          <p>Balance: {() => getMTXBalance(state.userAddress, state.collateral.MTX)} MTX</p>
+          <div  className={classes.buttons}>
+            <button>Buy</button>
+          </div>
+        </div>
+        <div>
+          <h2>Sell {state.tokenDetails.name} Tokens</h2>
+          <p>Balance: {() => getSharesBalance(state.userAddress, state.tokenDetails.contractAddress)} {state.tokenDetails.name}</p>
+          <div  className={classes.buttons}>
+            <button>Sell</button>
+          </div>
+        </div>
       </div>
     </div>
   );
