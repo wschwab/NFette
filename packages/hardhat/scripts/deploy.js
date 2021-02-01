@@ -26,7 +26,7 @@ const main = async () => {
       ethers.utils.parseEther("1"), 
       curve.address, ["0", "1", ethers.utils.parseEther("1")],
       true,
-      "0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"
+      "0x88401c6B9EB21e0CB2a3B0563067eEE1CcfF97f7" // RAR on Rinkeby
     ],
     { gasLimit: ethers.BigNumber.from("3000000") }
   );
