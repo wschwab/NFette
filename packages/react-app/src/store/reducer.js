@@ -32,6 +32,8 @@ const reducer = (state, action) => {
       return { ...state, curve: { ...state.curve, curveShape: action.payload } };
     case types.provider.SET_PROVIDER:
       return { ...state, provider: action.payload };
+    case types.provider.SET_CHAIN_ID:
+      return { ...state, chainId: action.payload };
     case types.createMarket.CREATE_MARKET_REQUEST:
       return { ...state, createMarketPending: true };
     case types.createMarket.CREATE_MARKET_FAIL:

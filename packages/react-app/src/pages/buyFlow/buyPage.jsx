@@ -15,6 +15,9 @@ function BuyPage(props) {
     <div className={classes.root}>
       <div className={classes.heading}>Market Listing</div>
       <div className={classes.buyContainer}>
+      <div className={classes.topPanel}>
+        
+      </div>
         <div className={classes.leftPanel}>
           {state.nftDetails.uri === "" ? (
             <img src={imageUrlExample} className={classes.image} />
@@ -41,18 +44,18 @@ function BuyPage(props) {
           {state.nftDetails.initialPrice === "" ? (
             <div className={classes.price}>Price</div>
           ) : (
-            <div className={classes.price}>Price: {state.nftDetails.initialPrice}</div>
+            <div className={classes.price}>Price: {state.tokenDetails.initialPrice} {state.tokenDetails.collateralType}</div>
           )}
           {state.nftDetails.maxSupply === "" ? (
             <div className={classes.maxSupply}>Max Supply of tokens</div>
           ) : (
-            <div className={classes.maxSupply}>Max Supply of tokens:{state.nftDetails.maxSupply}</div>
+            <div className={classes.maxSupply}>Max Supply of tokens:{state.tokenDetails.maxSupply}</div>
           )}
-          {state.nftDetails.collateralType === "" ? (
+          {/* {state.nftDetails.collateralType === "" ? (
             <div className={classes.maxSupply}>Accepted Collateral: </div>
           ) : (
-            <div className={classes.maxSupply}>Accepted Collateral: {state.nftDetails.collateralType}</div>
-          )}
+            <div className={classes.maxSupply}>Accepted Collateral: {state.tokenDetails.collateralType}</div>
+          )} */}
           <PriceChart />
         </div>
       </div>
