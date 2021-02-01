@@ -17,7 +17,7 @@ const main = async () => {
   
   // the following is a mock ERC20 for testing purposes, 
   // and should not be deployed in a mainnet deployment
-  const mockERC20  = await deploy("ERC20Mock", ["Stake token", "STAKE"]);
+  const mockERC20  = await deploy("ERC20Mock", ["Stake", "STAKE"]);
 
   const marketTemplate  = await deploy(
     "NFTMarketTemplate", 
@@ -31,7 +31,7 @@ const main = async () => {
       curve.address, 
       ["1", "1", ethers.utils.parseEther("1")],
       true,
-      mockERC20.address // "0x88401c6B9EB21e0CB2a3B0563067eEE1CcfF97f7"
+      mockERC20.address // "0xFD78740eF045f6bAfc3D480dd40b67f26C6656b7"
     ]);
 
   const factory = await deploy("NFTMarketFactory",[marketTemplate.address]);

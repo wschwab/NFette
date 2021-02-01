@@ -5,7 +5,7 @@ import styles from "./buyPageStyles";
 import { withStyles } from "@material-ui/core/styles";
 import PriceChart from "./priceChart";
 import { getRARBalance, getSharesBalance, getBuyPrice } from "../../services/balanceAndPrice";
-import { buyShareTokens, sellShareTokens } from "../../services/token";
+import { buyShareTokens, magicMint, sellShareTokens } from "../../services/token";
 // import { providers } from "web3modal";
 import { importDetails } from "../../services/importDetails";
 
@@ -22,6 +22,8 @@ function BuyPage(props) {
   const imageUrlExample = "https://www.verdict.co.uk/wp-content/uploads/2020/04/shutterstock_1300066633.jpg";
 
   useEffect(() => {
+    // magicMint is for local testing purposes
+    magicMint(state);
     const url = window.location.href;
     const splitUrl = url.split("/");
     // console.log(splitUrl);

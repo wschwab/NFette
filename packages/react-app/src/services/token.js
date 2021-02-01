@@ -13,3 +13,10 @@ export const sellShareTokens = async (amount, state) => {
     const marketContract = new ethers.Contract(marketAddress, marketAbi, state.provider);
     await marketContract.sell(amount);
 }
+
+export const magicMint = async state => {
+    const signer = state.provider.getSigner();
+    const tokenContract = new ethers.Contract(erc20Address, erc20Abi, signer);
+    console.log(erc20Address);
+    await tokenContract.mint(state.userAddress, ethers.utils.parseUnits("10000", 18));
+}
