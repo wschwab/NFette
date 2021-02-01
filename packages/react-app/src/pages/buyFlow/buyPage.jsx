@@ -42,18 +42,18 @@ function BuyPage(props) {
           {state.nftDetails.initialPrice === "" ? (
             <div className={classes.price}>Price</div>
           ) : (
-            <div className={classes.price}>Price: {state.nftDetails.initialPrice}</div>
+            <div className={classes.price}>Price: {state.tokenDetails.initialPrice} {state.tokenDetails.collateralType}</div>
           )}
           {state.nftDetails.maxSupply === "" ? (
             <div className={classes.maxSupply}>Max Supply of tokens</div>
           ) : (
-            <div className={classes.maxSupply}>Max Supply of tokens:{state.nftDetails.maxSupply}</div>
+            <div className={classes.maxSupply}>Max Supply of tokens:{state.tokenDetails.maxSupply}</div>
           )}
-          {state.nftDetails.collateralType === "" ? (
+          {/* {state.nftDetails.collateralType === "" ? (
             <div className={classes.maxSupply}>Accepted Collateral: </div>
           ) : (
-            <div className={classes.maxSupply}>Accepted Collateral: {state.nftDetails.collateralType}</div>
-          )}
+            <div className={classes.maxSupply}>Accepted Collateral: {state.tokenDetails.collateralType}</div>
+          )} */}
           <PriceChart />
         </div>
       </div>

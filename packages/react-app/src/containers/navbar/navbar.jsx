@@ -115,7 +115,9 @@ function Navbar(props) {
         {walletConnected ? (
           <button className={classes.addressDisplay} onClick={logoutOfWeb3Modal}>
             <WalletIcon />
-            {state.chainId} - {networkName} - {shortAddress}
+            <span>{shortAddress}</span>
+            <span>{networkName}</span>
+            {/* {state.chainId} */}
           </button>
         ) : (
           <button className={classes.walletButton} onClick={connectToWallet}>
