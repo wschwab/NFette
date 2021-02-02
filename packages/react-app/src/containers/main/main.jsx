@@ -1,28 +1,28 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 import MultiStepCreateFlow from "../../pages/createFlow/MultiStepCreateFlow";
 import BuyPage from "../../pages/buyFlow/buyPage";
 import Navbar from "../navbar/navbar";
 import RootLanding from "../../pages/rootLanding/rootLanding";
+import { Store } from "../../store/store";
 
 import Web3Modal from "web3modal";
 // import WalletConnectProvider from "@walletconnect/web3-provider";
 import Portis from "@portis/web3";
-import { useState } from "react";
 
 const providerOptions = {
     portis: {
       package: Portis,
       options: {
         id: "f5c8dbd5-f553-4641-943e-9223c9e65a0a",
+        network: "rinkeby"
       },
     }
   };
   
   const w3m = new Web3Modal({
     network: "mainnet",
-    cacheProvider: true,
+    cacheProvider: false,
     providerOptions,
   });
   
@@ -30,6 +30,10 @@ const providerOptions = {
 function Main() {
 
   const [currentStep, setCurrentStep] = useState('')
+  const { state, actions } = useContext(Store);
+  if(window.ethereum) window.ethereum.on("chainChanged", newChainId => {
+    actions.setChainId(parseInt(newChainId, 16));
+  })
 
   return (
     <>
@@ -42,7 +46,7 @@ function Main() {
           <Route path="/create" exact>
             <MultiStepCreateFlow setCurrentStep={setCurrentStep} />
           </Route>
-          <Route path="/market" exact>
+          <Route path={`/market/${state.tokenDetails.contractAddress}`} exact>
             <BuyPage />
           </Route>
         </Switch>

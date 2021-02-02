@@ -6,28 +6,36 @@ const { utils } = require("ethers");
 const R = require("ramda");
 
 const main = async () => {
-
+  
   console.log("\n\n 📡 Deploying...\n");
-
+  
   const [owner] = await ethers.getSigners();
-
+  
   const mockERC721 = await deploy("NFetteNFT", ["NFetteNFTs", "NFETTE", "nfette.io"]);
   
-  const curve = await deploy("Curve");
+  const curve = await deploy("Curve", [], { gasLimit: ethers.BigNumber.from("400000") });
 
-  const marketTemplate  = await deploy("NFTMarketTemplate", [mockERC721.address, "NFetteNFTs", "NFETTE",owner.address, ethers.utils.parseEther("1000000"), ethers.utils.parseEther("1"), curve.address, ["0", "1", ethers.utils.parseEther("1")],true,"0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39"]);
+  const marketTemplate  = await deploy(
+    "NFTMarketTemplate", 
+    [
+      mockERC721.address, 
+      "NFetteNFTs", 
+      "NFETTE",
+      owner.address, 
+      ethers.utils.parseEther("1000000"), 
+      ethers.utils.parseEther("1"), 
+      curve.address, ["0", "1", ethers.utils.parseEther("1")],
+      true,
+      "0x88401c6B9EB21e0CB2a3B0563067eEE1CcfF97f7" // RAR on Rinkeby
+    ],
+    { gasLimit: ethers.BigNumber.from("3000000") }
+  );
 
-  const factory = await deploy("NFTMarketFactory",[marketTemplate.address]);
-
-
-  // the following are a mock ERC20 and mock ERC721 for testing purposes, 
-  // and should not be deployed in a mainnet deployment
-  const mockERC20  = await deploy("ERC20Mock", ["Stake token", "STAKE"]);
-  
-
-  // const exampleToken = await deploy("ExampleToken")
-  // const examplePriceOracle = await deploy("ExamplePriceOracle")
-  // const smartContractWallet = await deploy("SmartContractWallet",[exampleToken.address,examplePriceOracle.address])
+  const factory = await deploy(
+    "NFTMarketFactory",
+    [marketTemplate.address],
+    { gasLimit: ethers.BigNumber.from("600000") }
+  );
 
   console.log(
     " 💾  Artifacts (address, abi, and args) saved to: ",
@@ -36,12 +44,19 @@ const main = async () => {
   );
 };
 
-const deploy = async (contractName, _args) => {
+const deploy = async (contractName, _args, _overrides) => {
   console.log(` 🛰  Deploying: ${contractName}`);
 
   const contractArgs = _args || [];
+  // console.log(`${contractName} args: ${_args}`);
+  // console.log(`${contractName} overrides: ${_overrides}`);
   const contractArtifacts = await ethers.getContractFactory(contractName);
-  const deployed = await contractArtifacts.deploy(...contractArgs);
+  let deployed;
+  if(_overrides !== undefined) {
+    deployed = await contractArtifacts.deploy(...contractArgs, _overrides);
+  } else {
+    deployed = await contractArtifacts.deploy(...contractArgs)
+  }
   const encoded = abiEncodeArgs(deployed, contractArgs);
   fs.writeFileSync(`artifacts/${contractName}.address`, deployed.address);
 
@@ -51,6 +66,11 @@ const deploy = async (contractName, _args) => {
     "deployed to:",
     chalk.magenta(deployed.address),
   );
+
+  console.log(
+    "gasLimit ",
+    deployed.deployTransaction.gasLimit.toString()
+  )
 
   if (!encoded || encoded.length <= 2) return deployed;
   fs.writeFileSync(`artifacts/${contractName}.args`, encoded.slice(2));

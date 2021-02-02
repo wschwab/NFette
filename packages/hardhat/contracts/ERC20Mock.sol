@@ -16,7 +16,7 @@ contract ERC20Mock is AccessControl, ERC20 {
         _setupRole(MINTER_ROLE, msg.sender);
     }
 
-    function mint(address to, uint256 value) external onlyMinter {
+    function mint(address to, uint256 value) external {
         _mint(to, value);
     }
 

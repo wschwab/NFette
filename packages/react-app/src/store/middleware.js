@@ -3,7 +3,7 @@ import createMarket from "../services/createMarket";
 import createNFT from "../pages/createFlow/1-CreateNFT/createNFT"
 import { setWalletAddress } from "../services/wallet";
 
-const applyMiddleware = dispatch => action => {
+export const applyMiddleware = dispatch => action => {
   switch (action.type) {
     case types.createMarket.CREATE_MARKET_REQUEST:
       return createMarket(action.payload)
@@ -60,5 +60,3 @@ const applyMiddleware = dispatch => action => {
       dispatch(action);
   }
 };
-
-export default applyMiddleware;

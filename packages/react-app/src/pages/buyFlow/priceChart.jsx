@@ -25,14 +25,15 @@ export default function PriceChart() {
   ]
 
   const data = state.curve.curveShape === "linear" ? linearData : polynomialData;
-
+  const domain = state.curve.curveShape === "linear" ? [0,500] : [0,20];
+  
   // width, height properties can be added to control the height and width of the graph
   const options = {
     grid: true,
     data,
     xAxis: {
       label: "Total Supply",
-      domain: [0,20]
+      domain
     },
     yAxis: {
       label: "Price",

@@ -32,7 +32,7 @@ function BuyPage(props) {
     const url = window.location.href;
     const splitUrl = url.split("/");
     // console.log(splitUrl);
-    const marketAddress = splitUrl[splitUrl.length - 1];
+    const marketAddress = splitUrl[splitUrl.length -1];
     // console.log(marketAddress);
     const initialize = async () => {
       await importDetails(marketAddress, state, actions);
@@ -40,27 +40,27 @@ function BuyPage(props) {
       setBalances({
         rar: await getRARBalance(state.userAddress, state.collateral.RAR, provider),
         shares: await getSharesBalance(state.userAddress, state.tokenDetails.contractAddress, provider),
-        priceForOne: await getBuyPrice(1, state.tokenDetails.contractAddress, provider),
+        priceForOne: await getBuyPrice(1, state.tokenDetails.contractAddress, provider)
       });
-    };
+    }
     initialize();
     console.log("balances: ", balances);
   }, []);
 
-  const checkIfNumber = value => {
+  const checkIfNumber = (value) => {
     return /^[\d]*\.?[\d]{0,9}$/.test(value);
   };
 
-  const eraseZeroIfFirstNonDecimalDigit = value => {
+  const eraseZeroIfFirstNonDecimalDigit = (value) => {
     return /^\d+$/.test(value[1]) ? value.replace(/^0+/, "") : value;
   };
-  const handleBuyChange = e => {
+  const handleBuyChange = (e) => {
     let val = eraseZeroIfFirstNonDecimalDigit(e.target.value);
     if (checkIfNumber(val)) {
       setBuyAmount(val);
     }
   };
-  const handleSellChange = e => {
+  const handleSellChange = (e) => {
     let val = eraseZeroIfFirstNonDecimalDigit(e.target.value);
     if (checkIfNumber(val)) {
       setSellAmount(val);
@@ -70,7 +70,7 @@ function BuyPage(props) {
   const handleSubmitBuy = async e => {
     e.target.preventDefault();
     await buyShareTokens(buyAmount);
-  };
+  }
 
   const handleSubmitSell = async e => {
     e.target.preventDefault();

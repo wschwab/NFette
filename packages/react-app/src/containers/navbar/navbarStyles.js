@@ -74,7 +74,7 @@ const styles = createStyles({
   },
   addressDisplay: {
     backgroundColor: "var(--main-white)",
-    width: '15rem',
+    width: '22rem',
     fontSize: "1.5rem",
     display: 'flex',
     alignItems: 'center',

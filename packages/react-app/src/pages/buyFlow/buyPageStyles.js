@@ -45,7 +45,7 @@ const styles = createStyles({
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center",
+        // alignItems: "center",
     },
     image: {
         height: 'auto',

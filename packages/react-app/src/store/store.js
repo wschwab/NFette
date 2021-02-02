@@ -1,8 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import { useActions } from "./actions";
 import reducer from "./reducer";
-import applyMiddleware from "./middleware";
+import { applyMiddleware } from "./middleware";
 import * as curveAddress from "../contracts/Curve.address";
+import * as marketAddress from "../contracts/NFTMarketTemplate.address";
+import * as erc20address from "../contracts/ERC20Mock.address"; // only for testing!
 
 export const Store = createContext();
 
@@ -16,10 +18,11 @@ const initialState = {
   tokenDetails: {
     name: "",
     symbol: "",
+    currentSupply: "",
     maxSupply: "10000000",
     collateralType: "",
     initialPrice: "",
-    contractAddress: ""
+    contractAddress: marketAddress
   },
   curve: {
     address: curveAddress,
@@ -30,11 +33,12 @@ const initialState = {
   collateral: {
     DAI: "0x6b175474e89094c44da98b954eedeac495271d0f",
     USDC: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
-    MTX: "",
+    RAR: erc20address, // this is only for testing!!!
     ETH: "0xd4Fa489Eacc52BA59438993f37Be9fcC20090E39",
   },
   walletConnected: false,
   provider: {},
+  chainId: null,
   userAddress: "",
   createMarketPending: false,
   createMarketSuccess: false,
