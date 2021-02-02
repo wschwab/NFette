@@ -12,7 +12,8 @@ const styles = createStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: '1rem'
+        paddingTop: '1rem',
+        paddingBottom: '1rem'
       },
       smallBox: {
         display: "flex",

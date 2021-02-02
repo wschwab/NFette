@@ -1,7 +1,7 @@
 import { createStyles } from "@material-ui/core/styles";
 
 const styles = createStyles({
-    root: {
+      root: {
         color: "var(--main-black)",
         height: "calc(100vh - 70px)",
         width: "100vw",
@@ -24,7 +24,7 @@ const styles = createStyles({
         minWidth: "750px",
         animation: "$fadeIn 1s",
         marginTop: '20px',
-        marginBottom: '10px'
+        marginBottom: '20px'
       },
       '@keyframes fadeIn': {
         from: {opacity: 0, transform: 'translateY(20px)'},
@@ -34,25 +34,37 @@ const styles = createStyles({
           width: '900px',
           textAlign: 'left',
           fontSize: "1.5rem",
+          marginBottom: '20px'
       },
     buyContainer: {
-        width: '70%',
-        height: "45rem",
+        width: '900px',
+        height: "40rem",
+    },
+    leftPanel: {
+        width: '40%',
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
     },
-    leftPanel: {
-        width: '40%',
-    },
     image: {
-        height: '20rem',
-        width: 'auto',
+        height: 'auto',
+        width: '90%',
+    },
+    buyAndSell: {
+        
     },
     rightPanel: {
         textAlign: 'left',
-        width: '60%'
+        width: '60%',
+        display: "flex",
+        flexDirection: "column",
+        // justifyContent: "center",
+        alignItems: "flex-start",
+    },
+    functionPlot: {
+        width: '200px',
+        height: '200px',
     },
     button: {
         color: "var(--main-white)",

@@ -43,8 +43,8 @@ export default function PriceChart() {
   return (
     <div
       style={{
-        width: '200px',
-        height: '150px'
+        // width: '200px',
+        // height: '150px'
       }}
     >
       <FunctionPlot options={options} />
