@@ -5,21 +5,36 @@ const styles = createStyles({
         color: "var(--main-black)",
         height: "calc(100vh - 70px)",
         width: "100vw",
+        height: "85vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "var(--main-white)",
         position: "absolute",
-        top: "70px",
-    },
-    heading: {
-        fontFamily: "var(--fancy-font)",
-        fontSize: "10rem",
+        top: "90px",
+      },
+      heading: {
+        fontFamily: "var(--plain-font: Roboto)",
+        width: '900px',
+        textAlign: 'left',
+        fontSize: "4rem",
         color: "inherit",
-        width: "70%",
+        // width: "75%",
         minWidth: "750px",
-    },
+        animation: "$fadeIn 1s",
+        marginTop: '20px',
+        marginBottom: '10px'
+      },
+      '@keyframes fadeIn': {
+        from: {opacity: 0, transform: 'translateY(20px)'},
+        to: {opacity: 1, transform: 'translateY(0)'}
+      },
+      subHeading: {
+          width: '900px',
+          textAlign: 'left',
+          fontSize: "1.5rem",
+      },
     buyContainer: {
         width: '70%',
         height: "45rem",
