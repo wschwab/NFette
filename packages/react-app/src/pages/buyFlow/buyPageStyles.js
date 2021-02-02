@@ -1,43 +1,57 @@
 import { createStyles } from "@material-ui/core/styles";
 
 const styles = createStyles({
-    root: {
+      root: {
         color: "var(--main-black)",
         height: "calc(100vh - 70px)",
         width: "100vw",
+        height: "85vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "var(--main-white)",
         position: "absolute",
-        top: "70px",
-    },
-    heading: {
-        fontFamily: "var(--fancy-font)",
-        fontSize: "10rem",
+        top: "90px",
+      },
+      heading: {
+        fontFamily: "var(--plain-font: Roboto)",
+        width: '900px',
+        textAlign: 'left',
+        fontSize: "4rem",
         color: "inherit",
-        width: "70%",
+        // width: "75%",
         minWidth: "750px",
-    },
+        animation: "$fadeIn 1s",
+        marginTop: '20px',
+        marginBottom: '20px'
+      },
+      '@keyframes fadeIn': {
+        from: {opacity: 0, transform: 'translateY(20px)'},
+        to: {opacity: 1, transform: 'translateY(0)'}
+      },
+      subHeading: {
+          width: '900px',
+          textAlign: 'left',
+          fontSize: "1.5rem",
+          marginBottom: '20px'
+      },
     buyContainer: {
-        width: '80%',
+        width: '900px',
         height: "40rem",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        // alignItems: "center",
     },
     leftPanel: {
         width: '40%',
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center",
+        // alignItems: "center",
     },
     image: {
         height: 'auto',
         width: '90%',
+    },
+    buyAndSell: {
         
     },
     rightPanel: {
